@@ -83,7 +83,8 @@ const MainPageMobile = (props) => {
 	}
 	return (
 		<div>
-			<SwitchTransition>
+			<Background>
+				<SwitchTransition>
 			<CSSTransition key={count} addEndListener={(node, done) => node.addEventListener("transitionend", done, false)} classNames="fade">
 				{showQuestion()}
 			</CSSTransition>
@@ -96,6 +97,8 @@ const MainPageMobile = (props) => {
 				cards={testcards}>
 			<MobileCardPopup popped={popped} setPopped={setPopped} card={selectedCard} />
 			</MobileCardDrawer>
+			</Background>
+			
 		</div>)}
 
 
