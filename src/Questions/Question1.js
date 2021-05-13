@@ -205,7 +205,7 @@ const Question1 = (props) => {
 					<QuestionContainer>
 						<QuestionNumber>Q{count}.</QuestionNumber>
 						<QuestionContent>당신의 이름은 무엇인가요?</QuestionContent>
-						<div style={{ margin: "8vh 0" }} />
+						<div style={{ margin: "10vh 0" }} />
 						<InputForm onChange={onChangeName} maxLength="15" onKeyPress={handleKeyPress} />
 					</QuestionContainer>
 					<NextButton onClick={checkName}>

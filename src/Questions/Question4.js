@@ -1,7 +1,5 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 import styled, { css } from "styled-components";
-import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
-import Swal from "sweetalert2";
 
 const Question = styled.div`
 	position: absolute;
@@ -51,18 +49,6 @@ const ButtonForm = styled.button`
 		transform: scale(0.85, 0.85);
 		transition: all ease-in-out 0.1s;
 	}
-`;
-
-const InputForm = styled.input`
-	background-color: #ffffff;
-	border-radius: 10px;
-	border: none;
-	outline: none;
-	height: 9vh;
-	width: 40vw;
-	font-size: 2rem;
-	color: #126e82;
-	padding-left: 1rem;
 `;
 
 const NextButton = styled.button`
@@ -157,38 +143,13 @@ const ButtonFormMobile = styled.button`
 
 const Question4 = (props) => {
 	const { score, setScore, setIndex, changeScore, isMobile, count, increaseIndex, setAnswers, setCards, addQnaData } = props;
-	const [bottles, setBottles] = useState();
-	const drinkType = localStorage.getItem("drinkType");
+	const [type, setType] = useState("");
 
-	const onChangeCount = (e) => {
-		let tempBottles = e.target.value;
-
-		if (tempBottles.length >= 3) {
-			tempBottles = tempBottles.slice(0, 2);
-		}
-
-		setBottles(Number(tempBottles));
-	};
-
-	const handleKeyPress = (e) => {
-		if (e.key === "Enter") {
-			checkCount();
-		}
-	};
-
-	const checkCount = () => {
-		if (Number.isInteger(bottles) && bottles !== undefined) {
-			window.localStorage.setItem("bottleCount", bottles);
-			addQnaData("일주일동안 몇 병을 드셨나요?", bottles);
-			increaseIndex();
-		} else {
-			Swal.fire({
-				title: "개수를 숫자로 입력해주세요",
-				icon: "error",
-				confirmButtonText: "닫기",
-				confirmButtonColor: "#DB6867",
-			});
-		}
+	const onClickType = (type) => {
+		setType(type);
+		localStorage.setItem("drinkType", type);
+		addQnaData("주로 어떤 술을 마시나요?", type);
+		increaseIndex();
 	};
 
 	return (
@@ -196,34 +157,27 @@ const Question4 = (props) => {
 			{isMobile ? (
 				<QuestionMobile>
 					<QuestionNumberMobile>Q{count}.</QuestionNumberMobile>
-					<QuestionContentMobile>
-						평균적으로 일주일동안 몇 병의 {drinkType}
-						{drinkType === "와인" || "칵테일" ? "을" : "를"} 드시나요?
-					</QuestionContentMobile>
-					<div style={{ margin: "6vh 0" }} />
-					<div>
-						<InputFormMobile onChange={onChangeCount} maxLength="2" target={bottles} />
-						<span style={{ color: "#126e82", fontSize: "2rem", paddingLeft: "1rem" }}>병</span>
-					</div>
-					<NextButtonMobile onClick={checkCount}>
-						다음 <ArrowForwardIosIcon />
-					</NextButtonMobile>
+					<QuestionContentMobile>주로 어떤 술을 마시나요?</QuestionContentMobile>
+					<div style={{ margin: "0.5vh 0 2vh" }} />
+					<ButtonFormMobile onClick={() => onClickType("소주")}>소주</ButtonFormMobile>
+					<ButtonFormMobile onClick={() => onClickType("맥주")}>맥주</ButtonFormMobile>
+					<ButtonFormMobile onClick={() => onClickType("양주")}>양주</ButtonFormMobile>
+					<ButtonFormMobile onClick={() => onClickType("막걸리")}>막걸리</ButtonFormMobile>
+					<ButtonFormMobile onClick={() => onClickType("와인")}>와인</ButtonFormMobile>
 				</QuestionMobile>
 			) : (
 				<Question>
 					<QuestionContainer>
 						<QuestionNumber>Q{count}.</QuestionNumber>
-						<QuestionContent>
-							평균적으로 일주일동안 몇 병의 {drinkType}
-							{drinkType === "와인" || drinkType === "칵테일" ? "을" : "를"} 드시나요?
-						</QuestionContent>
-						<div style={{ margin: "8vh 0" }} />
-						<InputForm onChange={onChangeCount} maxLength="2" target={bottles} onKeyPress={handleKeyPress}></InputForm>
-						<span style={{ color: "#126e82", fontSize: "2rem", paddingLeft: "1rem" }}>병</span>
+						<QuestionContent>주로 어떤 술을 마시나요?</QuestionContent>
+						<div style={{ margin: "12vh 0" }}>
+							<ButtonForm onClick={() => onClickType("소주")}>소주</ButtonForm>
+							<ButtonForm onClick={() => onClickType("맥주")}>맥주</ButtonForm>
+							<ButtonForm onClick={() => onClickType("양주")}>양주</ButtonForm>
+							<ButtonForm onClick={() => onClickType("막걸리")}>막걸리</ButtonForm>
+							<ButtonForm onClick={() => onClickType("와인")}>와인</ButtonForm>
+						</div>
 					</QuestionContainer>
-					<NextButton onClick={checkCount}>
-						다음 <ArrowForwardIosIcon />
-					</NextButton>
 				</Question>
 			)}
 		</div>

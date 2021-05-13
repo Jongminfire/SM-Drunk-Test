@@ -37,29 +37,8 @@ const Contents = styled.div`
 	top: 10vh;
 `;
 
-const OtherBackground = () => {
-	const [stag, setStag] = React.useState(0);
-	const clk = () => {
-		console.log(stag);
-		if (stag == 0) {
-			setStag(1);
-		} else if (stag == 1) {
-			setStag(2);
-			setTimeout(() => {
-				setStag(3);
-				setTimeout(() => {
-					setStag(0);
-				}, 0.5 * 1000);
-			}, 0.5 * 1000);
-		} else if (stag == 2) {
-			return;
-		}
-	};
-	return <div className="othbg" stag={stag} onClick={clk} />;
-};
-
 const MainPage = (props) => {
-	const { showQuestion, score, setCards, setAnswers, count } = props;
+	const { showQuestion, score, setCards, setAnswers, count, stag } = props;
 	const [popped, setPopped] = useState(false);
 	const [selectedCard, setSelectedCard] = useState(null);
 	const [testcards, setTestcards] = useState([
@@ -86,9 +65,31 @@ const MainPage = (props) => {
 		}
 	}
 
+	const OtherBackground = () => {
+		const clk = () => {
+			if (stag == 0) {
+				setStag(1);
+			} else if (stag == 1) {
+				setStag(2);
+				setTimeout(() => {
+					setStag(3);
+					setTimeout(() => {
+						setStag(0);
+					}, 0.5 * 1000);
+				}, 0.5 * 1000);
+			} else if (stag == 2) {
+				return;
+			}
+		};
+		return <div className="othbg" stag={stag} onClick={clk} />;
+	};
+
 	return (
 		<Background>
-			<OtherBackground></OtherBackground>
+			<div className="othbg" stag={stag} />
+			<div className="othbg2" stag={(stag + 1) % 4} />
+			<div className="othbg3" stag={(stag + 2) % 4} />
+			<div className="othbg4" stag={(stag + 3) % 4} />
 			<SwitchTransition>
 				<CSSTransition key={count} addEndListener={(node, done) => node.addEventListener("transitionend", done, false)} classNames="fade">
 					{showQuestion()}
