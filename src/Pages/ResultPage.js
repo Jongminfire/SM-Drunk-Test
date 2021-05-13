@@ -1,10 +1,11 @@
-import React from "react";
-import { useMediaQuery } from "react-responsive";
-import styled, { css } from "styled-components";
-import lroabats from "../Datasets/amount_of_drinking/low_risk_of_alcohol_by_alcohol_type_samsungSeoulHospital.json";
-import bdrk from "../Datasets/amount_of_drinking/binge_drinking_rate_kIndicator.json";
-import wdacss from "../Datasets/amount_of_drinking/who_daily_alcohol_consumption_standards_samsungSeoulHospital.json";
-import ebds from "../Datasets/empty_bottle_deposit/empty_bottle_deposit_statMe.json";
+import React from 'react';
+import { useMediaQuery } from 'react-responsive';
+import styled, { css } from 'styled-components';
+import lroabats from '../Datasets/amount_of_drinking/low_risk_of_alcohol_by_alcohol_type_samsungSeoulHospital.json';
+import bdrk from '../Datasets/amount_of_drinking/binge_drinking_rate_kIndicator.json';
+import wdacss from '../Datasets/amount_of_drinking/who_daily_alcohol_consumption_standards_samsungSeoulHospital.json';
+import ebds from '../Datasets/empty_bottle_deposit/empty_bottle_deposit_statMe.json';
+import trac from '../Datasets/harmful_effects_of_drinking/traffic_accident_status_by_year_knpa.json';
 
 const Background = styled.div`
 	width: 100%;
@@ -63,15 +64,27 @@ const Title = styled.div`
 
 const ResultPage = (props) => {
 	const { qnaData, score, onClickRestart } = props;
-	const name = localStorage.getItem("userName");
-	const weight = localStorage.getItem("userWeight");
-	const gen = localStorage.getItem("gender");
-	const alcoholAmount = (weight * 0.1 * 24) / 2 / 6.76;
+	const name = localStorage.getItem('userName');
+	const weight = localStorage.getItem('userWeight');
+	const gen = localStorage.getItem('gender');
+	const alcoholAmount = weight * 0.1 * 24 / 2 / 6.76;
 	const sojuBottle = Math.round(Math.round(alcoholAmount) / 7);
 	const sojuGlass = Math.round(alcoholAmount) % 7;
 
-	const bCount = localStorage.getItem("bottleCount");
-	const type = localStorage.getItem("drinkType");
+	const bCount = localStorage.getItem('bottleCount');
+	const type = localStorage.getItem('drinkType');
+
+	let str_ = '201';
+	const Medi = [];
+	for (let k = 0; k < 4; k++) {
+		let sum_ = 0;
+		for (let i = 1; i <= 7; i++) {
+			sum_ += parseInt(trac[k][str_ + i]);
+		}
+		Medi.push(Math.floor(sum_ / 7));
+	}
+	const [ d1, d2 ] = [ Math.round(Medi[0] / Medi[2], 2), Math.round(Medi[1] / Medi[3], 2) ];
+
 	let calType;
 	if (type === "소주") calType = lroabats[7]["알코올 함량(g)"];
 	else if (type === "맥주") calType = lroabats[0]["알코올 함량(g)"];
@@ -179,6 +192,7 @@ const ResultPage = (props) => {
 						</div>
 					</div>
 				</div>
+				<Title>총 점수 : {score}</Title>
 			</Contents>
 		</Background>
 	);

@@ -5,6 +5,7 @@ import lroabats from "../Datasets/amount_of_drinking/low_risk_of_alcohol_by_alco
 import bdrk from "../Datasets/amount_of_drinking/binge_drinking_rate_kIndicator.json";
 import wdacss from "../Datasets/amount_of_drinking/who_daily_alcohol_consumption_standards_samsungSeoulHospital.json";
 import ebds from "../Datasets/empty_bottle_deposit/empty_bottle_deposit_statMe.json";
+import trac from '../Datasets/harmful_effects_of_drinking/traffic_accident_status_by_year_knpa.json';
 
 const Background = styled.div`
 	width: 100%;
@@ -72,6 +73,19 @@ const ResultPageMobile = (props) => {
 
 	const bCount = localStorage.getItem("bottleCount");
 	const type = localStorage.getItem("drinkType");
+
+	let str_ = '201';
+	const Medi = [];
+	for (let k = 0; k < 4; k++) {
+		let sum_ = 0;
+		for (let i = 1; i <= 7; i++) {
+			sum_ += parseInt(trac[k][str_ + i]);
+		}
+		Medi.push(Math.floor(sum_ / 7));
+	}
+	const [ d1, d2 ] = [ Math.round(Medi[0] / Medi[2], 2), Math.round(Medi[1] / Medi[3], 2) ];
+
+
 	let calType;
 	if (type === "소주") calType = lroabats[7]["알코올 함량(g)"];
 	else if (type === "맥주") calType = lroabats[0]["알코올 함량(g)"];
@@ -101,6 +115,8 @@ const ResultPageMobile = (props) => {
 		else if (alcoholConsumption >= 21) whoStatement = wdacss[1]["구분"];
 		else whoStatement = wdacss[0]["구분"];
 	}
+
+	const sojuBottleDeposit = Math.floor(alcoholConsumption / (6.76 * 7)) * ebds[0]["개당 가격(원)"];
 
 	const addictedState = () => {
 		if (score < 9) {
@@ -137,8 +153,6 @@ const ResultPageMobile = (props) => {
 			);
 		}
 	};
-
-	const sojuBottleDeposit = Math.floor(alcoholConsumption / (6.76 * 7)) * ebds[0]["개당 가격(원)"];
 
 	return (
 		<Background>

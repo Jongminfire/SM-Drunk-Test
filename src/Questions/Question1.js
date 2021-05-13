@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import styled, { css } from "styled-components";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import Swal from "sweetalert2";
-import {Question,QuestionContainer,QuestionNumber,QuestionContent} from "./QuestionCommon";
+import { Question, QuestionContainer, QuestionNumber, QuestionContent } from "./QuestionCommon";
 
 const InputForm = styled.input`
 	background-color: #ffffff;
@@ -28,6 +28,15 @@ const NextButton = styled.button`
 	bottom: 5%;
 	color: #126e82;
 	font-size: 1.5rem;
+
+	transition: all ease-in-out 0.1s;
+	&:hover {
+		transform: scale(1.1);
+	}
+
+	&:active {
+		transform: scale(0.9, 0.9);
+	}
 `;
 
 const QuestionMobile = styled.div`
