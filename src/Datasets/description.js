@@ -4,6 +4,7 @@
 average_daily_alcohol_intake_dataGoKr: 한국건강증진개발원_절주(국외통계지표)_음주자의 하루 평균 알코올 섭취량
 
 binge_drinking_rate_kIndicator: 성별 및 연령집단별 월간폭음률(단위:%)
+//월간폭음률은 최근 1년 동안 월 1회 이상 한 번의 술자리에서 남자의 경우 7잔(또는 맥주 5캔) 이상, 여자의 경우 5잔(또는 맥주 3캔) 이상 음주한 사람들의 비율임.
 
 low_risk_of_alcohol_by_alcohol_type_samsungSeoulHospital: 술 종류별 저위험 음주량
 

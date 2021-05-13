@@ -45,8 +45,16 @@ const ResultPage = (props) => {
 	const sojuBottle = Math.round(Math.round(alcoholAmount)/7);
 	const sojuGlass = Math.round(alcoholAmount)%7;
 
-	//const alcoholConsumption;
-	 
+	const bCount = localStorage.getItem("bottleCount");
+	const type = localStorage.getItem("drinkType");
+	let calType;
+	if(type === "소주") calType = lroabats[7]["알코올 함량(g)"];
+	else if(type === "맥주") calType = lroabats[0]["알코올 함량(g)"];
+	else if(type === "양주") calType = lroabats[9]["알코올 함량(g)"];
+	else if(type === "막걸리") calType = lroabats[3]["알코올 함량(g)"];
+	else if(type === "와인") calType = lroabats[4]["알코올 함량(g)"];
+	const alcoholConsumption = calType*bCount;
+
 
 	return (
 		<Background>
@@ -62,6 +70,7 @@ const ResultPage = (props) => {
 				<br />
 				<div>{name}님의 권장 음주량은 소주 {sojuBottle}병 {sojuGlass}잔 입니다!</div>
 				<div>※개인 체질을 배제하고 체중만을 고려한 값 입니다.</div>
+				<div>{alcoholConsumption}</div>
 				<Title>총 점수 : {score}</Title>
 			</Contents>
 		</Background>
