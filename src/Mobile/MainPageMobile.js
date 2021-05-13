@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
+import { SwitchTransition, CSSTransition } from "react-transition-group";
+import "./QuestionsMobile.css";
 import WaveEffect from "../Functions/WaveEffect";
 import { useSpring, animated, to } from "@react-spring/web";
 import { v4 as uuidv4 } from 'uuid';
@@ -81,8 +83,11 @@ const MainPageMobile = (props) => {
 	}
 	return (
 		<div>
-			{showQuestion()}
-			<br />
+			<SwitchTransition>
+			<CSSTransition key={count} addEndListener={(node, done) => node.addEventListener("transitionend", done, false)} classNames="fade">
+				{showQuestion()}
+			</CSSTransition>
+		</SwitchTransition>
 			<MobileCardDrawer
 				clckevent={(card) => {
 					setPopped(true);
@@ -91,8 +96,7 @@ const MainPageMobile = (props) => {
 				cards={testcards}>
 			<MobileCardPopup popped={popped} setPopped={setPopped} card={selectedCard} />
 			</MobileCardDrawer>
-		</div>
-	);
-};
+		</div>)}
+
 
 export default MainPageMobile;
