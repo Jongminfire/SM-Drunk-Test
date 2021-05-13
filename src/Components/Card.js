@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useSpring, animated, useChain, useSpringRef } from '@react-spring/web'
 
 import styled, { css, keyframes } from "styled-components";
+import spring, { toString } from 'css-spring'
 
 import Button from "@material-ui/core/Button";
 import CloseIcon from "@material-ui/icons/Close";
@@ -20,17 +21,40 @@ export const CardDrawer = (props)=>{
 }
 
 export const CardSmall = (props)=>{
-    const flyinAnim=keyframes`
-        0% {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        100% {
-            opacity: 1;
-            transform: translateY(0);
-        }
+    const bounceup=keyframes`
+    from,
+    60%,
+    75%,
+    90%,
+    to {
+      animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+  
+    from {
+      opacity: 0;
+      transform: scale(0.8) translate3d(0, 3000px, 0) scaleY(5);
+    }
+  
+    60% {
+      opacity: 1;
+      transform: scale(0.5) translate3d(0, -20px, 0) scaleY(0.9);
+    }
+  
+    75% {
+      transform: scale(1.4)  translate3d(0, 10px, 0) scaleY(0.95);
+    }
+  
+    90% {
+      transform: scale(1.2) translate3d(0, -5px, 0) scaleY(0.985);
+    }
+  
+    to {
+      transform: scale(1) translate3d(0, 0, 0);
+    }
     `
+
 	const InnerCard=styled.div`
+        perspective: 10cm;
 		background:${props.bg};
 		box-shadow: 2px -8px 8px 0px #00000040;
 		height: 10vw;
@@ -39,13 +63,13 @@ export const CardSmall = (props)=>{
         position: absolute;
         top: ${6+6*(props.idx)}vh;
         right: 5vw;
-        transition: transform 0.2s ease-in-out;
+        transition: transform 0.15s ease-out;
         z-index:${10+props.idx};
         &:hover{
             transform:scale(1.35) translateX(calc(-3vw * 0.5)) translateY(calc(2vw * 0.5));
         }
         &:last-child{
-            animation: ${flyinAnim} 1s ease-in-out;
+            animation: ${bounceup} 1s linear;
         }
 	`
     return <InnerCard onClick={()=>{props.clckevent(props)}}>
