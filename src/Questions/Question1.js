@@ -59,11 +59,7 @@ const NextButton = styled.button`
 `;
 
 const Question1 = (props) => {
-<<<<<<< HEAD
-	const { score, setScore, setIndex, changeScore, isMobile, count, increaseIndex, setAnswers, setCards } = props;
-=======
 	const { score, setScore, setIndex, changeScore, isMobile, count, increaseIndex, setAnswers, setCards, addQnaData } = props;
->>>>>>> 2edc2f2a27b42dd57c30555ac9711372e602153b
 	const [name, setName] = useState("");
 	const inputRef = useRef(null);
 

@@ -85,6 +85,17 @@ const MainPage = (props) => {
 			<Contents>{showQuestion()}</Contents>
 			<button onClick={cadji}>카드넣기</button>
 			<button onClick={cadni}>카드빼기</button>
+			{
+				props.isMobile? (
+				<MobileCardDrawer
+				clckevent={(card) => {
+					setPopped(true);
+					setSelectedCard(card);
+				}}
+				cards={testcards}>
+			<MobileCardPopup popped={popped} setPopped={setPopped} card={selectedCard} />
+			</MobileCardDrawer>
+			):(
 			<CardDrawer
 				clckevent={(card) => {
 					setPopped(true);
@@ -92,9 +103,9 @@ const MainPage = (props) => {
 				}}
 				cards={testcards}
 			>
-			</CardDrawer>
-			{/* <WaveEffect/> */}
 			<CardPopup popped={popped} setPopped={setPopped} card={selectedCard} />
+			</CardDrawer>
+)}
 		</Background>
 	);
 };

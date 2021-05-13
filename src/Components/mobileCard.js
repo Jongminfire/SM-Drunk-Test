@@ -9,12 +9,15 @@ import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import styles from "./mobileCard.scss";
 
+import Lottie from 'react-lottie';
+import * as arrow from '../image/arrowMotion.json'
+
 
 export const MobileCardDrawer = (props)=>{
     const [index, setIndex] = useState(0);
     
     const Wrap = styled.div`
-    padding: 3vh 6.5vh;
+    padding: 1.5vh 7.5vh;
     width: 90%;
     height: 90%;
 
@@ -35,9 +38,27 @@ export const Buttonss = (props)=>{
     //현재 index, setIndex, 버튼 타입(1, -1)이 props
     const {index, setIndex, type, limits} = props;
     console.log(index,type)
-    return <Button onClick={()=>{
-        if(index + type >= 0 && index + type < limits) setIndex(index+type)
-    }}>{type!==1?"<":">"}</Button>
+    return <Button style={{transform :  `rotate(${90*type*-1}deg)`, position:"absolute", top:"50px", right:`${type==1 ? "-2.5%" :"91%"}`, width:"50px", height:"50px"}}
+    onClick={()=>{
+        if(index + type >= 0 && index + type <= limits) setIndex(index+type)
+    }}><MyArrow type={type}></MyArrow></Button>
+}
+export const MyArrow = (props)=>{
+    let type = props.type
+
+    const defaultOptions = {
+        loop: true,
+        autoplay: true, 
+        animationData: arrow.default,
+        rendererSettings: {
+        preserveAspectRatio: 'xMidYMid slice'
+        }
+      };
+    return <div>
+         <Lottie options={defaultOptions}
+              height={80}
+              width={80}/>
+    </div>
 }
 export const MiniCards = (props)=>{
     let ret = [];

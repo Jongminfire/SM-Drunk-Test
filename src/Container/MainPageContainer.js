@@ -190,7 +190,7 @@ const Main = () => {
 	return (
 		<div>
 			<>
-				<MainPage onClickFinish={onClickFinish} showQuestion={showQuestion} score={score} />
+				<MainPage onClickFinish={onClickFinish} showQuestion={showQuestion} score={score} isMobile={isMobile}/>
 			</>
 
 			<Mobile>
