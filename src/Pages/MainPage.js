@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
-import WaveEffect from "../Functions/WaveEffect"
+import WaveEffect from "../Functions/WaveEffect";
 
 import styled, { css } from "styled-components";
-import Button from '@material-ui/core/Button';
-import CloseIcon from '@material-ui/icons/Close';
-import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
-import NavigateNextIcon from '@material-ui/icons/NavigateNext';
-import './MainPage.scss'
+import Button from "@material-ui/core/Button";
+import CloseIcon from "@material-ui/icons/Close";
+import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
+import NavigateNextIcon from "@material-ui/icons/NavigateNext";
+import "./MainPage.scss";
+
+import Question1 from "../Questions/Question1";
 
 const Background = styled.div`
 	position: relative;
@@ -31,12 +33,12 @@ const Contents = styled.div`
 	top: 10vh;
 `;
 
-const Carddrawer=styled.div`
+const Carddrawer = styled.div`
 	position: absolute;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-color: #171F38;
+	background-color: #171f38;
 	width: 18vw;
 	height: 100vh;
 	border-radius: 40px;
@@ -45,73 +47,63 @@ const Carddrawer=styled.div`
 	box-shadow: -6px 6px 4px 0px #00000040;
 `;
 
-
-const OtherBackground = ()=>{
-	const [stag, setStag] = React.useState(0)
-	const clk = ()=>{
-		console.log(stag)
-		if(stag==0){
+const OtherBackground = () => {
+	const [stag, setStag] = React.useState(0);
+	const clk = () => {
+		console.log(stag);
+		if (stag == 0) {
 			setStag(1);
-		}
-		else if(stag==1){
+		} else if (stag == 1) {
 			setStag(2);
 			setTimeout(() => {
-				setStag(3)
+				setStag(3);
 				setTimeout(() => {
-					setStag(0)
-				}, 0.5*1000);
-			}, 0.5*1000);
-		}else if(stag==2){
-			return
+					setStag(0);
+				}, 0.5 * 1000);
+			}, 0.5 * 1000);
+		} else if (stag == 2) {
+			return;
 		}
-	}
-	return (
-		<div class="othbg" stag={stag} onClick={clk}></div>
-	)
-}
+	};
+	return <div class="othbg" stag={stag} onClick={clk}></div>;
+};
 
-const CardSmall = ()=>{
-
-}
+const CardSmall = () => {};
 const CardBig = (prop) => {
-	const InnerCard=styled.div`
-		background:${prop.bg};
+	const InnerCard = styled.div`
+		background: ${prop.bg};
 		box-shadow: 2px -2px 8px 0px #0001;
 		height: 80vh;
 		width: 30vw;
-	`
-	return <InnerCard>
-		Wow such card content
+	`;
+	return <InnerCard>Wow such card content</InnerCard>;
+};
 
-	</InnerCard>
-}
-
-const CardPopup = ()=>{
-	
+const CardPopup = () => {
 	return (
-		<div class="popup-container" >
+		<div class="popup-container">
 			<CardBig class="card"></CardBig>
 			<CloseIcon class="close"></CloseIcon>
 			<NavigateBeforeIcon class="prevbtn"></NavigateBeforeIcon>
 			<NavigateNextIcon class="nextbtn"></NavigateNextIcon>
 		</div>
-	)
-}
+	);
+};
 
 const MainPage = (props) => {
-	const { onClickFinish } = props;
+	const { onClickFinish, showQuestion, score } = props;
+
 	return (
 		<Background>
-			<OtherBackground>
-			</OtherBackground>
+			<OtherBackground></OtherBackground>
 			<Contents>
-			PC 설문페이지 입니다.
-			<button onClick={onClickFinish}>테스트 끝내기</button>
-			<button onClick={onClickFinish}>테스트 끝내기</button>
+				{showQuestion()}
+				<br />
+				score: {score}
+				<br />
+				<button onClick={onClickFinish}>테스트 끝내기</button>
 			</Contents>
-			<Carddrawer>
-				sans here
-			</Carddrawer>
+			<Carddrawer>sans here</Carddrawer>
 			{/* <WaveEffect/> */}
 		</Background>
 	);
