@@ -2,23 +2,17 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 import WaveEffect from "../Functions/WaveEffect";
+import { useSpring, animated, to } from "@react-spring/web";
 
 import styled, { css } from "styled-components";
 import Button from "@material-ui/core/Button";
 import CloseIcon from "@material-ui/icons/Close";
 import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
-import "./MainPage.scss";
+import styles from "./MainPage.scss";
 
 import Question1 from "../Questions/Question1";
-
-const Background = styled.div`
-	position: relative;
-	background-color: #51c4d3;
-	width: 100%;
-	height: 100vh;
-	overflow: hidden;
-`;
+import Background from "../Components/Background";
 
 const Contents = styled.div`
 	position: absolute;
@@ -31,20 +25,6 @@ const Contents = styled.div`
 	border-radius: 15px;
 	left: 5vw;
 	top: 10vh;
-`;
-
-const Carddrawer = styled.div`
-	position: absolute;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	background-color: #171f38;
-	width: 18vw;
-	height: 100vh;
-	border-radius: 40px;
-	right: -40px;
-	top: 0;
-	box-shadow: -6px 6px 4px 0px #00000040;
 `;
 
 const OtherBackground = () => {
@@ -68,25 +48,50 @@ const OtherBackground = () => {
 	return <div class="othbg" stag={stag} onClick={clk}></div>;
 };
 
-const CardSmall = () => {};
-const CardBig = (prop) => {
+const CardDrawer = (props) => {
+	const cards = [];
+	return (
+		<div class="card-drawer">
+			{cards.map((x) => {
+				<CardSmall {...x} />;
+			})}
+		</div>
+	);
+};
+
+const CardSmall = (prop) => {
 	const InnerCard = styled.div`
+		margin: auto;
+		top: 10vmin;
 		background: ${prop.bg};
 		box-shadow: 2px -2px 8px 0px #0001;
-		height: 80vh;
-		width: 30vw;
+		height: 10vw;
+		width: 50vmin;
+		border-radius: 18px;
+	`;
+};
+
+const CardBig = (prop) => {
+	const InnerCard = styled.div`
+		margin: auto;
+		top: 10vmin;
+		background: ${prop.bg};
+		box-shadow: 2px -2px 8px 0px #0001;
+		height: 80vmin;
+		width: 50vmin;
+		border-radius: 18px;
 	`;
 	return <InnerCard>Wow such card content</InnerCard>;
 };
 
 const CardPopup = () => {
 	return (
-		<div class="popup-container">
-			<CardBig class="card"></CardBig>
+		<animated.div class="popup-container">
+			<CardBig class="big-card" bg="linear-gradient(153.55deg, #879AF2 9.48%, #D3208B 48.25%, #FDA000 85.78%)"></CardBig>
 			<CloseIcon class="close"></CloseIcon>
 			<NavigateBeforeIcon class="prevbtn"></NavigateBeforeIcon>
 			<NavigateNextIcon class="nextbtn"></NavigateNextIcon>
-		</div>
+		</animated.div>
 	);
 };
 
@@ -99,6 +104,7 @@ const MainPage = (props) => {
 			<Contents>{showQuestion()}</Contents>
 			<Carddrawer>sans here</Carddrawer>
 			{/* <WaveEffect/> */}
+			<CardPopup />
 		</Background>
 	);
 };
