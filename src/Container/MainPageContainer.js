@@ -51,12 +51,23 @@ const Main = () => {
 
 	const [cards, setCards] = useState([]);
 	const [answers, setAnswers] = useState([]);
+	const [qnaData, setqnaData] = useState([]);
 
-	const onClickFinish = useCallback(() => {
-		history.push("/result");
-	}, []);
+	const onClickFinish = () => {
+		history.push({ pathname: "/result", state: { qnaData: qnaData, score: score } });
+	};
+
+	const addQnaData = (q, a, s) => {
+		const temp = {
+			question: q,
+			answer: a,
+			score: s || s === 0 ? s : "none",
+		};
+		setqnaData([...qnaData, temp]);
+	};
 
 	const changeScore = (num) => {
+		console.log(score, num);
 		setScore(score + num);
 		setCount(count + 1);
 		increaseIndex();
@@ -86,6 +97,7 @@ const Main = () => {
 							increaseIndex={increaseIndex}
 							setAnswers={setAnswers}
 							setCards={setCards}
+							addQnaData={addQnaData}
 						/>
 					);
 				case 2:
@@ -100,7 +112,7 @@ const Main = () => {
 							setCount={setCount}
 							increaseIndex={increaseIndex}
 							setAnswers={setAnswers}
-							setCards={setCards}
+							addQnaData={addQnaData}
 						/>
 					);
 				case 3:
@@ -115,7 +127,7 @@ const Main = () => {
 							setCount={setCount}
 							increaseIndex={increaseIndex}
 							setAnswers={setAnswers}
-							setCards={setCards}
+							addQnaData={addQnaData}
 						/>
 					);
 				case 4:
@@ -130,12 +142,16 @@ const Main = () => {
 							setCount={setCount}
 							increaseIndex={increaseIndex}
 							setAnswers={setAnswers}
-							setCards={setCards}
+							addQnaData={addQnaData}
 						/>
 					);
 			}
 		} else if (index >= 20) {
-			return <>질문끝</>;
+			return (
+				<>
+					질문끝 <button onClick={onClickFinish}>결과 보기</button>
+				</>
+			);
 		} else {
 			if (index % 2 === 0) {
 				return (
@@ -149,6 +165,7 @@ const Main = () => {
 						count={count}
 						setCount={setCount}
 						increaseIndex={increaseIndex}
+						addQnaData={addQnaData}
 					/>
 				);
 			} else {
@@ -163,6 +180,7 @@ const Main = () => {
 						count={count}
 						setCount={setCount}
 						increaseIndex={increaseIndex}
+						addQnaData={addQnaData}
 					/>
 				);
 			}

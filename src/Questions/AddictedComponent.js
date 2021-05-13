@@ -72,28 +72,19 @@ const NextButton = styled.button`
 `;
 
 const AddictedComponent = (props) => {
-	const { score, setScore, setIndex, changeScore, isMobile, count, increaseIndex, data } = props;
+	const { score, setScore, setIndex, changeScore, isMobile, count, increaseIndex, setAnswers, setCards, data, addQnaData } = props;
 	const question = data.question;
 	const answer = data.answer;
-	console.log(answer);
 	const [name, setName] = useState("");
-
-	console.log("addicted");
 
 	const onChangeName = (e) => {
 		setName(e.target.value);
 		console.log(name);
 	};
 
-	const checkName = () => {
-		const temp = name.replace(/ /g, "");
-
-		if (temp.length == 0) {
-			alert("이름을 입력해주세요");
-		} else {
-			window.localStorage.setItem("userName", name);
-			increaseIndex();
-		}
+	const selectAnswer = (ans, score) => {
+		addQnaData(question, ans, score);
+		changeScore(score);
 	};
 
 	return (
@@ -106,7 +97,7 @@ const AddictedComponent = (props) => {
 						<div style={{ margin: "12vh 0" }} />
 						{answer.map((v) => {
 							return (
-								<ButtonForm key={v.text} onClick={() => changeScore(v.score)}>
+								<ButtonForm key={v.text} onClick={() => selectAnswer(v.text, v.score)}>
 									{v.text}
 								</ButtonForm>
 							);
@@ -121,7 +112,7 @@ const AddictedComponent = (props) => {
 						<div style={{ margin: "12vh 0" }} />
 						{answer.map((v) => {
 							return (
-								<ButtonForm key={v.text} onClick={() => changeScore(v.score)}>
+								<ButtonForm key={v.text} onClick={() => selectAnswer(v.text, v.score)}>
 									{v.text}
 								</ButtonForm>
 							);

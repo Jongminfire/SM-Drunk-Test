@@ -59,7 +59,7 @@ const NextButton = styled.button`
 `;
 
 const Question1 = (props) => {
-	const { score, setScore, setIndex, changeScore, isMobile, count, increaseIndex, setAnswers, setCards } = props;
+	const { score, setScore, setIndex, changeScore, isMobile, count, increaseIndex, setAnswers, setCards, addQnaData } = props;
 	const [name, setName] = useState("");
 	const inputRef = useRef(null);
 
@@ -86,6 +86,7 @@ const Question1 = (props) => {
 			alert("이름을 입력해주세요");
 		} else {
 			window.localStorage.setItem("userName", name);
+			addQnaData("당신의 이름은 무엇인가요?", name);
 			increaseIndex();
 		}
 	};

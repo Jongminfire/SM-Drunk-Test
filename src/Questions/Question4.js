@@ -59,7 +59,7 @@ const NextButton = styled.button`
 `;
 
 const Question4 = (props) => {
-	const { score, setScore, setIndex, changeScore, isMobile, count, increaseIndex, setAnswers, setCards } = props;
+	const { score, setScore, setIndex, changeScore, isMobile, count, increaseIndex, setAnswers, setCards, addQnaData } = props;
 	const [bottles, setBottles] = useState();
 	const drinkType = localStorage.getItem("drinkType");
 	const inputRef = useRef(null);
@@ -85,8 +85,9 @@ const Question4 = (props) => {
 	};
 
 	const checkCount = () => {
-		if (Number.isInteger(bottles) || bottles !== undefined) {
+		if (Number.isInteger(bottles) && bottles !== undefined) {
 			window.localStorage.setItem("bottleCount", bottles);
+			addQnaData("일주일동안 몇 병을 드셨나요?", bottles);
 			increaseIndex();
 		} else {
 			alert("개수를 입력해주세요");

@@ -59,7 +59,7 @@ const NextButton = styled.button`
 `;
 
 const Question2 = (props) => {
-	const { score, setScore, setIndex, changeScore, isMobile, count, increaseIndex, setAnswers, setCards } = props;
+	const { score, setScore, setIndex, changeScore, isMobile, count, increaseIndex, setAnswers, setCards, addQnaData } = props;
 	const [weight, setWeight] = useState(0);
 	const name = localStorage.getItem("userName");
 	const inputRef = useRef(null);
@@ -88,6 +88,7 @@ const Question2 = (props) => {
 			alert("체중을 입력해주세요");
 		} else {
 			window.localStorage.setItem("userWeight", weight);
+			addQnaData("당신의 체중을 알려주세요", weight);
 			increaseIndex();
 		}
 	};
