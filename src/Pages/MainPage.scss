@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 .othbg{
     position: absolute;
     transform: rotate(-15deg);
@@ -26,3 +27,33 @@
     }
     cursor:pointer;
 }
+=======
+.othbg {
+	position: absolute;
+	transform: rotate(-15deg);
+	justify-content: center;
+	align-items: center;
+	background: #126e82;
+	min-width: 200vw;
+	min-height: 120vh;
+	border-radius: 15px;
+	left: -20vw;
+	transition: top 0.5s ease-in-out;
+	top: 90vh;
+	&[stag="0"] {
+		top: 90vh;
+		transition: top 0.5s ease-in-out;
+	}
+	&[stag="1"] {
+		top: -35vh;
+	}
+	&[stag="2"] {
+		top: -160vh;
+	}
+	&[stag="3"] {
+		transition: none;
+		top: 120vh;
+	}
+	cursor: pointer;
+}
+>>>>>>> Stashed changes
