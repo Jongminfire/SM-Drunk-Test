@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSpring, animated, useChain, useSpringRef } from '@react-spring/web'
 
-import styled, { css } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 
 import Button from "@material-ui/core/Button";
 import CloseIcon from "@material-ui/icons/Close";
@@ -20,6 +20,16 @@ export const CardDrawer = (props)=>{
 }
 
 export const CardSmall = (props)=>{
+    const flyinAnim=keyframes`
+        0% {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    `
 	const InnerCard=styled.div`
 		background:${props.bg};
 		box-shadow: 2px -8px 8px 0px #00000040;
@@ -32,10 +42,15 @@ export const CardSmall = (props)=>{
         transition: transform 0.2s ease-in-out;
         z-index:${10+props.idx};
         &:hover{
-            transform:scale(1.2) translateX(calc(-3vw * 0.5)) translateY(calc(2vw * 0.5));
+            transform:scale(1.35) translateX(calc(-3vw * 0.5)) translateY(calc(2vw * 0.5));
+        }
+        &:last-child{
+            animation: ${flyinAnim} 1s ease-in-out;
         }
 	`
-    return <InnerCard onClick={()=>{props.clckevent(props)}}>wasans?</InnerCard>
+    return <InnerCard onClick={()=>{props.clckevent(props)}}>
+
+    </InnerCard>
 }
 
 export const CardBig = (prop) => {
@@ -49,7 +64,6 @@ export const CardBig = (prop) => {
 		border-radius: 18px;
 	`
 	return <InnerCard>
-		Wow such card content
 	</InnerCard>
 }
 
