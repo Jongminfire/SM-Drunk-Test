@@ -74,9 +74,9 @@ const Main = () => {
 
 	return (
 		<div>
-			<Desktop>
+			<>
 				<MainPage onClickFinish={onClickFinish} showQuestion={showQuestion} score={score} />
-			</Desktop>
+			</>
 			<Mobile>
 				<MainPageMobile onClickFinish={onClickFinish} showQuestion={showQuestion} score={score} />
 			</Mobile>

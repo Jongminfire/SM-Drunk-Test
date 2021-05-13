@@ -14,6 +14,7 @@ import styles from "./MainPage.scss";
 import Question1 from "../Questions/Question1";
 import Background from "../Components/Background"
 import { CardPopup, CardDrawer } from "../Components/Card"
+import { MobileCardPopup, MobileCardDrawer } from "../Components/mobileCard"
 
 const Contents = styled.div`
 	position: absolute;
@@ -63,9 +64,14 @@ const MainPage = (props) => {
 				<br />
 				<button onClick={onClickFinish}>테스트 끝내기</button>
 			</Contents>
+{/* 			
 			<CardDrawer cards={[{bg:"linear-gradient(153.55deg, #879AF2 9.48%, #D3208B 48.25%, #FDA000 85.78%)"}]}>sans here</CardDrawer>
-			{/* <WaveEffect/> */}
+		
 			<CardPopup visible={false}/>
+			 */}
+			<MobileCardDrawer cards={[{bg:"linear-gradient(153.55deg, #879AF2 9.48%, #D3208B 48.25%, #FDA000 85.78%)"}]}>sans here</MobileCardDrawer>
+			{/* <WaveEffect/> */}
+			<MobileCardPopup visible={false}/>
 		</Background>
 	);
 };
