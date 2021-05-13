@@ -158,11 +158,6 @@ const ButtonFormMobile = styled.button`
 const Question1 = (props) => {
 	const { score, setScore, setIndex, changeScore, isMobile, count, increaseIndex, setAnswers, setCards, addQnaData } = props;
 	const [name, setName] = useState("");
-	const inputRef = useRef(null);
-
-	useEffect(() => {
-		inputRef.current.focus();
-	}, []);
 
 	const onChangeName = (e) => {
 		setName(e.target.value);
@@ -200,8 +195,7 @@ const Question1 = (props) => {
 					<QuestionNumberMobile>Q{count}.</QuestionNumberMobile>
 					<QuestionContentMobile>당신의 이름은 무엇인가요?</QuestionContentMobile>
 					<div style={{ margin: "7vh 0" }} />
-					<InputFormMobile onChange={onChangeName} maxLength="15" ref={inputRef} />
-
+					<InputFormMobile onChange={onChangeName} maxLength="15" />
 					<NextButtonMobile onClick={checkName}>
 						다음 <ArrowForwardIosIcon />
 					</NextButtonMobile>
@@ -212,7 +206,7 @@ const Question1 = (props) => {
 						<QuestionNumber>Q{count}.</QuestionNumber>
 						<QuestionContent>당신의 이름은 무엇인가요?</QuestionContent>
 						<div style={{ margin: "8vh 0" }} />
-						<InputForm onChange={onChangeName} maxLength="15" onKeyPress={handleKeyPress} ref={inputRef} />
+						<InputForm onChange={onChangeName} maxLength="15" onKeyPress={handleKeyPress} />
 					</QuestionContainer>
 					<NextButton onClick={checkName}>
 						다음 <ArrowForwardIosIcon />

@@ -159,11 +159,6 @@ const Question4 = (props) => {
 	const { score, setScore, setIndex, changeScore, isMobile, count, increaseIndex, setAnswers, setCards, addQnaData } = props;
 	const [bottles, setBottles] = useState();
 	const drinkType = localStorage.getItem("drinkType");
-	const inputRef = useRef(null);
-
-	useEffect(() => {
-		inputRef.current.focus();
-	}, []);
 
 	const onChangeCount = (e) => {
 		let tempBottles = e.target.value;
@@ -207,7 +202,7 @@ const Question4 = (props) => {
 					</QuestionContentMobile>
 					<div style={{ margin: "6vh 0" }} />
 					<div>
-						<InputFormMobile onChange={onChangeCount} maxLength="2" target={bottles} ref={inputRef}></InputFormMobile>
+						<InputFormMobile onChange={onChangeCount} maxLength="2" target={bottles} />
 						<span style={{ color: "#126e82", fontSize: "2rem", paddingLeft: "1rem" }}>병</span>
 					</div>
 					<NextButtonMobile onClick={checkCount}>
@@ -223,7 +218,7 @@ const Question4 = (props) => {
 							{drinkType === "와인" || drinkType === "칵테일" ? "을" : "를"} 드시나요?
 						</QuestionContent>
 						<div style={{ margin: "8vh 0" }} />
-						<InputForm onChange={onChangeCount} maxLength="2" target={bottles} onKeyPress={handleKeyPress} ref={inputRef}></InputForm>
+						<InputForm onChange={onChangeCount} maxLength="2" target={bottles} onKeyPress={handleKeyPress}></InputForm>
 						<span style={{ color: "#126e82", fontSize: "2rem", paddingLeft: "1rem" }}>병</span>
 					</QuestionContainer>
 					<NextButton onClick={checkCount}>
