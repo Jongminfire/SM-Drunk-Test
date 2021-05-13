@@ -26,3 +26,5 @@ function csvJSON(csv){
     //return result; //JavaScript object
     return JSON.stringify(result); //JSON
 }
+
+export default csvJSON;
