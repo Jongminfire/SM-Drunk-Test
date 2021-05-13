@@ -20,6 +20,9 @@ const Welcome = () => {
 		history.push("/main");
 	}, []);
 
+	// 로컬스토리지 (개인정보) 초기화
+	window.localStorage.clear();
+
 	return (
 		<div>
 			<Desktop>

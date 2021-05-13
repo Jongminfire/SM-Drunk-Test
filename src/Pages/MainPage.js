@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 import WaveEffect from "../Functions/WaveEffect";
-import { useSpring, animated, to } from '@react-spring/web'
+import { useSpring, animated, to } from "@react-spring/web";
 
 import styled, { css } from "styled-components";
 import Button from "@material-ui/core/Button";
@@ -12,6 +12,7 @@ import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import styles from "./MainPage.scss";
 
 import Question1 from "../Questions/Question1";
+
 import Background from "../Components/Background"
 import { CardPopup, CardDrawer } from "../Components/Card"
 import { MobileCardPopup, MobileCardDrawer } from "../Components/mobileCard"
@@ -50,10 +51,17 @@ const OtherBackground = () => {
 	return <div class="othbg" stag={stag} onClick={clk}></div>;
 };
 
-
 const MainPage = (props) => {
-	const { onClickFinish, showQuestion, score } = props;
-
+	const { onClickFinish, showQuestion, score, setCards, setAnswers } = props;
+	const [popped, setPopped] = useState(false);
+	const [selectedCard, setSelectedCard] = useState(null);
+	const testcards=[
+		{ id:0, bg: "linear-gradient(153.55deg, #879AF2 9.48%, #D3208B 48.25%, #FDA000 85.78%)" },
+		{ id:1, bg: "#D3208B" },
+		{ id:2, bg: "linear-gradient(to right, #00c6ff, #0072ff)" },
+		{ id:3, bg: "linear-gradient(to right, #780206, #061161)" },
+		{ id:4, bg: "linear-gradient(to right, #f0c27b, #4b1248)" }
+	]
 	return (
 		<Background>
 			<OtherBackground></OtherBackground>
@@ -72,6 +80,7 @@ const MainPage = (props) => {
 			<MobileCardDrawer cards={[{bg:"linear-gradient(153.55deg, #879AF2 9.48%, #D3208B 48.25%, #FDA000 85.78%)"}]}>sans here</MobileCardDrawer>
 			{/* <WaveEffect/> */}
 			<MobileCardPopup visible={false}/>
+
 		</Background>
 	);
 };
