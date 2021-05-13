@@ -91,8 +91,6 @@ const MainPage = (props) => {
 					{showQuestion()}
 				</CSSTransition>
 			</SwitchTransition>
-			<button onClick={cadji}>카드넣기</button>
-			<button onClick={cadni}>카드빼기</button>
 			<CardDrawer
 				clckevent={(card) => {
 					setPopped(true);
