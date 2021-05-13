@@ -16,6 +16,14 @@ import Question1 from "../Questions/Question1";
 import Background from "../Components/Background";
 import { CardPopup, CardDrawer } from "../Components/Card";
 
+const StyledButton = styled.button`
+	margin: 1%;
+	padding: 1%;
+	width: 7%;
+	border-radius: 20px;
+	border-color: white;
+`;
+
 const Contents = styled.div`
 	position: absolute;
 	display: flex;
@@ -47,11 +55,11 @@ const OtherBackground = () => {
 			return;
 		}
 	};
-	return <div className="othbg" stag={stag} onClick={clk}></div>;
+	return <div className="othbg" stag={stag} onClick={clk} />;
 };
 
 const MainPage = (props) => {
-	const { showQuestion, score, setCards, setAnswers, count } = props;
+	const { showQuestion, score, setCards, setAnswers } = props;
 	const [popped, setPopped] = useState(false);
 	const [selectedCard, setSelectedCard] = useState(null);
 	const [testcards, setTestcards] = useState([
@@ -94,7 +102,7 @@ const MainPage = (props) => {
 					setSelectedCard(card);
 				}}
 				cards={testcards}
-			></CardDrawer>
+			/>
 			{/* <WaveEffect/> */}
 			<CardPopup popped={popped} setPopped={setPopped} card={selectedCard} />
 		</Background>
