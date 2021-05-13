@@ -1,4 +1,5 @@
 .popup-container {
+<<<<<<< HEAD
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -48,4 +49,68 @@
 	height: calc(24px + 5vmin);
 	width: calc(24px + 5vmin);
 	fill: #fff;
+=======
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  backdrop-filter: brightness(40%) blur(4px);
+  display: none;
+}
+
+.card-drawer {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #171f38;
+  width: 15vw;
+  height: 100vh;
+  border-radius: 40px;
+  right: -40px;
+  top: 0;
+  box-shadow: -6px 6px 4px 0px #00000040;
+}
+
+.close {
+  position: absolute;
+  top: 4vmin;
+  left: calc(50vw + 27vmin) !important;
+  height: calc(24px + 5vmin) !important;
+  width: calc(24px + 5vmin) !important;
+  fill: #fff !important;
+}
+
+.nextbtn {
+  position: absolute;
+  top: calc(50vh - 5vmin);
+  left: calc(50vw + 30vmin);
+  height: calc(24px + 5vmin);
+  width: calc(24px + 5vmin);
+  fill: #fff;
+}
+
+.prevbtn {
+  position: absolute;
+  align-self: center;
+  top: calc(50vh - 5vmin);
+  left: calc(50vw - 30vmin - 24px - 5vmin);
+  height: calc(24px + 5vmin);
+  width: calc(24px + 5vmin);
+  fill: #fff;
+}
+
+.Button-share-div {
+  height: 100px;
+  width: 100%;
+  margin-top: 5vh;
+}
+
+.Button-share {
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  border-width: 0.1ch;
+>>>>>>> 09c16fe330e46c5f9f7678bc8f668f772d3efd61
 }
