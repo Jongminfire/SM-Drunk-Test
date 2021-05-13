@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import styled, { css } from "styled-components";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
+import Swal from "sweetalert2";
 
 const Question = styled.div`
 	width: 70vw;
@@ -37,7 +38,7 @@ const InputForm = styled.input`
 	border-radius: 10px;
 	border: none;
 	outline: none;
-	height: 8vh;
+	height: 9vh;
 	width: 40vw;
 	font-size: 2rem;
 	color: #126e82;
@@ -83,7 +84,12 @@ const Question1 = (props) => {
 		const temp = name.replace(/ /g, "");
 
 		if (temp.length == 0) {
-			alert("이름을 입력해주세요");
+			Swal.fire({
+				title: "이름을 입력해주세요",
+				icon: "error",
+				confirmButtonText: "닫기",
+				confirmButtonColor: "#DB6867",
+			});
 		} else {
 			window.localStorage.setItem("userName", name);
 			addQnaData("당신의 이름은 무엇인가요?", name);

@@ -50,7 +50,7 @@ const OtherBackground = () => {
 };
 
 const MainPage = (props) => {
-	const { onClickFinish, showQuestion, score, setCards, setAnswers } = props;
+	const { showQuestion, score, setCards, setAnswers } = props;
 	const [popped, setPopped] = useState(false);
 	const [selectedCard, setSelectedCard] = useState(null);
 	const [testcards,setTestcards]=useState([

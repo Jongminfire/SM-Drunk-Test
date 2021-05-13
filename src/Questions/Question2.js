@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import styled, { css } from "styled-components";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
+import Swal from "sweetalert2";
 
 const Question = styled.div`
 	width: 70vw;
@@ -37,7 +38,7 @@ const InputForm = styled.input`
 	border-radius: 10px;
 	border: none;
 	outline: none;
-	height: 8vh;
+	height: 9vh;
 	width: 40vw;
 	font-size: 2rem;
 	color: #126e82;
@@ -85,7 +86,12 @@ const Question2 = (props) => {
 
 	const checkWeight = () => {
 		if (!weight || weight === 0 || !Number.isInteger(weight)) {
-			alert("체중을 입력해주세요");
+			Swal.fire({
+				title: "체중을 입력해주세요",
+				icon: "error",
+				confirmButtonText: "닫기",
+				confirmButtonColor: "#DB6867",
+			});
 		} else {
 			window.localStorage.setItem("userWeight", weight);
 			addQnaData("당신의 체중을 알려주세요", weight);

@@ -46,15 +46,24 @@ const InputForm = styled.input`
 
 const ButtonForm = styled.button`
 	background-color: #ffffff;
-	border-radius: 0.2rem;
+	border-radius: 0.5rem;
 	border: none;
 	outline: none;
-	height: 7vh;
-	width: 10vw;
+	height: 6vh;
+	min-width: 10vw;
 	font-size: 1.2rem;
 	cursor: pointer;
 	color: #126e82;
-	margin: 0.5vh 0 0.5vh 1vw;
+	margin: 0.5vh 0 0.5vh 1.5vw;
+
+	&:hover {
+		transform: scale(1.1, 1.1);
+		transition: all ease-in-out 0.2s;
+	}
+
+	&:active {
+		transform: scale(0.85, 0.85);
+	}
 `;
 
 const NextButton = styled.button`
@@ -112,7 +121,7 @@ const AddictedComponent = (props) => {
 						<div style={{ margin: "12vh 0" }} />
 						{answer.map((v) => {
 							return (
-								<ButtonForm key={v.text} onClick={() => selectAnswer(v.text, v.score)}>
+								<ButtonForm key={v.text} onClick={() => setTimeout(selectAnswer(v.text, v.score), 250)}>
 									{v.text}
 								</ButtonForm>
 							);
