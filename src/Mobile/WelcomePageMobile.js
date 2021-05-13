@@ -5,7 +5,7 @@ import styled, { css } from 'styled-components';
 import WaveEffect from '../Functions/WaveEffect';
 import '../Pages/WelcomePage.css';
 
-import KakaotalkIcon from '../image/KakaotalkIcon.png';
+import ClipboardIcon from '../image/ClipboardIcon.png';
 import FacebookIcon from '../image/FacebookIcon.png';
 import InstagramIcon from '../image/InstagramIcon.png';
 
@@ -39,6 +39,24 @@ const onClickFacebook = () => {
   );
 };
 
+const doCopy = (text) => {
+  if (!document.queryCommandSupported('copy')) {
+    return alert('복사하기가 지원되지 않습니다.');
+  }
+  const textarea = document.createElement('textarea');
+  textarea.value = text;
+  textarea.style.top = 0;
+  textarea.style.left = 0;
+  textarea.style.display = 'fixed';
+
+  document.body.appendChild(textarea);
+  textarea.focus();
+  textarea.select();
+  document.execCommand('copy');
+  document.body.removeChild(textarea);
+  alert('클립보드에 복사되었습니다.');
+};
+
 const WelcomePageMobile = (props) => {
   const { onClickStart } = props;
   return (
@@ -59,10 +77,12 @@ const WelcomePageMobile = (props) => {
           <div class="Button-share-div">
             <div>
               <button
-                onClick={onClickFacebook}
+                onClick={() => {
+                  doCopy('클립보드복사내용');
+                }}
                 className="Button-share"
                 style={{
-                  backgroundImage: `url(${KakaotalkIcon})`,
+                  backgroundImage: `url(${ClipboardIcon})`,
                   backgroundSize: 'contain',
                 }}
               ></button>
