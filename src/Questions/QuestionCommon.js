@@ -11,10 +11,11 @@ min-height: 40vh;
 border-radius: 15px;
 left: 5vw;
 top: 15vh;
+padding: 2vh 2vw 6vh 2vw;
 `;
 
 export const QuestionContainer = styled.div`
-padding: 2vh 8vw 8vh 3vw;
+padding: 0 6vw 2vh 2vw;
 `;
 
 export const QuestionNumber = styled.div`

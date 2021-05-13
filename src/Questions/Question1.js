@@ -24,7 +24,7 @@ const NextButton = styled.button`
 	outline: none;
 	cursor: pointer;
 	position: absolute;
-	right: 2%;
+	right: 5%;
 	bottom: 5%;
 	color: #126e82;
 	font-size: 1.5rem;
