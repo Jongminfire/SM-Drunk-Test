@@ -165,9 +165,7 @@ const AddictedComponent = (props) => {
 	};
 
 	const selectAnswer = (ans, score) => {
-		{
-			data.cards ? addCard() : null;
-		}
+		data.cards ? addCard(data.cards) : null;
 		addQnaData(question, ans, score);
 		changeScore(score);
 	};
