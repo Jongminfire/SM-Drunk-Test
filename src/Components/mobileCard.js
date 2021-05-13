@@ -17,19 +17,21 @@ export const MobileCardDrawer = (props)=>{
     const [index, setIndex] = useState(0);
     
     const Wrap = styled.div`
-    padding: 1.5vh 7.5vh;
+    padding: 0 4vh;
+    margin-top:-4vh;
     width: 90%;
-    height: 90%;
-
+    height: 12vh;
+    vertical-align:middle;
     box-sizing: border-box;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     `
 	console.log(props.cards[0])
 	return <div class="mobile-card-drawer">
+        
         <Wrap>
             <Buttonss index={index} setIndex={setIndex} type={-1} limits = {Math.floor(props.cards.length/4)}/>
-            <MiniCards start={index*4} {...props} />
+            <MiniCards start={index*3} {...props} />
             <Buttonss index={index} setIndex={setIndex} type={1} limits = {Math.floor(props.cards.length/4)}/>
         </Wrap>
 	</div>
@@ -38,7 +40,7 @@ export const Buttonss = (props)=>{
     //현재 index, setIndex, 버튼 타입(1, -1)이 props
     const {index, setIndex, type, limits} = props;
     console.log(index,type)
-    return <Button style={{transform :  `rotate(${90*type*-1}deg)`, position:"absolute", top:"50px", right:`${type==1 ? "-2.5%" :"91%"}`, width:"50px", height:"50px"}}
+    return <Button style={{transform :  `rotate(${90*type*-1}deg)`, position:"absolute", top:"3.5vh", right:`${type==1 ? "-4.5%" :"87%"}`, width:"5.5vh", height:"5.5vh"}}
     onClick={()=>{
         if(index + type >= 0 && index + type <= limits) setIndex(index+type)
     }}><MyArrow type={type}></MyArrow></Button>
@@ -62,7 +64,7 @@ export const MyArrow = (props)=>{
 }
 export const MiniCards = (props)=>{
     let ret = [];
-    for(let i = props.start; i<props.start + 4; i++) 
+    for(let i = props.start; i<props.start + 3; i++) 
         if(props.cards[i])
             ret.push(props.cards[i])
         else ret.push({})
@@ -76,8 +78,9 @@ export const MobileCardSmall = (props)=>{
 	const InnerCard=styled.div`
     background:${props.bg};
     box-shadow: 2px 8px 8px 0px #00000040;
-    height: 13vh;
-    width: 9vh;
+    height: 12vh;
+    width: 16vw;
+    margin:0 5px;
     border-radius: 18px;
     
     transition: transform 0.2s ease-in-out;
@@ -87,8 +90,9 @@ export const MobileCardSmall = (props)=>{
     }
 	`
     const NoCard = styled.div`
-    height: 13vh;
-    width: 9vh;
+    height: 12vh;
+    width: 8vh;
+    margin: 0 8px;
     `
     return props.bg ? <InnerCard onClick={()=>{props.clckevent(props)}}>wasans?</InnerCard> : <NoCard/>
 

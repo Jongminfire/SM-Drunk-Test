@@ -55,7 +55,7 @@ const OtherBackground = () => {
 
 
 const MainPageMobile = (props) => {
-	const { showQuestion, score, setCards, setAnswers } = props;
+	const { showQuestion, score, setCards, setAnswers,count } = props;
 	const [popped, setPopped] = useState(false);
 	const [selectedCard, setSelectedCard] = useState(null);
 	const [testcards,setTestcards]=useState([
