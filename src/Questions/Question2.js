@@ -24,14 +24,14 @@ const Question2 = (props) => {
 			{isMobile ? (
 				<QuestionMobile>
 					두번째 설문 (Mobile) 입니다.
-					<button onClick={changeScore(cost)}>ok</button>
-					<button onClick={changeScore(-cost)}>no</button>
+					<button onClick={() => changeScore(cost)}>ok</button>
+					<button onClick={() => changeScore(-cost)}>no</button>
 				</QuestionMobile>
 			) : (
 				<Question>
 					두번째 설문 (PC) 입니다.
-					<button onClick={changeScore(cost)}>ok</button>
-					<button onClick={changeScore(-cost)}>no</button>
+					<button onClick={() => changeScore(cost)}>ok</button>
+					<button onClick={() => changeScore(-cost)}>no</button>
 				</Question>
 			)}
 		</div>
