@@ -1,4 +1,5 @@
 import React, { useCallback } from "react";
+import { useLocation } from "react-router";
 import { useMediaQuery } from "react-responsive";
 import ResultPage from "../Pages/ResultPage";
 import ResultPageMobile from "../Mobile/ResultPageMobile";
@@ -14,13 +15,16 @@ const Mobile = ({ children }) => {
 };
 
 const Result = (props) => {
+	const qnaData = props.location.state.qnaData;
+	const score = props.location.state.score;
+
 	return (
 		<div>
 			<Desktop>
-				<ResultPage />
+				<ResultPage qnaData={qnaData} score={score} />
 			</Desktop>
 			<Mobile>
-				<ResultPageMobile />
+				<ResultPageMobile qnaData={qnaData} score={score} />
 			</Mobile>
 		</div>
 	);

@@ -58,13 +58,14 @@ const NextButton = styled.button`
 	font-size: 1.5rem;
 `;
 
-const Question2 = (props) => {
-	const { score, setScore, setIndex, changeScore, isMobile, count, increaseIndex, setAnswers, setCards } = props;
+const Question3 = (props) => {
+	const { score, setScore, setIndex, changeScore, isMobile, count, increaseIndex, setAnswers, setCards, addQnaData } = props;
 	const [type, setType] = useState("");
 
 	const onClickType = (type) => {
 		setType(type);
 		localStorage.setItem("drinkType", type);
+		addQnaData("주로 어떤 술을 마시나요?", type);
 		increaseIndex();
 	};
 
@@ -105,4 +106,4 @@ const Question2 = (props) => {
 	);
 };
 
-export default Question2;
+export default Question3;

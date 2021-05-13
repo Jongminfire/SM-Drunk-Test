@@ -72,31 +72,18 @@ const NextButton = styled.button`
 `;
 
 const TmiComponent = (props) => {
-	const { score, setScore, setIndex, changeScore, isMobile, count, increaseIndex, data } = props;
+	const { score, setScore, setIndex, changeScore, isMobile, count, increaseIndex, setAnswers, setCards, data, addQnaData } = props;
 	const question = data.question;
 	const answer = data.answer;
 	const correctAnswer = data.check;
 	const information = data.information;
 	const url = data.url;
 
-	console.log(data);
-
 	const [name, setName] = useState("");
 
-	const onChangeName = (e) => {
-		setName(e.target.value);
-		console.log(name);
-	};
-
-	const checkName = () => {
-		const temp = name.replace(/ /g, "");
-
-		if (temp.length == 0) {
-			alert("이름을 입력해주세요");
-		} else {
-			window.localStorage.setItem("userName", name);
-			increaseIndex();
-		}
+	const selectAnswer = (ans, score) => {
+		addQnaData(question, ans, score);
+		changeScore(score);
 	};
 
 	return (
@@ -112,7 +99,7 @@ const TmiComponent = (props) => {
 								<ButtonForm
 									key={v}
 									onClick={() => {
-										v === correctAnswer ? changeScore(0) : changeScore(3);
+										v === correctAnswer ? selectAnswer(v, 0) : selectAnswer(v, 0);
 									}}
 								>
 									{v}
@@ -132,7 +119,7 @@ const TmiComponent = (props) => {
 								<ButtonForm
 									key={v}
 									onClick={() => {
-										v === correctAnswer ? changeScore(0) : changeScore(3);
+										v === correctAnswer ? selectAnswer(v, 0) : selectAnswer(v, 0);
 									}}
 								>
 									{v}
