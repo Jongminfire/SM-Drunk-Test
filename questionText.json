@@ -5,7 +5,8 @@
                 "type":"choice",
                 "answer":["13세", "17세", "20세"],
                 "check": "13세",
-                "information":""
+                "information":"",
+                "url":"./src/image/backGroundBeer_2.jpg"
             },
             {
                 "question": "빈 소주병을 반환할 수도 있는 것을 알고 계셨나요? 한 병당 얼마일까요?",
@@ -19,7 +20,8 @@
                 "type":"ox",
                 "answer":["O", "X"],
                 "check": "X",
-                "information":"500ml 맥주병 기준 공병 가격은 130원입니다"
+                "information":"500ml 맥주병 기준 공병 가격은 130원입니다",
+                "url":"./src/image/backGroundBeer_1.jpg"
             },
             {
                 "question": "공병을 반환할 수 있는 장소가 아닌 곳은 어디일까요?",
@@ -40,28 +42,32 @@
                 "type":"choice",
                 "answer":["43kcal", "53kcal", "63kcal"],
                 "check": "63kcal",
-                "information":"소주 한 병만 먹어도 무려 408kcal라고 합니다! \n밥 1.5 공기와 맞먹네요."
+                "information":"소주 한 병만 먹어도 무려 408kcal라고 합니다! \n밥 1.5 공기와 맞먹네요.",
+                "url":"./src/image/sojus.jpg"
             },
             {
                 "question": "맥주 1캔(500ml)의 칼로리는 얼마일까요?",
                 "type":"choice",
                 "answer":["135kcal", "185kcal", "235kcal"],
                 "check": "185kcal",
-                "information":""
+                "information":"",
+                "url":"./src/image/beers.jpg"
             },
             {
                 "question": "술을 마실 수록 주량이 늘어날까요?",
                 "type":"ox",
                 "answer":["O", "X"],
                 "check": "X",
-                "information":"주량은 유전적으로 결정됩니다. \n알코올에 몸이 적응함으로써 주량이 늘어 난다는 착각을 줄 수 있습니다. "
+                "information":"주량은 유전적으로 결정됩니다. \n알코올에 몸이 적응함으로써 주량이 늘어 난다는 착각을 줄 수 있습니다. ",
+                "url":"./src/image/alcohols_2.jpg"
             },
             {
                 "question": "적당한 음주는 건강에 좋을까요?",
                 "type":"ox",
                 "answer":["O", "X"],
                 "check": "X",
-                "information":"아쉽게 소량의 음주라도 발암 가능성이 크게 높아진다고 합니다. \n그러나 사회생활에선 도움이 될 수 있겠죠?"
+                "information":"아쉽게 소량의 음주라도 발암 가능성이 크게 높아진다고 합니다. \n그러나 사회생활에선 도움이 될 수 있겠죠?",
+                "url":"./src/image/sunBeer.jpg"
             },
             {
                 "question": "성인 남성 평균 주량은 어느 정도 일까요?",
@@ -75,7 +81,8 @@
                 "type":"ox",
                 "answer":["O", "X"],
                 "check": "X",
-                "information":""
+                "information":"",
+                "url":"./src/image/alcohols_1.jpg"
             },
             {
                 "question": "담배 뿐만 아니라 술에도 세금 부과가 되고 있을까요?",
