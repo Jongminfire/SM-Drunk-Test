@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { Router, useHistory } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 import MainPage from "../Pages/MainPage";
 import MainPageMobile from "../Mobile/MainPageMobile";
@@ -49,6 +49,9 @@ const Main = () => {
 	const [index, setIndex] = useState(1);
 	const [count, setCount] = useState(1);
 
+	const [cards, setCards] = useState([]);
+	const [answers, setAnswers] = useState([]);
+
 	const onClickFinish = useCallback(() => {
 		history.push("/result");
 	}, []);
@@ -81,6 +84,8 @@ const Main = () => {
 							count={count}
 							setCount={setCount}
 							increaseIndex={increaseIndex}
+							setAnswers={setAnswers}
+							setCards={setCards}
 						/>
 					);
 				case 2:
@@ -94,6 +99,8 @@ const Main = () => {
 							count={count}
 							setCount={setCount}
 							increaseIndex={increaseIndex}
+							setAnswers={setAnswers}
+							setCards={setCards}
 						/>
 					);
 				case 3:
@@ -107,6 +114,8 @@ const Main = () => {
 							count={count}
 							setCount={setCount}
 							increaseIndex={increaseIndex}
+							setAnswers={setAnswers}
+							setCards={setCards}
 						/>
 					);
 				case 4:
@@ -120,6 +129,8 @@ const Main = () => {
 							count={count}
 							setCount={setCount}
 							increaseIndex={increaseIndex}
+							setAnswers={setAnswers}
+							setCards={setCards}
 						/>
 					);
 			}
@@ -161,7 +172,7 @@ const Main = () => {
 	return (
 		<div>
 			<Desktop>
-				<MainPage onClickFinish={onClickFinish} showQuestion={showQuestion} score={score} index={index} />
+				<MainPage setCards={setCards} setAnswers={setAnswers} onClickFinish={onClickFinish} showQuestion={showQuestion} score={score} index={index} />
 			</Desktop>
 			<Mobile>
 				<MainPageMobile onClickFinish={onClickFinish} showQuestion={showQuestion} score={score} index={index} />

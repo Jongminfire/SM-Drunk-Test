@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 import styled, { css } from "styled-components";
 import WaveEffect from "../Functions/WaveEffect";
-import "./WelcomePage.css";
+import "./WelcomePage.scss";
 
 import Background from "../Components/Background";
 
