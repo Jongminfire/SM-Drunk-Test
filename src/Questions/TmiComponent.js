@@ -3,8 +3,14 @@ import styled, { css } from "styled-components";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 
 const Question = styled.div`
-	width: 70vw;
-	height: 50vh;
+	position: absolute;
+	display: flex;
+	background-color: #d4f2f6;
+	min-width: 75vw;
+	min-height: 60vh;
+	border-radius: 15px;
+	left: 5vw;
+	top: 15vh;
 `;
 
 const QuestionContainer = styled.div`
@@ -122,7 +128,7 @@ const TmiComponent = (props) => {
 					<QuestionContainer>
 						<QuestionNumber>Q{count}.</QuestionNumber>
 						<QuestionContent>{question}</QuestionContent>
-						<div style={{ margin: "12vh 0" }} />
+						<div style={{ margin: "15vh 0" }} />
 						{answer.map((v) => {
 							return (
 								<ButtonForm

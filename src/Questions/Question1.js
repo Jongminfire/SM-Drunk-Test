@@ -4,8 +4,14 @@ import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import Swal from "sweetalert2";
 
 const Question = styled.div`
-	width: 70vw;
-	height: 50vh;
+	position: absolute;
+	display: flex;
+	background-color: #d4f2f6;
+	min-width: 75vw;
+	min-height: 60vh;
+	border-radius: 15px;
+	left: 5vw;
+	top: 15vh;
 `;
 
 const QuestionContainer = styled.div`
@@ -116,7 +122,7 @@ const Question1 = (props) => {
 					<QuestionContainer>
 						<QuestionNumber>Q{count}.</QuestionNumber>
 						<QuestionContent>당신의 이름은 무엇인가요?</QuestionContent>
-						<div style={{ margin: "8vh 0" }} />
+						<div style={{ margin: "15vh 0" }} />
 						<InputForm onChange={onChangeName} maxLength="15" onKeyPress={handleKeyPress} ref={inputRef} />
 					</QuestionContainer>
 					<NextButton onClick={checkName}>

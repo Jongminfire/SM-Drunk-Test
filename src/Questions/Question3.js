@@ -2,8 +2,14 @@ import React, { useState } from "react";
 import styled, { css } from "styled-components";
 
 const Question = styled.div`
-	width: 70vw;
-	height: 50vh;
+	position: absolute;
+	display: flex;
+	background-color: #d4f2f6;
+	min-width: 75vw;
+	min-height: 60vh;
+	border-radius: 15px;
+	left: 5vw;
+	top: 15vh;
 `;
 
 const QuestionContainer = styled.div`
@@ -101,7 +107,7 @@ const Question3 = (props) => {
 					<QuestionContainer>
 						<QuestionNumber>Q{count}.</QuestionNumber>
 						<QuestionContent>주로 어떤 술을 마시나요?</QuestionContent>
-						<div style={{ margin: "12vh 0" }}>
+						<div style={{ margin: "15vh 0" }}>
 							<ButtonForm onClick={() => onClickType("소주")}>소주</ButtonForm>
 							<ButtonForm onClick={() => onClickType("맥주")}>맥주</ButtonForm>
 							<ButtonForm onClick={() => onClickType("양주")}>양주</ButtonForm>

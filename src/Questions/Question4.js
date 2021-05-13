@@ -4,8 +4,14 @@ import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import Swal from "sweetalert2";
 
 const Question = styled.div`
-	width: 70vw;
-	height: 50vh;
+	position: absolute;
+	display: flex;
+	background-color: #d4f2f6;
+	min-width: 75vw;
+	min-height: 60vh;
+	border-radius: 15px;
+	left: 5vw;
+	top: 15vh;
 `;
 
 const QuestionContainer = styled.div`
@@ -126,7 +132,7 @@ const Question4 = (props) => {
 							평균적으로 일주일동안 몇 병의 {drinkType}
 							{drinkType === "와인" || drinkType === "칵테일" ? "을" : "를"} 드시나요?
 						</QuestionContent>
-						<div style={{ margin: "8vh 0" }} />
+						<div style={{ margin: "15vh 0" }} />
 						<InputForm onChange={onChangeCount} maxLength="2" target={bottles} onKeyPress={handleKeyPress} ref={inputRef}></InputForm>
 						<span style={{ color: "#126e82", fontSize: "2rem", paddingLeft: "1rem" }}>병</span>
 					</QuestionContainer>

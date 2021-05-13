@@ -3,12 +3,13 @@ import { useHistory } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 import WaveEffect from "../Functions/WaveEffect";
 import { useSpring, animated, to } from "@react-spring/web";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 import styled, { css } from "styled-components";
 import Button from "@material-ui/core/Button";
 import CloseIcon from "@material-ui/icons/Close";
 import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
+import { SwitchTransition, CSSTransition } from "react-transition-group";
 import styles from "./MainPage.scss";
 
 import Question1 from "../Questions/Question1";
@@ -50,37 +51,41 @@ const OtherBackground = () => {
 };
 
 const MainPage = (props) => {
-	const { showQuestion, score, setCards, setAnswers } = props;
+	const { showQuestion, score, setCards, setAnswers, count } = props;
 	const [popped, setPopped] = useState(false);
 	const [selectedCard, setSelectedCard] = useState(null);
-	const [testcards,setTestcards]=useState([
-		{ id:uuidv4(), bg: "linear-gradient(153.55deg, #879AF2 9.48%, #D3208B 48.25%, #FDA000 85.78%)" },
-		{ id:uuidv4(), bg: "#D3208B" },
-		{ id:uuidv4(), bg: "linear-gradient(to right, #00c6ff, #0072ff)" },
-		{ id:uuidv4(), bg: "linear-gradient(to right, #780206, #061161)" },
-		{ id:uuidv4(), bg: "linear-gradient(to right, #f0c27b, #4b1248)" }
-	])
-	const [testcards2,setTestcards2]=useState([])
+	const [testcards, setTestcards] = useState([
+		{ id: uuidv4(), bg: "linear-gradient(153.55deg, #879AF2 9.48%, #D3208B 48.25%, #FDA000 85.78%)" },
+		{ id: uuidv4(), bg: "#D3208B" },
+		{ id: uuidv4(), bg: "linear-gradient(to right, #00c6ff, #0072ff)" },
+		{ id: uuidv4(), bg: "linear-gradient(to right, #780206, #061161)" },
+		{ id: uuidv4(), bg: "linear-gradient(to right, #f0c27b, #4b1248)" },
+	]);
+	const [testcards2, setTestcards2] = useState([]);
 
-	function cadni(){
-		if(testcards.length>0){
-			const joined = testcards2.concat(testcards[testcards.length-1]);
-			setTestcards2(joined)
-			setTestcards(testcards.slice(0,-1))
+	function cadni() {
+		if (testcards.length > 0) {
+			const joined = testcards2.concat(testcards[testcards.length - 1]);
+			setTestcards2(joined);
+			setTestcards(testcards.slice(0, -1));
 		}
 	}
-	function cadji(){
-		if(testcards2.length>0){
-			const joined = testcards.concat(testcards2[testcards2.length-1]);
-			setTestcards(joined)
-			setTestcards2(testcards2.slice(0,-1))
+	function cadji() {
+		if (testcards2.length > 0) {
+			const joined = testcards.concat(testcards2[testcards2.length - 1]);
+			setTestcards(joined);
+			setTestcards2(testcards2.slice(0, -1));
 		}
 	}
 
 	return (
 		<Background>
 			<OtherBackground></OtherBackground>
-			<Contents>{showQuestion()}</Contents>
+			<SwitchTransition>
+				<CSSTransition key={count} addEndListener={(node, done) => node.addEventListener("transitionend", done, false)} classNames="fade">
+					{showQuestion()}
+				</CSSTransition>
+			</SwitchTransition>
 			<button onClick={cadji}>카드넣기</button>
 			<button onClick={cadni}>카드빼기</button>
 			<CardDrawer
@@ -89,8 +94,7 @@ const MainPage = (props) => {
 					setSelectedCard(card);
 				}}
 				cards={testcards}
-			>
-			</CardDrawer>
+			></CardDrawer>
 			{/* <WaveEffect/> */}
 			<CardPopup popped={popped} setPopped={setPopped} card={selectedCard} />
 		</Background>
