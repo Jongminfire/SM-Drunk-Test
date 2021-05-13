@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 
 const Question = styled.div`
 	width: 70vw;
-	height: 60vmin;
+	height: 50vh;
 `;
 
 const QuestionContainer = styled.div`
@@ -36,7 +36,7 @@ const ButtonForm = styled.button`
 	border-radius: 0.2rem;
 	border: none;
 	outline: none;
-	height: 4vh;
+	height: 6vh;
 	width: 10vw;
 	font-size: 1.2rem;
 	cursor: pointer;
@@ -59,7 +59,7 @@ const NextButton = styled.button`
 `;
 
 const Question2 = (props) => {
-	const { score, setScore, setIndex, changeScore, isMobile, count, increaseIndex } = props;
+	const { score, setScore, setIndex, changeScore, isMobile, count, increaseIndex, setAnswers, setCards } = props;
 	const [type, setType] = useState("");
 
 	const onClickType = (type) => {
@@ -75,7 +75,7 @@ const Question2 = (props) => {
 					<QuestionContainer>
 						<QuestionNumber>Q{count}.</QuestionNumber>
 						<QuestionContent>주로 어떤 술을 마시나요?</QuestionContent>
-						<div style={{ margin: "8vh 0", display: "flex", flexDirection: "column" }}>
+						<div style={{ margin: "12vh 0" }}>
 							<ButtonForm onClick={() => onClickType("소주")}>소주</ButtonForm>
 							<ButtonForm onClick={() => onClickType("맥주")}>맥주</ButtonForm>
 							<ButtonForm onClick={() => onClickType("양주")}>양주</ButtonForm>
@@ -90,7 +90,7 @@ const Question2 = (props) => {
 					<QuestionContainer>
 						<QuestionNumber>Q{count}.</QuestionNumber>
 						<QuestionContent>주로 어떤 술을 마시나요?</QuestionContent>
-						<div style={{ margin: "8vh 0", display: "flex", flexDirection: "column" }}>
+						<div style={{ margin: "12vh 0" }}>
 							<ButtonForm onClick={() => onClickType("소주")}>소주</ButtonForm>
 							<ButtonForm onClick={() => onClickType("맥주")}>맥주</ButtonForm>
 							<ButtonForm onClick={() => onClickType("양주")}>양주</ButtonForm>

@@ -44,6 +44,19 @@ const InputForm = styled.input`
 	padding-left: 1rem;
 `;
 
+const ButtonForm = styled.button`
+	background-color: #ffffff;
+	border-radius: 0.2rem;
+	border: none;
+	outline: none;
+	height: 7vh;
+	width: 10vw;
+	font-size: 1.2rem;
+	cursor: pointer;
+	color: #126e82;
+	margin: 0.5vh 0 0.5vh 1vw;
+`;
+
 const NextButton = styled.button`
 	border-radius: 5px;
 	background-color: #d8e3e7;
@@ -58,9 +71,14 @@ const NextButton = styled.button`
 	font-size: 1.5rem;
 `;
 
-const Question1 = (props) => {
-	const { score, setScore, setIndex, changeScore, isMobile, count, increaseIndex, setAnswers, setCards } = props;
+const AddictedComponent = (props) => {
+	const { score, setScore, setIndex, changeScore, isMobile, count, increaseIndex, data } = props;
+	const question = data.question;
+	const answer = data.answer;
+	console.log(answer);
 	const [name, setName] = useState("");
+
+	console.log("addicted");
 
 	const onChangeName = (e) => {
 		setName(e.target.value);
@@ -84,29 +102,35 @@ const Question1 = (props) => {
 				<Question>
 					<QuestionContainer>
 						<QuestionNumber>Q{count}.</QuestionNumber>
-						<QuestionContent>당신의 이름은 무엇인가요?</QuestionContent>
-						<div style={{ margin: "8vh 0" }} />
-						<InputForm onChange={onChangeName} maxLength="15" />
+						<QuestionContent>{question}</QuestionContent>
+						<div style={{ margin: "12vh 0" }} />
+						{answer.map((v) => {
+							return (
+								<ButtonForm key={v.text} onClick={() => changeScore(v.score)}>
+									{v.text}
+								</ButtonForm>
+							);
+						})}
 					</QuestionContainer>
-					<NextButton onClick={checkName}>
-						다음 <ArrowForwardIosIcon />
-					</NextButton>
 				</Question>
 			) : (
 				<Question>
 					<QuestionContainer>
 						<QuestionNumber>Q{count}.</QuestionNumber>
-						<QuestionContent>당신의 이름은 무엇인가요?</QuestionContent>
-						<div style={{ margin: "8vh 0" }} />
-						<InputForm onChange={onChangeName} maxLength="15" />
+						<QuestionContent>{question}</QuestionContent>
+						<div style={{ margin: "12vh 0" }} />
+						{answer.map((v) => {
+							return (
+								<ButtonForm key={v.text} onClick={() => changeScore(v.score)}>
+									{v.text}
+								</ButtonForm>
+							);
+						})}
 					</QuestionContainer>
-					<NextButton onClick={checkName}>
-						다음 <ArrowForwardIosIcon />
-					</NextButton>
 				</Question>
 			)}
 		</div>
 	);
 };
 
-export default Question1;
+export default AddictedComponent;

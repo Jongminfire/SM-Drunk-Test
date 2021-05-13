@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
 import styled, { css } from 'styled-components';
 import WaveEffect from '../Functions/WaveEffect';
-import '../Pages/WelcomePage.css';
+import '../Pages/WelcomePage.scss';
 
 import KakaotalkIcon from '../image/KakaotalkIcon.png';
 import FacebookIcon from '../image/FacebookIcon.png';

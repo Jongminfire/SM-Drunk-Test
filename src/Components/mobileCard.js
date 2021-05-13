@@ -11,26 +11,42 @@ import styles from "./mobileCard.scss";
 
 
 export const MobileCardDrawer = (props)=>{
+    const Wrap = styled.div`
+    padding: 3vh 6vh;
+    width: 90%;
+    height: 90%;
+
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    `
 	console.log(props.cards[0])
 	return <div class="mobile-card-drawer">
-		{props.cards.map((x)=><MobileCardSmall {...x}/>)}
+        <Wrap>
+            {props.cards.map((x,i)=><MobileCardSmall key={x.id} bg={x.bg} idx={i} clckevent={props.clckevent}/>)}
+        </Wrap>
 	</div>
 }
 
 export const MobileCardSmall = (props)=>{
     console.log(123)
 	const InnerCard=styled.div`
-		margin:auto;
-		top:10vmin;
-		background:${props.bg};
-		box-shadow: 2px -2px 8px 0px #0001;
-		height: 10vw;
-		width: 50vmin;
-		border-radius: 18px;
+    background:${props.bg};
+    box-shadow: 2px -8px 8px 0px #00000040;
+    height: 10vw;
+    width: 7.5vw;
+    border-radius: 18px;
+    position: absolute;
+    top: ${6+6*(props.idx)}vh;
+    right: 5vw;
+    transition: transform 0.2s ease-in-out;
+    z-index:${10+props.idx};
+    &:hover{
+        transform:scale(1.2) translateX(calc(-3vw * 0.5)) translateY(calc(2vw * 0.5));
+    }
 	`
-    return <InnerCard>
-        heyhey
-    </InnerCard>
+    return <InnerCard onClick={()=>{props.clckevent(props)}}>wasans?</InnerCard>
+
 }
 
 export const MobileCardBig = (prop) => {
@@ -49,23 +65,44 @@ export const MobileCardBig = (prop) => {
 }
 
 export const MobileCardPopup = (props)=>{
-	const [visible,setVisible]=useState(props.visible)
-	const styles = useSpring({
+	const popped=props.popped;
+    const card=props.card;
+    const setPopped=props.setPopped;
+	const divspring = useSpring({
 		to: async (next, cancel) => {
-			if(visible){
+			if(popped){
 				await next({ display: "block" })
 		  		await next({ opacity: 1 })
 			}else{
 				await next({ opacity: 0 })
 				await next({ display: "none" })
 			}
-		}})
+		}
+    })
+    // const buttonanimRef = useSpringRef()
+    // const buttonanim = useSpring({
+	// 	to: {},
+    //     from: {top:"100vh"},
+    //     ref:buttonanimRef
+    // })
+    
+    // const cardanimref = useSpringRef();
+    // const cardanim = useSpring({
+	// 	to: {top:popped?"4vmin":"-100vh"},
+    //     from: {top:"-100vh"},
+    //     ref:cardanimref
+    // })
+    
+    // useChain([divspringRef, buttonanimRef,cardanimref],[1,1,1] )
+
 	return (
-		<animated.div style={styles} class="popup-container" >
-			<MobileCardBig class="big-card" bg="linear-gradient(153.55deg, #879AF2 9.48%, #D3208B 48.25%, #FDA000 85.78%)"></MobileCardBig>
-			<CloseIcon class="close" onClick={()=>setVisible(false)}></CloseIcon>
-			<NavigateBeforeIcon class="prevbtn"></NavigateBeforeIcon>
-			<NavigateNextIcon class="nextbtn"></NavigateNextIcon>
+		<animated.div style={divspring} className="popup-container" >
+            {/* <animated.div style={cardanim}> */}
+			    <MobileCardBig className="big-card" {...card}/>
+            {/* </animated.div> */}
+			<CloseIcon className="close" onClick={()=>setPopped(false)}></CloseIcon>
+			{/* <NavigateBeforeIcon className="prevbtn"></NavigateBeforeIcon> */}
+			{/* <NavigateNextIcon className="nextbtn"></NavigateNextIcon> */}
 		</animated.div>
 	)
 }

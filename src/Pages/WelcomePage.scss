@@ -1,19 +1,20 @@
-@font-face {
-  font-family: 'Title';
-  src: url('../fonts/IBMPlexSansKR-Bold.ttf');
-}
-@font-face {
-  font-family: 'Main';
-  src: url('../fonts/IBMPlexSansKR-Regular.ttf');
-}
-@font-face {
-  font-family: 'Button';
-  src: url('../fonts/IBMPlexSansKR-Bold.ttf');
-}
-@font-face {
-  font-family: 'Share';
-  src: url('../fonts/NotoSansKR-Bold.otf');
-}
+// @font-face {
+//   font-family: 'Title';
+//   src: url('../fonts/IBMPlexSansKR-Bold.ttf');
+// }
+// @font-face {
+//   font-family: 'Main';
+//   src: url('../fonts/IBMPlexSansKR-Regular.ttf');
+// }
+// @font-face {
+//   font-family: 'Button';
+//   src: url('../fonts/IBMPlexSansKR-Bold.ttf');
+// }
+// @font-face {
+//   font-family: 'Share';
+//   src: url('../fonts/NotoSansKR-Bold.otf');
+// }
+@import '../fonts/fonts.scss';
 
 .Title-font {
   font-size: 4em;
@@ -21,7 +22,8 @@
   margin-top: 5vh;
   font-weight: bold;
   color: #126e82;
-  font-family: 'Title';
+  font-family: 'IBMPlexSansKR';
+  font-weight: bold;
 }
 
 .Title-font-Mobile {
@@ -29,7 +31,8 @@
   text-align: center;
   font-weight: bold;
   color: #126e82;
-  font-family: 'Title';
+  font-family: 'IBMPlexSansKR';
+  font-weight: bold;
 }
 
 .Main-font {
@@ -38,7 +41,8 @@
   margin-top: 3vh;
   margin-bottom: 3vh;
   color: #126e82;
-  font-family: 'Main';
+  font-family: 'IBMPlexSansKR';
+  font-weight: 300;
 }
 
 .Main-font-Mobile {
@@ -49,7 +53,8 @@
   margin-left: 30px;
   margin-right: 30px;
   color: #126e82;
-  font-family: 'Main';
+  font-family: 'IBMPlexSansKR';
+  font-weight: 300;
 }
 
 .Share-it-font {
@@ -60,7 +65,8 @@
   margin-bottom: 2vh;
   margin-right: 60px;
   text-align: center;
-  font-family: 'Share';
+  font-family: 'IBMPlexSansKR';
+  font-weight: normal;
 }
 .Share-it-font-Mobile {
   color: #000;
@@ -69,13 +75,15 @@
   margin-top: 7vh;
   margin-bottom: 2vh;
   text-align: center;
-  font-family: 'Share';
+  font-family: 'IBMPlexSansKR';
+  font-weight: normal;
 }
 
 .Button-font {
   font-size: 2em;
   color: #000;
-  font-family: 'Button';
+  font-family: 'IBMPlexSansKR';
+  font-weight: bold;
 }
 
 .Button-start {

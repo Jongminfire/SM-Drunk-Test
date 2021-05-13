@@ -48,7 +48,7 @@ const OtherBackground = () => {
 			return;
 		}
 	};
-	return <div class="othbg" stag={stag} onClick={clk}></div>;
+	return <div className="othbg" stag={stag} onClick={clk}></div>;
 };
 
 const MainPage = (props) => {
@@ -77,7 +77,7 @@ const MainPage = (props) => {
 		
 			<CardPopup visible={false}/>
 			 */}
-			<MobileCardDrawer cards={[{bg:"linear-gradient(153.55deg, #879AF2 9.48%, #D3208B 48.25%, #FDA000 85.78%)"}]}>sans here</MobileCardDrawer>
+			<MobileCardDrawer cards={[{bg:"linear-gradient(153.55deg, #879AF2 9.48%, #D3208B 48.25%, #FDA000 85.78%)"},{},{},{}]}>sans here</MobileCardDrawer>
 			{/* <WaveEffect/> */}
 			<MobileCardPopup visible={false}/>
 
