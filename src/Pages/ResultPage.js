@@ -62,7 +62,6 @@ const ResultPage = (props) => {
 				<br />
 				<div>{name}님의 권장 음주량은 소주 {sojuBottle}병 {sojuGlass}잔 입니다!</div>
 				<div>※개인 체질을 배제하고 체중만을 고려한 값 입니다.</div>
-				//{lroabats}
 				<Title>총 점수 : {score}</Title>
 			</Contents>
 		</Background>

@@ -7,6 +7,7 @@ import Questions1 from "../Questions/Question1";
 import Questions2 from "../Questions/Question2";
 import Questions3 from "../Questions/Question3";
 import Questions4 from "../Questions/Question4";
+import EndQuestion from "../Questions/EndQuestion";
 import AddictedComponent from "../Questions/AddictedComponent";
 import TmiComponent from "../Questions/TmiComponent";
 import questionText from "../questionText.json";
@@ -53,7 +54,7 @@ const Main = () => {
 	const [answers, setAnswers] = useState([]);
 	const [qnaData, setqnaData] = useState([]);
 
-	const onClickFinish = () => {
+	const onFinish = () => {
 		history.push({ pathname: "/result", state: { qnaData: qnaData, score: score } });
 	};
 
@@ -149,7 +150,7 @@ const Main = () => {
 		} else if (index >= 20) {
 			return (
 				<>
-					질문끝 <button onClick={onClickFinish}>결과 보기</button>
+					<EndQuestion onFinish={onFinish} />
 				</>
 			);
 		} else {
@@ -190,10 +191,10 @@ const Main = () => {
 	return (
 		<div>
 			<Desktop>
-				<MainPage setCards={setCards} setAnswers={setAnswers} onClickFinish={onClickFinish} showQuestion={showQuestion} score={score} index={index} />
+				<MainPage setCards={setCards} setAnswers={setAnswers} showQuestion={showQuestion} score={score} index={index} />
 			</Desktop>
 			<Mobile>
-				<MainPageMobile onClickFinish={onClickFinish} showQuestion={showQuestion} score={score} index={index} />
+				<MainPageMobile showQuestion={showQuestion} score={score} count={count} />
 			</Mobile>
 		</div>
 	);
