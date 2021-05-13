@@ -13,6 +13,7 @@ import styles from "./MainPage.scss";
 
 import Question1 from "../Questions/Question1";
 import Background from "../Components/Background";
+import { CardPopup, CardDrawer } from "../Components/Card";
 
 const Contents = styled.div`
 	position: absolute;
@@ -48,63 +49,22 @@ const OtherBackground = () => {
 	return <div class="othbg" stag={stag} onClick={clk}></div>;
 };
 
-const CardDrawer = (props) => {
-	const cards = [];
-	return (
-		<div class="card-drawer">
-			{cards.map((x) => {
-				<CardSmall {...x} />;
-			})}
-		</div>
-	);
-};
-
-const CardSmall = (prop) => {
-	const InnerCard = styled.div`
-		margin: auto;
-		top: 10vmin;
-		background: ${prop.bg};
-		box-shadow: 2px -2px 8px 0px #0001;
-		height: 10vw;
-		width: 50vmin;
-		border-radius: 18px;
-	`;
-};
-
-const CardBig = (prop) => {
-	const InnerCard = styled.div`
-		margin: auto;
-		top: 10vmin;
-		background: ${prop.bg};
-		box-shadow: 2px -2px 8px 0px #0001;
-		height: 80vmin;
-		width: 50vmin;
-		border-radius: 18px;
-	`;
-	return <InnerCard>Wow such card content</InnerCard>;
-};
-
-const CardPopup = () => {
-	return (
-		<animated.div class="popup-container">
-			<CardBig class="big-card" bg="linear-gradient(153.55deg, #879AF2 9.48%, #D3208B 48.25%, #FDA000 85.78%)"></CardBig>
-			<CloseIcon class="close"></CloseIcon>
-			<NavigateBeforeIcon class="prevbtn"></NavigateBeforeIcon>
-			<NavigateNextIcon class="nextbtn"></NavigateNextIcon>
-		</animated.div>
-	);
-};
-
 const MainPage = (props) => {
 	const { onClickFinish, showQuestion, score } = props;
 
 	return (
 		<Background>
 			<OtherBackground></OtherBackground>
-			<Contents>{showQuestion()}</Contents>
-			<CardDrawer>sans here</CardDrawer>
+			<Contents>
+				{showQuestion()}
+				<br />
+				score: {score}
+				<br />
+				<button onClick={onClickFinish}>테스트 끝내기</button>
+			</Contents>
+			<CardDrawer cards={[{ bg: "linear-gradient(153.55deg, #879AF2 9.48%, #D3208B 48.25%, #FDA000 85.78%)" }]}>sans here</CardDrawer>
 			{/* <WaveEffect/> */}
-			{/* <CardPopup /> */}
+			<CardPopup visible={false} />
 		</Background>
 	);
 };
