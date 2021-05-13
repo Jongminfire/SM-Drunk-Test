@@ -194,7 +194,7 @@ const Main = () => {
 				<MainPage setCards={setCards} setAnswers={setAnswers} showQuestion={showQuestion} score={score} index={index} />
 			</Desktop>
 			<Mobile>
-				<MainPageMobile showQuestion={showQuestion} score={score} index={index} />
+				<MainPageMobile showQuestion={showQuestion} score={score} count={count} />
 			</Mobile>
 		</div>
 	);
