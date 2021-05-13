@@ -96,13 +96,7 @@ const MainPage = (props) => {
 	return (
 		<Background>
 			<OtherBackground></OtherBackground>
-			<Contents>
-				{showQuestion()}
-				<br />
-				score: {score}
-				<br />
-				<button onClick={onClickFinish}>테스트 끝내기</button>
-			</Contents>
+			<Contents>{showQuestion()}</Contents>
 			<Carddrawer>sans here</Carddrawer>
 			{/* <WaveEffect/> */}
 		</Background>
