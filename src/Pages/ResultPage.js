@@ -1,7 +1,7 @@
 import React from "react";
 import { useMediaQuery } from "react-responsive";
 import styled, { css } from "styled-components";
-import csvJSON from "../Datasets/CvsToJson"
+import lroabats from "../Datasets/amount_of_drinking/low_risk_of_alcohol_by_alcohol_type_samsungSeoulHospital.json";
 
 const Background = styled.div`
 	width: 100%;
@@ -45,12 +45,6 @@ const ResultPage = (props) => {
 	const sojuBottle = Math.round(Math.round(alcoholAmount)/7);
 	const sojuGlass = Math.round(alcoholAmount)%7;
 
-	const fs = require("fs");
-	//let csvLROABATS = require("../Datasets/amount_of_drinking/low_risk_of_alcohol_by_alcohol_type_samsungSeoulHospital.csv");
-	const csvLROABATS = fs.readFileSync("../Datasets/amount_of_drinking/low_risk_of_alcohol_by_alcohol_type_samsungSeoulHospital.csv","utf-8");
-	const stringLROABATS = csvLROABATS.toString();
-	const jsonLROABATS = csvJSON(stringLROABATS);
-
 	//const alcoholConsumption;
 	 
 
@@ -68,7 +62,7 @@ const ResultPage = (props) => {
 				<br />
 				<div>{name}님의 권장 음주량은 소주 {sojuBottle}병 {sojuGlass}잔 입니다!</div>
 				<div>※개인 체질을 배제하고 체중만을 고려한 값 입니다.</div>
-				{stringLROABATS}
+				//{lroabats}
 				<Title>총 점수 : {score}</Title>
 			</Contents>
 		</Background>
