@@ -36,6 +36,8 @@ const Contents = styled.div`
 	left: 5vw;
 	top: 10vh;
 `;
+const testimg =
+  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAYAAAB5fY51AAAC/ElEQVR42u3UQREAMAjAsGFkBnGOCdABl0joo/Gz+gEsEIYFGBaAYQGGBWBYAIYFGBaAYQEYFmBYAIYFYFiAYQEYFoBhAYYFYFgAhgUYFoBhARgWYFgAhgVgWIBhARgWgGEBhgVgWIBhGRZgWACGBRgWgGEBGBZgWACGBWBYgGEBGBaAYQGGBWBYAIYFGBaAYQEYFmBYAIYFYFiAYQEYFoBhAYYFYFgAhgUYFoBhAYZlWIBhARgWYFgAhgVgWIBhARgWgGEBhgVgWACGBRgWgGEBGBZgWACGBWBYgGEBGBaAYQGGBWBYAIYFGBaAYQEYFmBYAIYFGJZhAYYFYFiAYQEYFoBhAYYFYFgAhgUYFoBhARgWYFgAhgVgWIBhARgWgGEBhgVgWACGBRgWgGEBGBZgWACGBWBYgGEBGBZgWDIAhgVgWIBhARgWgGEBhgVgWACGBRgWgGEBGBZgWACGBWBYgGEBGBaAYQGGBWBYAIYFGBaAYQEYFmBYAIYFYFiAYQEYFmBYAIYFYFiAYQEYFoBhAYYFYFgAhgUYFoBhARgWYFgAhgVgWIBhARgWgGEBhgVgWACGBRgWgGEBGBZgWACGBWBYgGEBGBZgWACGBWBYgGEBGBaAYQGGBWBYAIYFGBaAYQEYFmBYAIYFYFiAYQEYFoBhAYYFYFgAhgUYFoBhARgWYFgAhgVgWIBhARgWYFgAhgVgWIBhARgWgGEBhgVgWACGBRgWgGEBGBZgWACGBWBYgGEBGBaAYQGGBWBYAIYFGBaAYQEYFmBYAIYFYFiAYQEYFmBYAIYFYFiAYQEYFoBhAYYFYFgAhgUYFoBhARgWYFgAhgVgWIBhARgWgGEBhgVgWACGBRgWgGEBGBZgWACGBRiWYQGGBWBYgGEBGBaAYQGGBWBYAIYFGBaAYQEYFmBYAIYFYFiAYQEYFoBhAYYFYFgAhgUYFoBhARgWYFgAhgVgWIBhARgWYFiGBRgWgGEBhgVgWACGBRgWgGEBGBZgWACGBWBYwGUDafne43vNlkkAAAAASUVORK5CYII=';
 
 const MainPage = (props) => {
 	const { showQuestion, score, setCards, setAnswers, count, stag } = props;
@@ -46,7 +48,7 @@ const MainPage = (props) => {
 		{ id: uuidv4(), bg: "#D3208B" },
 		{ id: uuidv4(), bg: "linear-gradient(to right, #00c6ff, #0072ff)" },
 		{ id: uuidv4(), bg: "linear-gradient(to right, #780206, #061161)" },
-		{ id: uuidv4(), bg: "linear-gradient(to right, #f0c27b, #4b1248)" },
+		{ id: uuidv4(), bg: "linear-gradient(to right, #f0c27b, #4b1248)",title:"그거 아시나요? 소주병", info:"소주명은 사실 초록색입니다. 아셨다구요? 저런!", img:testimg },
 	]);
 	const [testcards2, setTestcards2] = useState([]);
 
@@ -104,8 +106,8 @@ const MainPage = (props) => {
 				}}
 				cards={testcards}
 			>
-			<CardPopup popped={popped} setPopped={setPopped} card={selectedCard} />
 			</CardDrawer>
+			<CardPopup popped={popped} setPopped={setPopped} card={selectedCard} />
 		</Background>
 	);
 };

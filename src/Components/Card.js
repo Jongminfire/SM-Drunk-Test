@@ -108,7 +108,7 @@ export const CardDrawer = (props) => {
   return (
     <div className="card-drawer">
       {cards.map((x, i) => (
-        <CardSmall key={x.id} bg={x.bg} idx={i} clckevent={props.clckevent} />
+        <CardSmall key={x.id} {...x} idx={i} clckevent={props.clckevent} />
       ))}
     </div>
   );
@@ -149,35 +149,58 @@ to {
 `;
 
 const SmallInnerCard = styled.div`
-  perspective: 10cm;
-  background: ${(props) => props.bg};
-  box-shadow: 2px -8px 8px 0px #00000040;
-  height: 10vw;
-  width: 7.5vw;
-  border-radius: 18px;
-  position: absolute;
-  top: ${(props) => 6 + 6 * props.idx}vh;
-  right: 5vw;
-  transition: transform 0.15s ease-out;
-  z-index: ${(props) => 10 + props.idx};
-  &:hover {
-    transform: scale(1.3) translateX(calc(-3vw * 0.5))
-      translateY(calc(2vw * 0.5));
-  }
-  &:last-child {
-    animation: ${bounceup} 1s linear;
-  }
+	background: ${(props) => props.bg};
+	box-shadow: 2px -8px 8px 0px #00000040;
+	padding: 1vw;
+	height: 8vw;
+	width: 5.5vw;
+	border-radius: 12px;
+	position: absolute;
+	top: ${(props) => 6 + 6 * props.idx}vh;
+	right: 5vw;
+	transition: transform 0.15s ease-out;
+	z-index: ${(props) => 10 + props.idx};
+	&:hover {
+		transform: scale(1.3) translateX(calc(-3vw * 0.5)) translateY(calc(2vw * 0.5));
+	}
+	&:last-child {
+		animation: ${bounceup} 1s linear;
+	}
 `;
 
+const SmallTitleText = styled.div`
+	font-size: 2vmin;
+	font-family: "IBMPlexSansKR";
+	font-weight: medium;
+	color: white;
+	width: 5vw;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+`;
+const SmallInnerText = styled.div`
+	font-size: 1.2vmin;
+	font-family: "IBMPlexSansKR";
+	font-weight: medium;
+	margin-top: 1vmin;
+	line-height: 1vw;
+	color: white;
+	width: 5.5vw;
+	height: 6vw;
+	overflow: hidden;
+`
 export const CardSmall = (props) => {
-  return (
-    <SmallInnerCard
-      onClick={() => {
-        props.clckevent(props);
-      }}
-      {...props}
-    ></SmallInnerCard>
-  );
+	return (
+		<SmallInnerCard
+			onClick={() => {
+				props.clckevent(props);
+			}}
+			{...props}
+		>
+			<SmallTitleText>{props.title}</SmallTitleText>
+			<SmallInnerText>{props.info}</SmallInnerText>
+		</SmallInnerCard>
+	);
 };
 
 const BigInnerCard = styled.div`
@@ -213,14 +236,12 @@ const CircleImage = styled.img`
   width: 60%;
 `;
 
-const testimg =
-  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAYAAAB5fY51AAAC/ElEQVR42u3UQREAMAjAsGFkBnGOCdABl0joo/Gz+gEsEIYFGBaAYQGGBWBYAIYFGBaAYQEYFmBYAIYFYFiAYQEYFoBhAYYFYFgAhgUYFoBhARgWYFgAhgVgWIBhARgWgGEBhgVgWIBhGRZgWACGBRgWgGEBGBZgWACGBWBYgGEBGBaAYQGGBWBYAIYFGBaAYQEYFmBYAIYFYFiAYQEYFoBhAYYFYFgAhgUYFoBhAYZlWIBhARgWYFgAhgVgWIBhARgWgGEBhgVgWACGBRgWgGEBGBZgWACGBWBYgGEBGBaAYQGGBWBYAIYFGBaAYQEYFmBYAIYFGJZhAYYFYFiAYQEYFoBhAYYFYFgAhgUYFoBhARgWYFgAhgVgWIBhARgWgGEBhgVgWACGBRgWgGEBGBZgWACGBWBYgGEBGBZgWDIAhgVgWIBhARgWgGEBhgVgWACGBRgWgGEBGBZgWACGBWBYgGEBGBaAYQGGBWBYAIYFGBaAYQEYFmBYAIYFYFiAYQEYFmBYAIYFYFiAYQEYFoBhAYYFYFgAhgUYFoBhARgWYFgAhgVgWIBhARgWgGEBhgVgWACGBRgWgGEBGBZgWACGBWBYgGEBGBZgWACGBWBYgGEBGBaAYQGGBWBYAIYFGBaAYQEYFmBYAIYFYFiAYQEYFoBhAYYFYFgAhgUYFoBhARgWYFgAhgVgWIBhARgWYFgAhgVgWIBhARgWgGEBhgVgWACGBRgWgGEBGBZgWACGBWBYgGEBGBaAYQGGBWBYAIYFGBaAYQEYFmBYAIYFYFiAYQEYFmBYAIYFYFiAYQEYFoBhAYYFYFgAhgUYFoBhARgWYFgAhgVgWIBhARgWgGEBhgVgWACGBRgWgGEBGBZgWACGBRiWYQGGBWBYgGEBGBaAYQGGBWBYAIYFGBaAYQEYFmBYAIYFYFiAYQEYFoBhAYYFYFgAhgUYFoBhARgWYFgAhgVgWIBhARgWYFiGBRgWgGEBhgVgWACGBRgWgGEBGBZgWACGBWBYwGUDafne43vNlkkAAAAASUVORK5CYII=';
 export const CardBig = (prop) => {
   return (
     <BigInnerCard bg={prop.bg} id="card-pop-up">
-      <TitleText>Do you know?</TitleText>
-      <InfoText>Dokdo is korea’s territory</InfoText>
-      <CircleImage src={testimg} />
+      <TitleText>{prop.title}</TitleText>
+      <InfoText>{prop.info}</InfoText>
+      {prop.img?<CircleImage src={prop.img} />:null}
       <div class="Button-share-div">
         <div>
           <button
