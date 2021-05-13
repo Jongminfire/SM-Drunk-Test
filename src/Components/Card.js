@@ -1,27 +1,28 @@
-import React, { useState } from "react";
-import { useSpring, animated, useChain, useSpringRef } from '@react-spring/web'
+import React, { useState } from 'react';
+import { useSpring, animated, useChain, useSpringRef } from '@react-spring/web';
 
-import styled, { css, keyframes } from "styled-components";
-import spring, { toString } from 'css-spring'
+import styled, { css, keyframes } from 'styled-components';
+import spring, { toString } from 'css-spring';
 
-import Button from "@material-ui/core/Button";
-import CloseIcon from "@material-ui/icons/Close";
-import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
-import NavigateNextIcon from "@material-ui/icons/NavigateNext";
-import styles from "./Card.scss";
+import Button from '@material-ui/core/Button';
+import CloseIcon from '@material-ui/icons/Close';
+import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import styles from './Card.scss';
 import '../fonts/fonts.scss';
-import { PortableWifiOffSharp } from "../../node_modules/@material-ui/icons/index";
+import { PortableWifiOffSharp } from '../../node_modules/@material-ui/icons/index';
 
+export const CardDrawer = (props) => {
+	const cards = props.cards;
 
-export const CardDrawer = (props)=>{
-    const cards=props.cards;
- 
-	return <div className="card-drawer">
-		{cards.map((x,i)=><CardSmall key={x.id} bg={x.bg} idx={i} clckevent={props.clckevent}/>)}
-	</div>
-}
+	return (
+		<div className="card-drawer">
+			{cards.map((x, i) => <CardSmall key={x.id} bg={x.bg} idx={i} clckevent={props.clckevent} />)}
+		</div>
+	);
+};
 
-const bounceup=keyframes`
+const bounceup = keyframes`
 from,
 60%,
 75%,
@@ -141,53 +142,54 @@ const CircleImage=styled.img`
 
 const testimg="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAYAAAB5fY51AAAC/ElEQVR42u3UQREAMAjAsGFkBnGOCdABl0joo/Gz+gEsEIYFGBaAYQGGBWBYAIYFGBaAYQEYFmBYAIYFYFiAYQEYFoBhAYYFYFgAhgUYFoBhARgWYFgAhgVgWIBhARgWgGEBhgVgWIBhGRZgWACGBRgWgGEBGBZgWACGBWBYgGEBGBaAYQGGBWBYAIYFGBaAYQEYFmBYAIYFYFiAYQEYFoBhAYYFYFgAhgUYFoBhAYZlWIBhARgWYFgAhgVgWIBhARgWgGEBhgVgWACGBRgWgGEBGBZgWACGBWBYgGEBGBaAYQGGBWBYAIYFGBaAYQEYFmBYAIYFGJZhAYYFYFiAYQEYFoBhAYYFYFgAhgUYFoBhARgWYFgAhgVgWIBhARgWgGEBhgVgWACGBRgWgGEBGBZgWACGBWBYgGEBGBZgWDIAhgVgWIBhARgWgGEBhgVgWACGBRgWgGEBGBZgWACGBWBYgGEBGBaAYQGGBWBYAIYFGBaAYQEYFmBYAIYFYFiAYQEYFmBYAIYFYFiAYQEYFoBhAYYFYFgAhgUYFoBhARgWYFgAhgVgWIBhARgWgGEBhgVgWACGBRgWgGEBGBZgWACGBWBYgGEBGBZgWACGBWBYgGEBGBaAYQGGBWBYAIYFGBaAYQEYFmBYAIYFYFiAYQEYFoBhAYYFYFgAhgUYFoBhARgWYFgAhgVgWIBhARgWYFgAhgVgWIBhARgWgGEBhgVgWACGBRgWgGEBGBZgWACGBWBYgGEBGBaAYQGGBWBYAIYFGBaAYQEYFmBYAIYFYFiAYQEYFmBYAIYFYFiAYQEYFoBhAYYFYFgAhgUYFoBhARgWYFgAhgVgWIBhARgWgGEBhgVgWACGBRgWgGEBGBZgWACGBRiWYQGGBWBYgGEBGBaAYQGGBWBYAIYFGBaAYQEYFmBYAIYFYFiAYQEYFoBhAYYFYFgAhgUYFoBhARgWYFgAhgVgWIBhARgWYFiGBRgWgGEBhgVgWACGBRgWgGEBGBZgWACGBWBYwGUDafne43vNlkkAAAAASUVORK5CYII=";
 export const CardBig = (prop) => {
-	return <BigInnerCard bg={prop.bg}>
-        <TitleText>Do you know?</TitleText>
-        <InfoText>Dokdo is korea’s
-territory</InfoText>
-        <CircleImage src={testimg}/>
-	</BigInnerCard>
-}
+	return (
+		<BigInnerCard bg={prop.bg}>
+			<TitleText>Do you know?</TitleText>
+			<InfoText>Dokdo is korea’s territory</InfoText>
+			<CircleImage src={testimg} />
+		</BigInnerCard>
+	);
+};
 
-export const CardPopup = (props)=>{
-	const popped=props.popped;
-    const card=props.card;
-    const setPopped=props.setPopped;
+export const CardPopup = (props) => {
+	const popped = props.popped;
+	const card = props.card;
+	const setPopped = props.setPopped;
 	const divspring = useSpring({
 		to: async (next, cancel) => {
-			if(popped){
-				await next({ display: "block" })
-		  		await next({ opacity: 1 })
-			}else{
-				await next({ opacity: 0 })
-				await next({ display: "none" })
+			if (popped) {
+				await next({ display: 'block' });
+				await next({ opacity: 1 });
+			} else {
+				await next({ opacity: 0 });
+				await next({ display: 'none' });
 			}
 		}
-    })
-    // const buttonanimRef = useSpringRef()
-    // const buttonanim = useSpring({
+	});
+	// const buttonanimRef = useSpringRef()
+	// const buttonanim = useSpring({
 	// 	to: {},
-    //     from: {top:"100vh"},
-    //     ref:buttonanimRef
-    // })
-    
-    // const cardanimref = useSpringRef();
-    // const cardanim = useSpring({
+	//     from: {top:"100vh"},
+	//     ref:buttonanimRef
+	// })
+
+	// const cardanimref = useSpringRef();
+	// const cardanim = useSpring({
 	// 	to: {top:popped?"4vmin":"-100vh"},
-    //     from: {top:"-100vh"},
-    //     ref:cardanimref
-    // })
-    
-    // useChain([divspringRef, buttonanimRef,cardanimref],[1,1,1] )
+	//     from: {top:"-100vh"},
+	//     ref:cardanimref
+	// })
+
+	// useChain([divspringRef, buttonanimRef,cardanimref],[1,1,1] )
 
 	return (
-		<animated.div style={divspring} className="popup-container" >
-            {/* <animated.div style={cardanim}> */}
-			    <CardBig className="big-card" {...card}/>
-            {/* </animated.div> */}
-			<CloseIcon className="close" onClick={()=>setPopped(false)}></CloseIcon>
+		<animated.div style={divspring} className="popup-container">
+			{/* <animated.div style={cardanim}> */}
+			<CardBig className="big-card" {...card} />
+			{/* </animated.div> */}
+			<CloseIcon className="close" onClick={() => setPopped(false)} />
 			{/* <NavigateBeforeIcon className="prevbtn"></NavigateBeforeIcon> */}
 			{/* <NavigateNextIcon className="nextbtn"></NavigateNextIcon> */}
 		</animated.div>
-	)
-}
+	);
+};
