@@ -53,7 +53,7 @@ const WelcomePage = (props) => {
           <div class="Button-share-div">
             <div>
               <button
-                onClick={onClickStart}
+                onClick={onClickFacebook}
                 className="Button-share"
                 style={{
                   backgroundImage: `url(${KakaotalkIcon})`,
@@ -73,7 +73,7 @@ const WelcomePage = (props) => {
             </div>
             <div>
               <button
-                onClick={onClickStart}
+                onClick={onClickFacebook}
                 className="Button-share"
                 style={{
                   backgroundImage: `url(${InstagramIcon})`,

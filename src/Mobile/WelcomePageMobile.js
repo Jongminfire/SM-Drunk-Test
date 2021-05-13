@@ -32,6 +32,13 @@ const Contents = styled.div`
   top: 10%;
 `;
 
+const onClickFacebook = () => {
+  console.log('facebook');
+  window.open(
+    'https://www.facebook.com/sharer/sharer.php?u=https://naver.com/'
+  );
+};
+
 const WelcomePageMobile = (props) => {
   const { onClickStart } = props;
   return (
@@ -52,7 +59,7 @@ const WelcomePageMobile = (props) => {
           <div class="Button-share-div">
             <div>
               <button
-                onClick={onClickStart}
+                onClick={onClickFacebook}
                 className="Button-share"
                 style={{
                   backgroundImage: `url(${KakaotalkIcon})`,
@@ -62,7 +69,7 @@ const WelcomePageMobile = (props) => {
             </div>
             <div>
               <button
-                onClick={onClickStart}
+                onClick={onClickFacebook}
                 className="Button-share"
                 style={{
                   backgroundImage: `url(${FacebookIcon})`,
@@ -72,7 +79,7 @@ const WelcomePageMobile = (props) => {
             </div>
             <div>
               <button
-                onClick={onClickStart}
+                onClick={onClickFacebook}
                 className="Button-share"
                 style={{
                   backgroundImage: `url(${InstagramIcon})`,
