@@ -14,7 +14,7 @@ import { PortableWifiOffSharp } from "../../node_modules/@material-ui/icons/inde
 export const CardDrawer = (props)=>{
     const cards=props.cards;
  
-	return <div class="card-drawer">
+	return <div className="card-drawer">
 		{cards.map((x,i)=><CardSmall key={x.id} bg={x.bg} idx={i} clckevent={props.clckevent}/>)}
 	</div>
 }
@@ -86,13 +86,13 @@ export const CardPopup = (props)=>{
     // useChain([divspringRef, buttonanimRef,cardanimref],[1,1,1] )
 
 	return (
-		<animated.div style={divspring} class="popup-container" >
+		<animated.div style={divspring} className="popup-container" >
             {/* <animated.div style={cardanim}> */}
-			    <CardBig class="big-card" {...card}/>
+			    <CardBig className="big-card" {...card}/>
             {/* </animated.div> */}
-			<CloseIcon class="close" onClick={()=>setPopped(false)}></CloseIcon>
-			{/* <NavigateBeforeIcon class="prevbtn"></NavigateBeforeIcon> */}
-			{/* <NavigateNextIcon class="nextbtn"></NavigateNextIcon> */}
+			<CloseIcon className="close" onClick={()=>setPopped(false)}></CloseIcon>
+			{/* <NavigateBeforeIcon className="prevbtn"></NavigateBeforeIcon> */}
+			{/* <NavigateNextIcon className="nextbtn"></NavigateNextIcon> */}
 		</animated.div>
 	)
 }

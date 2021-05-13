@@ -46,7 +46,7 @@ const OtherBackground = () => {
 			return;
 		}
 	};
-	return <div class="othbg" stag={stag} onClick={clk}></div>;
+	return <div className="othbg" stag={stag} onClick={clk}></div>;
 };
 
 const MainPage = (props) => {
