@@ -59,7 +59,7 @@ const NextButton = styled.button`
 `;
 
 const Question2 = (props) => {
-	const { score, setScore, setIndex, changeScore, isMobile, count, increaseIndex } = props;
+	const { score, setScore, setIndex, changeScore, isMobile, count, increaseIndex, setAnswers, setCards } = props;
 	const [weight, setWeight] = useState(0);
 	const name = localStorage.getItem("userName");
 

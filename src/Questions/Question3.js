@@ -59,7 +59,7 @@ const NextButton = styled.button`
 `;
 
 const Question2 = (props) => {
-	const { score, setScore, setIndex, changeScore, isMobile, count, increaseIndex } = props;
+	const { score, setScore, setIndex, changeScore, isMobile, count, increaseIndex, setAnswers, setCards } = props;
 	const [type, setType] = useState("");
 
 	const onClickType = (type) => {

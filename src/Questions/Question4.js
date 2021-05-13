@@ -59,7 +59,7 @@ const NextButton = styled.button`
 `;
 
 const Question4 = (props) => {
-	const { score, setScore, setIndex, changeScore, isMobile, count, increaseIndex } = props;
+	const { score, setScore, setIndex, changeScore, isMobile, count, increaseIndex, setAnswers, setCards } = props;
 	const [bottles, setBottles] = useState();
 	const drinkType = localStorage.getItem("drinkType");
 
