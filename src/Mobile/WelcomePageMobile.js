@@ -39,7 +39,7 @@ const Contents = styled.div`
 const onClickFacebook = () => {
   console.log('facebook');
   window.open(
-    'https://www.facebook.com/sharer/sharer.php?u=https://naver.com/'
+    'https://www.facebook.com/sharer/sharer.php?u=https://drunktest.run.goorm.io'
   );
 };
 
@@ -130,7 +130,7 @@ const WelcomePageMobile = (props) => {
             <div>
               <button
                 onClick={() => {
-                  doCopy('클립보드복사내용');
+                  doCopy('https://drunktest.run.goorm.io');
                 }}
                 className="Button-share"
                 style={{

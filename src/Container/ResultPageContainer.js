@@ -1,4 +1,5 @@
 import React, { useCallback } from "react";
+import { Router, useHistory } from "react-router-dom";
 import { useLocation } from "react-router";
 import { useMediaQuery } from "react-responsive";
 import ResultPage from "../Pages/ResultPage";
@@ -15,16 +16,21 @@ const Mobile = ({ children }) => {
 };
 
 const Result = (props) => {
+	const history = useHistory();
 	const qnaData = props.location.state.qnaData;
 	const score = props.location.state.score;
+
+	const onClickRestart = useCallback(() => {
+		history.push("/");
+	}, []);
 
 	return (
 		<div>
 			<Desktop>
-				<ResultPage qnaData={qnaData} score={score} />
+				<ResultPage qnaData={qnaData} score={score} onClickRestart={onClickRestart} />
 			</Desktop>
 			<Mobile>
-				<ResultPageMobile qnaData={qnaData} score={score} />
+				<ResultPageMobile qnaData={qnaData} score={score} onClickRestart={onClickRestart} />
 			</Mobile>
 		</div>
 	);
