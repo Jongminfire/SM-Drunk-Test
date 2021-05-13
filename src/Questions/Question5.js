@@ -179,7 +179,7 @@ const Question5 = (props) => {
 	const checkCount = () => {
 		if (Number.isInteger(bottles) && bottles !== undefined) {
 			window.localStorage.setItem("bottleCount", bottles);
-			addQnaData("일주일동안 몇 병을 드셨나요?", bottles);
+			addQnaData("한번 먹을 때 몇 잔을 드셨나요?", bottles);
 			increaseIndex();
 		} else {
 			Swal.fire({
@@ -197,13 +197,13 @@ const Question5 = (props) => {
 				<QuestionMobile>
 					<QuestionNumberMobile>Q{count}.</QuestionNumberMobile>
 					<QuestionContentMobile>
-						평균적으로 일주일동안 몇 병의 {drinkType}
+						평균적으로 한번 마실 때 몇 잔의 {drinkType}
 						{drinkType === "와인" || "칵테일" ? "을" : "를"} 드시나요?
 					</QuestionContentMobile>
 					<div style={{ margin: "6vh 0" }} />
 					<div>
 						<InputFormMobile onChange={onChangeCount} maxLength="2" target={bottles} />
-						<span style={{ color: "#126e82", fontSize: "2rem", paddingLeft: "1rem" }}>병</span>
+						<span style={{ color: "#126e82", fontSize: "2rem", paddingLeft: "1rem" }}>잔</span>
 					</div>
 					<NextButtonMobile onClick={checkCount}>
 						다음 <ArrowForwardIosIcon />
@@ -214,12 +214,12 @@ const Question5 = (props) => {
 					<QuestionContainer>
 						<QuestionNumber>Q{count}.</QuestionNumber>
 						<QuestionContent>
-							평균적으로 일주일동안 몇 병의 {drinkType}
+							평균적으로 한번 마실 때 몇 잔의 {drinkType}
 							{drinkType === "와인" || drinkType === "칵테일" ? "을" : "를"} 드시나요?
 						</QuestionContent>
 						<div style={{ margin: "8vh 0" }} />
 						<InputForm onChange={onChangeCount} maxLength="2" target={bottles} onKeyPress={handleKeyPress}></InputForm>
-						<span style={{ color: "#126e82", fontSize: "2rem", paddingLeft: "1rem" }}>병</span>
+						<span style={{ color: "#126e82", fontSize: "2rem", paddingLeft: "1rem" }}>잔</span>
 					</QuestionContainer>
 					<NextButton onClick={checkCount}>
 						다음 <ArrowForwardIosIcon />
