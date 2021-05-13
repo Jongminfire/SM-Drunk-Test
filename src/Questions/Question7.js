@@ -16,7 +16,7 @@ const QuestionMobile = styled.div`
 `;
 
 const Question7 = (props) => {
-	const { score, setScore, setIndex, changeScore, isMobile } = props;
+	const { score, setScore, setIndex, changeScore, isMobile, count } = props;
 	const cost = 1;
 
 	return (

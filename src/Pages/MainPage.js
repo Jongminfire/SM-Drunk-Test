@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 import WaveEffect from "../Functions/WaveEffect";
-import { useSpring, animated, to } from '@react-spring/web'
+import { useSpring, animated, to } from "@react-spring/web";
 
 import styled, { css } from "styled-components";
 import Button from "@material-ui/core/Button";
@@ -12,8 +12,8 @@ import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import styles from "./MainPage.scss";
 
 import Question1 from "../Questions/Question1";
-import Background from "../Components/Background"
-import { CardPopup, CardDrawer } from "../Components/Card"
+import Background from "../Components/Background";
+import { CardPopup, CardDrawer } from "../Components/Card";
 
 const Contents = styled.div`
 	position: absolute;
@@ -49,7 +49,6 @@ const OtherBackground = () => {
 	return <div class="othbg" stag={stag} onClick={clk}></div>;
 };
 
-
 const MainPage = (props) => {
 	const { onClickFinish, showQuestion, score } = props;
 
@@ -63,9 +62,9 @@ const MainPage = (props) => {
 				<br />
 				<button onClick={onClickFinish}>테스트 끝내기</button>
 			</Contents>
-			<CardDrawer cards={[{bg:"linear-gradient(153.55deg, #879AF2 9.48%, #D3208B 48.25%, #FDA000 85.78%)"}]}>sans here</CardDrawer>
+			<CardDrawer cards={[{ bg: "linear-gradient(153.55deg, #879AF2 9.48%, #D3208B 48.25%, #FDA000 85.78%)" }]}>sans here</CardDrawer>
 			{/* <WaveEffect/> */}
-			<CardPopup visible={false}/>
+			<CardPopup visible={false} />
 		</Background>
 	);
 };

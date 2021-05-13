@@ -6,7 +6,6 @@ const MainPageMobile = (props) => {
 	const { onClickFinish, showQuestion, score } = props;
 	return (
 		<div>
-			모바일 설문페이지 입니다.
 			{showQuestion()}
 			<br />
 			score: {score}
