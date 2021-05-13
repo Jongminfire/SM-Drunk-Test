@@ -201,7 +201,7 @@ const TmiComponent = (props) => {
 								<ButtonForm
 									key={v}
 									onClick={() => {
-										v === correctAnswer ? setTimeout(selectAnswer(v, 0), 250) : setTimeout(selectAnswer(v, 0), 250);
+										v === correctAnswer ? selectAnswer(v, 0) : selectAnswer(v, 0);
 									}}
 								>
 									{v}
