@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styled, { css } from "styled-components";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 
@@ -62,6 +62,11 @@ const Question2 = (props) => {
 	const { score, setScore, setIndex, changeScore, isMobile, count, increaseIndex, setAnswers, setCards } = props;
 	const [weight, setWeight] = useState(0);
 	const name = localStorage.getItem("userName");
+	const inputRef = useRef(null);
+
+	useEffect(() => {
+		inputRef.current.focus();
+	}, []);
 
 	const onChangeWeight = (e) => {
 		let tempWeight = e.target.value;
@@ -70,6 +75,12 @@ const Question2 = (props) => {
 			tempWeight = tempWeight.slice(0, 3);
 		}
 		setWeight(Number(tempWeight));
+	};
+
+	const handleKeyPress = (e) => {
+		if (e.key === "Enter") {
+			checkWeight();
+		}
 	};
 
 	const checkWeight = () => {
@@ -91,7 +102,7 @@ const Question2 = (props) => {
 							{name}님 반갑습니다! <br /> 당신의 체중을 알려주세요
 						</QuestionContent>
 						<div style={{ margin: "8vh 0" }} />
-						<InputForm onChange={onChangeWeight} maxLength="3" target={weight}></InputForm>
+						<InputForm onChange={onChangeWeight} maxLength="3" target={weight} ref={inputRef}></InputForm>
 						<span style={{ color: "#126e82", fontSize: "2.5rem", paddingLeft: "1rem" }}>KG</span>
 					</QuestionContainer>
 					<NextButton onClick={checkWeight}>
@@ -106,7 +117,7 @@ const Question2 = (props) => {
 							{name}님 반갑습니다! <br /> 당신의 체중을 알려주세요
 						</QuestionContent>
 						<div style={{ margin: "8vh 0" }} />
-						<InputForm onChange={onChangeWeight} maxLength="3" target={weight}></InputForm>
+						<InputForm onChange={onChangeWeight} maxLength="3" target={weight} onKeyPress={handleKeyPress} ref={inputRef}></InputForm>
 						<span style={{ color: "#126e82", fontSize: "2.5rem", paddingLeft: "1rem" }}>KG</span>
 					</QuestionContainer>
 					<NextButton onClick={checkWeight}>
