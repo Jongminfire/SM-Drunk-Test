@@ -52,7 +52,7 @@ const OtherBackground = () => {
 };
 
 const MainPage = (props) => {
-	const { onClickFinish, showQuestion, score, setCards, setAnswers } = props;
+	const { showQuestion, score, setCards, setAnswers } = props;
 	const [popped, setPopped] = useState(false);
 	const [selectedCard, setSelectedCard] = useState(null);
 	const [testcards,setTestcards]=useState([
@@ -63,7 +63,7 @@ const MainPage = (props) => {
 		{ id:uuidv4(), bg: "linear-gradient(to right, #f0c27b, #4b1248)" }
 	])
 	const [testcards2,setTestcards2]=useState([])
-
+	
 	function cadni(){
 		if(testcards.length>0){
 			const joined = testcards2.concat(testcards[testcards.length-1]);

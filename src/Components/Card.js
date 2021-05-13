@@ -9,6 +9,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import styles from "./Card.scss";
+import '../fonts/fonts.scss';
 import { PortableWifiOffSharp } from "../../node_modules/@material-ui/icons/index";
 
 
@@ -20,79 +21,110 @@ export const CardDrawer = (props)=>{
 	</div>
 }
 
-export const CardSmall = (props)=>{
-    const bounceup=keyframes`
-    from,
-    60%,
-    75%,
-    90%,
-    to {
-      animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-    }
-  
-    from {
-      opacity: 0;
-      transform: scale(0.8) translate3d(0, 3000px, 0) scaleY(5);
-    }
-  
-    60% {
-      opacity: 1;
-      transform: scale(0.5) translate3d(0, -20px, 0) scaleY(0.9);
-    }
-  
-    75% {
-      transform: scale(1.4)  translate3d(0, 10px, 0) scaleY(0.95);
-    }
-  
-    90% {
-      transform: scale(1.2) translate3d(0, -5px, 0) scaleY(0.985);
-    }
-  
-    to {
-      transform: scale(1) translate3d(0, 0, 0);
-    }
-    `
+const bounceup=keyframes`
+from,
+60%,
+75%,
+90%,
+to {
+  animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+}
 
-	const InnerCard=styled.div`
+from {
+  opacity: 0;
+  transform: scale(0.8) translate3d(0, 3000px, 0) scaleY(5);
+  box-shadow: 0px 0px 16px 8px #FFFFFF;
+}
+
+60% {
+  opacity: 1;
+  transform: scale(0.5) translate3d(0, -20px, 0) scaleY(0.9);
+  box-shadow: 0px 0px 128px 64px #FFFFFF;
+}
+
+75% {
+  transform: scale(1.4)  translate3d(0, 10px, 0) scaleY(0.95);
+}
+
+90% {
+  transform: scale(1.2) translate3d(0, -5px, 0) scaleY(0.985);
+}
+
+to {
+  transform: scale(1) translate3d(0, 0, 0);
+}
+`
+
+const SmallInnerCard=styled.div`
         perspective: 10cm;
-		background:${props.bg};
+		background:${props => props.bg};
 		box-shadow: 2px -8px 8px 0px #00000040;
 		height: 10vw;
 		width: 7.5vw;
 		border-radius: 18px;
         position: absolute;
-        top: ${6+6*(props.idx)}vh;
+        top: ${props => 6+6*(props.idx)}vh;
         right: 5vw;
         transition: transform 0.15s ease-out;
-        z-index:${10+props.idx};
+        z-index:${props => 10+props.idx};
         &:hover{
-<<<<<<< HEAD
             transform:scale(1.2) translateX(calc(-3vw * 0.5)) translateY(calc(2vw * 0.5));
-=======
             transform:scale(1.35) translateX(calc(-3vw * 0.5)) translateY(calc(2vw * 0.5));
+            transform:scale(1.3) translateX(calc(-3vw * 0.5)) translateY(calc(2vw * 0.5));
         }
         &:last-child{
             animation: ${bounceup} 1s linear;
->>>>>>> 2edc2f2a27b42dd57c30555ac9711372e602153b
+
         }
 	`
-    return <InnerCard onClick={()=>{props.clckevent(props)}}>
 
-    </InnerCard>
+export const CardSmall = (props)=>{    
+    return <SmallInnerCard onClick={()=>{props.clckevent(props)}} {...props}>
+    </SmallInnerCard>
 }
 
+
+const BigInnerCard=styled.div`
+padding:6vmin;
+margin:auto;
+top:10vmin;
+background:${prop=>prop.bg};
+box-shadow: 2px -2px 8px 0px #0001;
+height: 60vmin;
+width: 36vmin;
+border-radius: 12px;
+`
+const TitleText=styled.div`
+font-size: calc(12px + 3.5vmin);
+font-family: 'IBMPlexSansKR';
+font-weight: medium;
+color: white;
+`
+const InfoText=styled.div`
+margin-top:4vh;
+font-size: calc(10px + 2vmin);
+color: white;
+font-family: 'IBMPlexSansKR';
+font-weight: medium;
+`
+
+const CircleImage=styled.img`
+    margin-top:8vh; 
+    border-radius: 50%;
+    display: block;
+    margin-left:auto;
+    margin-right:auto;
+    width:60%;
+`
+
+const testimg="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAYAAAB5fY51AAAC/ElEQVR42u3UQREAMAjAsGFkBnGOCdABl0joo/Gz+gEsEIYFGBaAYQGGBWBYAIYFGBaAYQEYFmBYAIYFYFiAYQEYFoBhAYYFYFgAhgUYFoBhARgWYFgAhgVgWIBhARgWgGEBhgVgWIBhGRZgWACGBRgWgGEBGBZgWACGBWBYgGEBGBaAYQGGBWBYAIYFGBaAYQEYFmBYAIYFYFiAYQEYFoBhAYYFYFgAhgUYFoBhAYZlWIBhARgWYFgAhgVgWIBhARgWgGEBhgVgWACGBRgWgGEBGBZgWACGBWBYgGEBGBaAYQGGBWBYAIYFGBaAYQEYFmBYAIYFGJZhAYYFYFiAYQEYFoBhAYYFYFgAhgUYFoBhARgWYFgAhgVgWIBhARgWgGEBhgVgWACGBRgWgGEBGBZgWACGBWBYgGEBGBZgWDIAhgVgWIBhARgWgGEBhgVgWACGBRgWgGEBGBZgWACGBWBYgGEBGBaAYQGGBWBYAIYFGBaAYQEYFmBYAIYFYFiAYQEYFmBYAIYFYFiAYQEYFoBhAYYFYFgAhgUYFoBhARgWYFgAhgVgWIBhARgWgGEBhgVgWACGBRgWgGEBGBZgWACGBWBYgGEBGBZgWACGBWBYgGEBGBaAYQGGBWBYAIYFGBaAYQEYFmBYAIYFYFiAYQEYFoBhAYYFYFgAhgUYFoBhARgWYFgAhgVgWIBhARgWYFgAhgVgWIBhARgWgGEBhgVgWACGBRgWgGEBGBZgWACGBWBYgGEBGBaAYQGGBWBYAIYFGBaAYQEYFmBYAIYFYFiAYQEYFmBYAIYFYFiAYQEYFoBhAYYFYFgAhgUYFoBhARgWYFgAhgVgWIBhARgWgGEBhgVgWACGBRgWgGEBGBZgWACGBRiWYQGGBWBYgGEBGBaAYQGGBWBYAIYFGBaAYQEYFmBYAIYFYFiAYQEYFoBhAYYFYFgAhgUYFoBhARgWYFgAhgVgWIBhARgWYFiGBRgWgGEBhgVgWACGBRgWgGEBGBZgWACGBWBYwGUDafne43vNlkkAAAAASUVORK5CYII=";
 export const CardBig = (prop) => {
-	const InnerCard=styled.div`
-		margin:auto;
-		top:10vmin;
-		background:${prop.bg};
-		box-shadow: 2px -2px 8px 0px #0001;
-		height: 80vmin;
-		width: 50vmin;
-		border-radius: 18px;
-	`
-	return <InnerCard>
-	</InnerCard>
+	return <BigInnerCard bg={prop.bg}>
+        <TitleText>Do you know?</TitleText>
+        <InfoText>Dokdo is korea’s
+territory</InfoText>
+        <CircleImage src={testimg}/>
+	</BigInnerCard>
 }
 
 export const CardPopup = (props)=>{

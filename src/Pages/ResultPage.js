@@ -39,6 +39,7 @@ const Title = styled.div`
 const ResultPage = (props) => {
 	const { qnaData, score } = props;
 	const name = localStorage.getItem("userName");
+	console.log(qnaData);
 
 	return (
 		<Background>
