@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled, { css } from "styled-components";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 
-import {Question,QuestionContainer,QuestionNumber,QuestionContent} from "./QuestionCommon";
+import { Question, QuestionContainer, QuestionNumber, QuestionContent } from "./QuestionCommon";
 
 const InputForm = styled.input`
 	background-color: #ffffff;
