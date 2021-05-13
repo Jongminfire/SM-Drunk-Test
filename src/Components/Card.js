@@ -56,27 +56,52 @@ to {
 `
 
 const SmallInnerCard=styled.div`
-        perspective: 10cm;
-		background:${props => props.bg};
-		box-shadow: 2px -8px 8px 0px #00000040;
-		height: 10vw;
-		width: 7.5vw;
-		border-radius: 18px;
-        position: absolute;
-        top: ${props => 6+6*(props.idx)}vh;
-        right: 5vw;
-        transition: transform 0.15s ease-out;
-        z-index:${props => 10+props.idx};
-        &:hover{
-            transform:scale(1.3) translateX(calc(-3vw * 0.5)) translateY(calc(2vw * 0.5));
-        }
-        &:last-child{
-            animation: ${bounceup} 1s linear;
-        }
-	`
+    background:${props => props.bg};
+    box-shadow: 2px -8px 8px 0px #00000040;
+    padding: 1vw;
+    height: 8vw;
+    width: 5.5vw;
+    border-radius: 12px;
+    position: absolute;
+    top: ${props => 6+6*(props.idx)}vh;
+    right: 5vw;
+    transition: transform 0.15s ease-out;
+    z-index:${props => 10+props.idx};
+    &:hover{
+        transform:scale(1.3) translateX(calc(-3vw * 0.5)) translateY(calc(2vw * 0.5));
+    }
+    &:last-child{
+        animation: ${bounceup} 1s linear;
+    }
+`
 
+const SmallTitleText=styled.div`
+    font-size: 2vmin;
+    font-family: 'IBMPlexSansKR';
+    font-weight: medium;
+    color: white;
+    width:5vw;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis; 
+`
+const SmallInnerText=styled.div`
+    font-size: 1.2vmin;
+    font-family: 'IBMPlexSansKR';
+    font-weight: medium;
+    margin-top:1vmin;
+    line-height: 1vw;
+    color: white;
+    width: 5.5vw;
+    height: 6vw;
+    overflow:hidden;
+`
+
+const testtext="You should know there is much less amount of text than real world scenario. Therefore Need Need Need Pintainmorch";
 export const CardSmall = (props)=>{    
     return <SmallInnerCard onClick={()=>{props.clckevent(props)}} {...props}>
+        <SmallTitleText>Sans Text Over Power</SmallTitleText>
+        <SmallInnerText>{testtext}</SmallInnerText>
     </SmallInnerCard>
 }
 
