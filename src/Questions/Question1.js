@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled, { css } from "styled-components";
+import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 
 const Question = styled.div`
 	width: 70vw;
@@ -82,22 +83,26 @@ const Question1 = (props) => {
 			{isMobile ? (
 				<Question>
 					<QuestionContainer>
-						<QuestionNumber>Q.{count}</QuestionNumber>
-						<QuestionContent>당신의 이름은 무엇인가요?</QuestionContent>
-						<div style={{ margin: "8vh 0" }} />
-						<InputForm onChange={onChangeName} />
-					</QuestionContainer>
-					<NextButton onClick={checkName}>다음 ></NextButton>
-				</Question>
-			) : (
-				<Question>
-					<QuestionContainer>
-						<QuestionNumber>Q.{count}</QuestionNumber>
+						<QuestionNumber>Q{count}.</QuestionNumber>
 						<QuestionContent>당신의 이름은 무엇인가요?</QuestionContent>
 						<div style={{ margin: "8vh 0" }} />
 						<InputForm onChange={onChangeName} maxLength="15" />
 					</QuestionContainer>
-					<NextButton onClick={checkName}>다음 ></NextButton>
+					<NextButton onClick={checkName}>
+						다음 <ArrowForwardIosIcon />
+					</NextButton>
+				</Question>
+			) : (
+				<Question>
+					<QuestionContainer>
+						<QuestionNumber>Q{count}.</QuestionNumber>
+						<QuestionContent>당신의 이름은 무엇인가요?</QuestionContent>
+						<div style={{ margin: "8vh 0" }} />
+						<InputForm onChange={onChangeName} maxLength="15" />
+					</QuestionContainer>
+					<NextButton onClick={checkName}>
+						다음 <ArrowForwardIosIcon />
+					</NextButton>
 				</Question>
 			)}
 		</div>

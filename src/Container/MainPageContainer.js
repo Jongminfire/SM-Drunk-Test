@@ -61,7 +61,9 @@ const Main = () => {
 					<Questions3 score={score} setScore={setScore} setIndex={setIndex} changeScore={changeScore} isMobile={isMobile} count={count} setCount={setCount} increaseIndex={increaseIndex} />
 				);
 			case 4:
-				return <Questions4 score={score} setScore={setScore} setIndex={setIndex} changeScore={changeScore} isMobile={isMobile} count={count} setCount={setCount} />;
+				return (
+					<Questions4 score={score} setScore={setScore} setIndex={setIndex} changeScore={changeScore} isMobile={isMobile} count={count} setCount={setCount} increaseIndex={increaseIndex} />
+				);
 			case 5:
 				return <Questions5 score={score} setScore={setScore} setIndex={setIndex} changeScore={changeScore} isMobile={isMobile} count={count} setCount={setCount} />;
 			case 6:

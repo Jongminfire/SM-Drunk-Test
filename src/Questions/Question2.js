@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import styled, { css } from "styled-components";
+import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 
 const Question = styled.div`
 	width: 70vw;
-	height: 50vh;
+	height: 55vh;
 `;
 
 const QuestionContainer = styled.div`
@@ -71,8 +72,8 @@ const Question2 = (props) => {
 		setWeight(Number(tempWeight));
 	};
 
-	const checkName = () => {
-		if (weight.length === 0 || weight === 0) {
+	const checkWeight = () => {
+		if (!weight || weight === 0 || !Number.isInteger(weight)) {
 			alert("체중을 입력해주세요");
 		} else {
 			window.localStorage.setItem("userWeight", weight);
@@ -85,25 +86,32 @@ const Question2 = (props) => {
 			{isMobile ? (
 				<Question>
 					<QuestionContainer>
-						<QuestionNumber>Q.{count}</QuestionNumber>
-						<QuestionContent>당신의 이름은 무엇인가요?</QuestionContent>
-						<div style={{ margin: "8vh 0" }} />
-						<InputForm onChange={onChangeName} />
-					</QuestionContainer>
-					<NextButton onClick={checkName}>다음 ></NextButton>
-				</Question>
-			) : (
-				<Question>
-					<QuestionContainer>
-						<QuestionNumber>Q.{count}</QuestionNumber>
+						<QuestionNumber>Q{count}.</QuestionNumber>
 						<QuestionContent>
 							{name}님 반갑습니다! <br /> 당신의 체중을 알려주세요
 						</QuestionContent>
 						<div style={{ margin: "8vh 0" }} />
-						<InputForm onChange={onChangeWeight} type="number" max="999" min="1" value={weight}></InputForm>
+						<InputForm onChange={onChangeWeight} maxLength="3" target={weight}></InputForm>
 						<span style={{ color: "#126e82", fontSize: "2.5rem", paddingLeft: "1rem" }}>KG</span>
 					</QuestionContainer>
-					<NextButton onClick={checkName}>다음 ></NextButton>
+					<NextButton onClick={checkWeight}>
+						다음 <ArrowForwardIosIcon />
+					</NextButton>
+				</Question>
+			) : (
+				<Question>
+					<QuestionContainer>
+						<QuestionNumber>Q{count}.</QuestionNumber>
+						<QuestionContent>
+							{name}님 반갑습니다! <br /> 당신의 체중을 알려주세요
+						</QuestionContent>
+						<div style={{ margin: "8vh 0" }} />
+						<InputForm onChange={onChangeWeight} maxLength="3" target={weight}></InputForm>
+						<span style={{ color: "#126e82", fontSize: "2.5rem", paddingLeft: "1rem" }}>KG</span>
+					</QuestionContainer>
+					<NextButton onClick={checkWeight}>
+						다음 <ArrowForwardIosIcon />
+					</NextButton>
 				</Question>
 			)}
 		</div>

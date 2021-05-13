@@ -102,9 +102,9 @@ const MainPage = (props) => {
 		<Background>
 			<OtherBackground></OtherBackground>
 			<Contents>{showQuestion()}</Contents>
-			<Carddrawer>sans here</Carddrawer>
+			<CardDrawer>sans here</CardDrawer>
 			{/* <WaveEffect/> */}
-			<CardPopup />
+			{/* <CardPopup /> */}
 		</Background>
 	);
 };
