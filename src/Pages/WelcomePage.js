@@ -98,6 +98,7 @@ const WelcomePage = (props) => {
 								textAlign: "center",
 								backgroundColor: "none",
 								color: "white",
+								cursor: "pointer",
 							}}
 							className="Button-start"
 						>
