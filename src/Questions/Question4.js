@@ -4,8 +4,14 @@ import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import Swal from "sweetalert2";
 
 const Question = styled.div`
-	width: 70vw;
-	height: 50vh;
+	position: absolute;
+	display: flex;
+	background-color: #d4f2f6;
+	min-width: 75vw;
+	min-height: 60vh;
+	border-radius: 15px;
+	left: 5vw;
+	top: 15vh;
 `;
 
 const QuestionContainer = styled.div`
@@ -22,6 +28,29 @@ const QuestionContent = styled.div`
 	font-size: 2rem;
 	font-weight: bold;
 	padding-top: 4vh;
+`;
+
+const ButtonForm = styled.button`
+	background-color: #ffffff;
+	border-radius: 0.5rem;
+	border: none;
+	outline: none;
+	height: 6vh;
+	min-width: 10vw;
+	font-size: 1.2rem;
+	cursor: pointer;
+	color: #126e82;
+	margin: 0.5vh 0 0.5vh 1.5vw;
+
+	&:hover {
+		transform: scale(1.1, 1.1);
+		transition: all ease-in-out 0.2s;
+	}
+
+	&:active {
+		transform: scale(0.85, 0.85);
+		transition: all ease-in-out 0.1s;
+	}
 `;
 
 const InputForm = styled.input`
