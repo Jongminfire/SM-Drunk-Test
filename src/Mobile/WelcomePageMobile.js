@@ -7,7 +7,9 @@ import '../Pages/WelcomePage.css';
 
 import ClipboardIcon from '../image/ClipboardIcon.png';
 import FacebookIcon from '../image/FacebookIcon.png';
-import InstagramIcon from '../image/InstagramIcon.png';
+import KakaotalkIcon from '../image/KakaotalkIcon.png';
+
+const { Kakao } = window;
 
 const Background = styled.div`
   width: 100%;
@@ -57,8 +59,19 @@ const doCopy = (text) => {
   alert('클립보드에 복사되었습니다.');
 };
 
+const KakaoSendMessage = () => {
+  Kakao.Link.sendCustom({
+    templateId: 53526,
+    templateArgs: {
+      title: '제목',
+      description: '설명',
+    },
+  });
+};
+
 const WelcomePageMobile = (props) => {
   const { onClickStart } = props;
+  console.log(Kakao);
   return (
     <Background>
       <Contents>
@@ -78,15 +91,16 @@ const WelcomePageMobile = (props) => {
             <div>
               <button
                 onClick={() => {
-                  doCopy('클립보드복사내용');
+                  KakaoSendMessage();
                 }}
                 className="Button-share"
                 style={{
-                  backgroundImage: `url(${ClipboardIcon})`,
+                  backgroundImage: `url(${KakaotalkIcon})`,
                   backgroundSize: 'contain',
                 }}
               ></button>
             </div>
+
             <div>
               <button
                 onClick={onClickFacebook}
@@ -99,10 +113,12 @@ const WelcomePageMobile = (props) => {
             </div>
             <div>
               <button
-                onClick={onClickFacebook}
+                onClick={() => {
+                  doCopy('클립보드복사내용');
+                }}
                 className="Button-share"
                 style={{
-                  backgroundImage: `url(${InstagramIcon})`,
+                  backgroundImage: `url(${ClipboardIcon})`,
                   backgroundSize: 'contain',
                 }}
               ></button>
