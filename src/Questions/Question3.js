@@ -1,9 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styled, { css } from "styled-components";
+import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
+import Swal from "sweetalert2";
 
 const Question = styled.div`
-	width: 70vw;
-	height: 50vh;
+	position: absolute;
+	display: flex;
+	background-color: #d4f2f6;
+	min-width: 75vw;
+	min-height: 60vh;
+	border-radius: 15px;
+	left: 5vw;
+	top: 15vh;
 `;
 
 const QuestionContainer = styled.div`
@@ -22,27 +30,16 @@ const QuestionContent = styled.div`
 	padding-top: 4vh;
 `;
 
-const ButtonForm = styled.button`
+const InputForm = styled.input`
 	background-color: #ffffff;
-	border-radius: 0.5rem;
+	border-radius: 10px;
 	border: none;
 	outline: none;
-	height: 6vh;
-	min-width: 10vw;
-	font-size: 1.2rem;
-	cursor: pointer;
+	height: 9vh;
+	width: 40vw;
+	font-size: 2rem;
 	color: #126e82;
-	margin: 0.5vh 0 0.5vh 1.5vw;
-
-	&:hover {
-		transform: scale(1.1, 1.1);
-		transition: all ease-in-out 0.2s;
-	}
-
-	&:active {
-		transform: scale(0.85, 0.85);
-		transition: all ease-in-out 0.1s;
-	}
+	padding-left: 1rem;
 `;
 
 const NextButton = styled.button`
@@ -81,7 +78,7 @@ const QuestionContentMobile = styled.div`
 
 const QuestionNumberMobile = styled.div`
 	color: #126e82;
-	font-size: 3rem;
+	font-size: 3.5rem;
 	position: absolute;
 	top: 3vh;
 	left: 5vw;
@@ -137,7 +134,17 @@ const ButtonFormMobile = styled.button`
 
 const Question3 = (props) => {
 	const { score, setScore, setIndex, changeScore, isMobile, count, increaseIndex, setAnswers, setCards, addQnaData } = props;
-	const [type, setType] = useState("");
+	const [weight, setWeight] = useState(0);
+	const name = localStorage.getItem("userName");
+
+	const onChangeWeight = (e) => {
+		let tempWeight = e.target.value;
+
+		if (tempWeight.length >= 4) {
+			tempWeight = tempWeight.slice(0, 3);
+		}
+		setWeight(Number(tempWeight));
+	};
 
 	const onClickType = (type) => {
 		setType(type);
@@ -146,34 +153,54 @@ const Question3 = (props) => {
 		increaseIndex();
 	};
 
+	const handleKeyPress = (e) => {
+		if (e.key === "Enter") {
+			checkWeight();
+		}
+	};
+
+	const checkWeight = () => {
+		if (!weight || weight === 0 || !Number.isInteger(weight)) {
+			Swal.fire({
+				title: "체중을 입력해주세요",
+				icon: "error",
+				confirmButtonText: "닫기",
+				confirmButtonColor: "#DB6867",
+			});
+		} else {
+			window.localStorage.setItem("userWeight", weight);
+			addQnaData("당신의 체중을 알려주세요", weight);
+			increaseIndex();
+		}
+	};
+
 	return (
 		<div>
 			{isMobile ? (
 				<QuestionMobile>
 					<QuestionNumberMobile>Q{count}.</QuestionNumberMobile>
-					<QuestionContentMobile>주로 어떤 술을 마시나요?</QuestionContentMobile>
-					<div style={{ margin: "0.5vh 0 2vh" }} />
-					<ButtonFormMobile onClick={() => onClickType("소주")}>소주</ButtonFormMobile>
-					<ButtonFormMobile onClick={() => onClickType("맥주")}>맥주</ButtonFormMobile>
-					<ButtonFormMobile onClick={() => onClickType("양주")}>양주</ButtonFormMobile>
-					<ButtonFormMobile onClick={() => onClickType("막걸리")}>막걸리</ButtonFormMobile>
-					<ButtonFormMobile onClick={() => onClickType("와인")}>와인</ButtonFormMobile>
-					<ButtonFormMobile onClick={() => onClickType("칵테일")}>칵테일</ButtonFormMobile>
+					<QuestionContentMobile>당신의 체중을 알려주세요</QuestionContentMobile>
+					<div style={{ margin: "7vh 0" }} />
+					<div>
+						<InputFormMobile onChange={onChangeWeight} maxLength="3" />
+						<span style={{ color: "#126e82", fontSize: "2rem", paddingLeft: "1rem" }}>KG</span>
+					</div>
+					<NextButtonMobile onClick={checkWeight}>
+						다음 <ArrowForwardIosIcon />
+					</NextButtonMobile>
 				</QuestionMobile>
 			) : (
 				<Question>
 					<QuestionContainer>
 						<QuestionNumber>Q{count}.</QuestionNumber>
-						<QuestionContent>주로 어떤 술을 마시나요?</QuestionContent>
-						<div style={{ margin: "12vh 0" }}>
-							<ButtonForm onClick={() => onClickType("소주")}>소주</ButtonForm>
-							<ButtonForm onClick={() => onClickType("맥주")}>맥주</ButtonForm>
-							<ButtonForm onClick={() => onClickType("양주")}>양주</ButtonForm>
-							<ButtonForm onClick={() => onClickType("막걸리")}>막걸리</ButtonForm>
-							<ButtonForm onClick={() => onClickType("와인")}>와인</ButtonForm>
-							<ButtonForm onClick={() => onClickType("칵테일")}>칵테일</ButtonForm>
-						</div>
+						<QuestionContent>당신의 체중을 알려주세요</QuestionContent>
+						<div style={{ margin: "10vh 0" }} />
+						<InputForm onChange={onChangeWeight} maxLength="3" target={weight} onKeyPress={handleKeyPress}></InputForm>
+						<span style={{ color: "#126e82", fontSize: "2.5rem", paddingLeft: "1rem" }}>KG</span>
 					</QuestionContainer>
+					<NextButton onClick={checkWeight}>
+						다음 <ArrowForwardIosIcon />
+					</NextButton>
 				</Question>
 			)}
 		</div>

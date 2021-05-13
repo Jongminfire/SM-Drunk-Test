@@ -1,11 +1,16 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 import styled, { css } from "styled-components";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
-import Swal from "sweetalert2";
 
 const Question = styled.div`
-	width: 70vw;
-	height: 55vh;
+	position: absolute;
+	display: flex;
+	background-color: #d4f2f6;
+	min-width: 75vw;
+	min-height: 60vh;
+	border-radius: 15px;
+	left: 5vw;
+	top: 15vh;
 `;
 
 const QuestionContainer = styled.div`
@@ -29,11 +34,33 @@ const InputForm = styled.input`
 	border-radius: 10px;
 	border: none;
 	outline: none;
-	height: 9vh;
+	height: 8vh;
 	width: 40vw;
 	font-size: 2rem;
 	color: #126e82;
 	padding-left: 1rem;
+`;
+
+const ButtonForm = styled.button`
+	background-color: #ffffff;
+	border-radius: 0.5rem;
+	border: none;
+	outline: none;
+	height: 6vh;
+	min-width: 10vw;
+	font-size: 1.2rem;
+	cursor: pointer;
+	color: #126e82;
+	margin: 0.5vh 0 0.5vh 1.5vw;
+
+	&:hover {
+		transform: scale(1.1, 1.1);
+		transition: all ease-in-out 0.2s;
+	}
+
+	&:active {
+		transform: scale(0.85, 0.85);
+	}
 `;
 
 const NextButton = styled.button`
@@ -72,7 +99,7 @@ const QuestionContentMobile = styled.div`
 
 const QuestionNumberMobile = styled.div`
 	color: #126e82;
-	font-size: 3.5rem;
+	font-size: 3rem;
 	position: absolute;
 	top: 3vh;
 	left: 5vw;
@@ -128,42 +155,14 @@ const ButtonFormMobile = styled.button`
 
 const Question2 = (props) => {
 	const { score, setScore, setIndex, changeScore, isMobile, count, increaseIndex, setAnswers, setCards, addQnaData } = props;
-	const [weight, setWeight] = useState(0);
+	const [gender, setGender] = useState("");
 	const name = localStorage.getItem("userName");
-	const inputRef = useRef(null);
 
-	useEffect(() => {
-		inputRef.current.focus();
-	}, []);
-
-	const onChangeWeight = (e) => {
-		let tempWeight = e.target.value;
-
-		if (tempWeight.length >= 4) {
-			tempWeight = tempWeight.slice(0, 3);
-		}
-		setWeight(Number(tempWeight));
-	};
-
-	const handleKeyPress = (e) => {
-		if (e.key === "Enter") {
-			checkWeight();
-		}
-	};
-
-	const checkWeight = () => {
-		if (!weight || weight === 0 || !Number.isInteger(weight)) {
-			Swal.fire({
-				title: "체중을 입력해주세요",
-				icon: "error",
-				confirmButtonText: "닫기",
-				confirmButtonColor: "#DB6867",
-			});
-		} else {
-			window.localStorage.setItem("userWeight", weight);
-			addQnaData("당신의 체중을 알려주세요", weight);
-			increaseIndex();
-		}
+	const onClickType = (g) => {
+		setGender(g);
+		localStorage.setItem("gender", g);
+		addQnaData("당신의 성별은 무엇인가요?", g);
+		increaseIndex();
 	};
 
 	return (
@@ -172,31 +171,24 @@ const Question2 = (props) => {
 				<QuestionMobile>
 					<QuestionNumberMobile>Q{count}.</QuestionNumberMobile>
 					<QuestionContentMobile>
-						{name}님 반갑습니다! <br /> 당신의 체중을 알려주세요
+						{name}님 반갑습니다 👋 <br /> 당신의 성별을 알려주세요!
 					</QuestionContentMobile>
 					<div style={{ margin: "6vh 0" }} />
-					<div>
-						<InputFormMobile onChange={onChangeWeight} maxLength="3" target={weight} ref={inputRef}></InputFormMobile>
-						<span style={{ color: "#126e82", fontSize: "2rem", paddingLeft: "1rem" }}>KG</span>
-					</div>
-					<NextButtonMobile onClick={checkWeight}>
-						다음 <ArrowForwardIosIcon />
-					</NextButtonMobile>
+					<ButtonFormMobile onClick={() => onClickType("남성")}>남성 🙋‍♂️</ButtonFormMobile>
+					<ButtonFormMobile onClick={() => onClickType("여성")}>여성 🙋‍♀️</ButtonFormMobile>
 				</QuestionMobile>
 			) : (
 				<Question>
 					<QuestionContainer>
 						<QuestionNumber>Q{count}.</QuestionNumber>
 						<QuestionContent>
-							{name}님 반갑습니다! <br /> 당신의 체중을 알려주세요
+							{name}님 반갑습니다 👋 <br /> 당신의 성별을 알려주세요!
 						</QuestionContent>
-						<div style={{ margin: "8vh 0" }} />
-						<InputForm onChange={onChangeWeight} maxLength="3" target={weight} onKeyPress={handleKeyPress} ref={inputRef}></InputForm>
-						<span style={{ color: "#126e82", fontSize: "2.5rem", paddingLeft: "1rem" }}>KG</span>
+						<div style={{ margin: "12vh 0" }}>
+							<ButtonForm onClick={() => onClickType("남성")}>남성 🙋‍♂️</ButtonForm>
+							<ButtonForm onClick={() => onClickType("여성")}>여성 🙋‍♀️</ButtonForm>
+						</div>
 					</QuestionContainer>
-					<NextButton onClick={checkWeight}>
-						다음 <ArrowForwardIosIcon />
-					</NextButton>
 				</Question>
 			)}
 		</div>
