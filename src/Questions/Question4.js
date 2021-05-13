@@ -69,15 +69,16 @@ const Question4 = (props) => {
 		if (tempBottles.length >= 3) {
 			tempBottles = tempBottles.slice(0, 2);
 		}
+
 		setBottles(Number(tempBottles));
 	};
 
 	const checkCount = () => {
-		if (!bottles || !Number.isInteger(bottles)) {
-			alert("개수를 입력해주세요");
-		} else {
+		if (Number.isInteger(bottles) || bottles !== undefined) {
 			window.localStorage.setItem("bottleCount", bottles);
 			increaseIndex();
+		} else {
+			alert("개수를 입력해주세요");
 		}
 	};
 
