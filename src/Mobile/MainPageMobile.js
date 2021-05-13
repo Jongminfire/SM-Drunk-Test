@@ -54,29 +54,23 @@ const OtherBackground = () => {
 };
 
 const MainPageMobile = (props) => {
-	const { showQuestion, score, setCards, setAnswers, count, stag } = props;
+	const { showQuestion, score, setCards, setAnswers, count, stag, cards } = props;
 	const [popped, setPopped] = useState(false);
 	const [selectedCard, setSelectedCard] = useState(null);
-	const [testcards, setTestcards] = useState([
-		{ id: uuidv4(), bg: "linear-gradient(153.55deg, #879AF2 9.48%, #D3208B 48.25%, #FDA000 85.78%)" },
-		{ id: uuidv4(), bg: "#D3208B" },
-		{ id: uuidv4(), bg: "linear-gradient(to right, #00c6ff, #0072ff)" },
-		{ id: uuidv4(), bg: "linear-gradient(to right, #780206, #061161)" },
-		{ id: uuidv4(), bg: "linear-gradient(to right, #f0c27b, #4b1248)" },
-	]);
+
 	const [testcards2, setTestcards2] = useState([]);
 
 	function cadni() {
-		if (testcards.length > 0) {
-			const joined = testcards2.concat(testcards[testcards.length - 1]);
+		if (cards.length > 0) {
+			const joined = testcards2.concat(cards[cards.length - 1]);
 			setTestcards2(joined);
-			setTestcards(testcards.slice(0, -1));
+			setCards(cards.slice(0, -1));
 		}
 	}
 	function cadji() {
 		if (testcards2.length > 0) {
-			const joined = testcards.concat(testcards2[testcards2.length - 1]);
-			setTestcards(joined);
+			const joined = cards.concat(testcards2[testcards2.length - 1]);
+			setCards(joined);
 			setTestcards2(testcards2.slice(0, -1));
 		}
 	}
@@ -93,7 +87,7 @@ const MainPageMobile = (props) => {
 						setPopped(true);
 						setSelectedCard(card);
 					}}
-					cards={testcards}
+					cards={cards}
 				>
 					<MobileCardPopup popped={popped} setPopped={setPopped} card={selectedCard} />
 				</MobileCardDrawer>

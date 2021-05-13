@@ -124,7 +124,7 @@ const ResultPage = (props) => {
 			return (
 				<div>
 					<span style={{ color: "#E02828" }}>당신은 위험음주자 입니다.</span>
-					<div style={{ marginTop: "2rem" }}>
+					<div style={{ marginTop: "2vh" }}>
 						<p>아직까지 특별히 심각한 음주로 인한 문제가 발생하지는 않았지만 향후 음주로 인한 문제가 발생할 가능성이 있습니다.</p>
 						<p>음주량을 줄일거나 음주횟수를 줄여 적정음주 실행하는 것이 좋겠어요</p>
 					</div>
@@ -134,7 +134,7 @@ const ResultPage = (props) => {
 			return (
 				<div>
 					<span style={{ color: "#E02828" }}>당신은 고위험음주자 입니다.</span>
-					<div style={{ marginTop: "2rem" }}>
+					<div style={{ marginTop: "2vh" }}>
 						<p>이미 신체적인 정신건강 이상이나 행동상의 문제가 나타는 수준입니다.</p>
 						<p>속히 전문의 진찰을 받는 것이 좋겠어요</p>
 					</div>
@@ -144,7 +144,7 @@ const ResultPage = (props) => {
 			return (
 				<div style={{ marginTop: "3rem" }}>
 					<span style={{ color: "#E02828", fontSize: "1.5rem", fontWeight: "bold" }}>당신은 알코올사용장애환자 입니다.</span>
-					<div style={{ marginTop: "2rem" }}>
+					<div style={{ marginTop: "2vh" }}>
 						<p>이미 알코올 사용장애, 특히 알코올 의존 상태임이 강력히 시사됩니다.</p>
 						<p>속히 전문의의 진찰을 받고 전문화된 치료를 시작하는 것이 좋겠어요</p>
 					</div>
@@ -156,39 +156,41 @@ const ResultPage = (props) => {
 	return (
 		<Background>
 			<Contents>
-				<Title>{name}님의 결과입니다.</Title>
-				<div>
-					<h3>
-						{name}님의 권장 음주량은 소주 {sojuBottle}병 {sojuGlass}잔 입니다!
-					</h3>
-				</div>
-				<div>※개인 체질을 배제하고 체중만을 고려한 값 입니다.</div>
-				<div>
-					<h3>{overdoseStatement}</h3>
-				</div>
-				<div>※2019년을 기준으로 한 값 입니다.</div>
-				<div>
-					<h3>
-						{name}님은 성인{gen} WHO 알코올 섭취 기준 대비 {whoStatement}에 속합니다!
-					</h3>
-				</div>
-				<div>
-					<h3>
-						지난 7년간의 데이터를 분석하면, 전체 교통사고 건수 대비 음주로 인한 교통사고 건수는 {d1}%이며, 전체 사망자 수 대비 음주교통사고로 인한 사망자 비율은 {d2}%
-						입니다.
-					</h3>
-				</div>
-				<div>
-					<h3>
-						그때 마신 술의 양이라면 소주병 기준 <span style={{ color: 'red' }}>{sojuBottleDeposit}</span>원을 보증금으로 돌려받을 수
-						있습니다!
-					</h3>
-				</div>
-				<div>
-					<h3>
-						만약 당신이 술마실돈으로 도지코인에 투자했다면 지금쯤 당신은{' '}
-						<span style={{ color: 'red', fontSize: '30px' }}>{sojuBottleDeposit * 5000}</span>원 을 벌었을 겁니다.
-					</h3>
+				<Title>{name}님의 검사결과입니다.</Title>
+				<div style={{ display: "flex", justifyContent: "space-between" }}>
+					<div style={{ paddingLeft: "5rem", paddingRight: "4rem", marginTop: "2vh" }}>
+						<div style={{ borderTop: "1.3rem solid rgba(69, 146, 179,0.3)", padding: "0 1vw 1vh 1vw", backgroundColor: "#f4f4f4", marginBottom: "3rem" }}>
+							<div style={{ fontSize: "1.5rem", fontWeight: "bold", paddingTop: "1vh" }}>
+								{name}님의 권장 음주량은 소주 {sojuBottle}병 {sojuGlass}잔 입니다!
+							</div>
+							<div style={{ marginTop: "1vh" }}>※ 개인 체질을 배제하고 체중만을 고려한 값 입니다.</div>
+						</div>
+						<div style={{ borderTop: "1.3rem solid rgba(69, 146, 179,0.3)", padding: "0 1vw 1vh 1vw", backgroundColor: "#f4f4f4", marginBottom: "3rem" }}>
+							<div style={{ fontSize: "1.5rem", fontWeight: "bold", paddingTop: "1vh" }}>{overdoseStatement}</div>
+							<div style={{ marginTop: "1vh" }}>※2019년을 기준으로 한 값 입니다.</div>
+						</div>
+						<div style={{ borderTop: "1.3rem solid rgba(69, 146, 179,0.3)", padding: "0 1vw 1vh 1vw", backgroundColor: "#f4f4f4", marginBottom: "3rem" }}>
+							<div style={{ fontSize: "1.5rem", fontWeight: "bold", paddingTop: "1vh" }}>
+								{name}님은 성인{gen} WHO 알코올 섭취 기준 대비 {whoStatement}에 속합니다!
+							</div>
+						</div>
+						<div style={{ borderTop: "1.3rem solid rgba(69, 146, 179,0.3)", padding: "0 1vw 1vh 1vw", backgroundColor: "#f4f4f4", marginBottom: "3rem" }}>
+							<div style={{ fontSize: "1.5rem", fontWeight: "bold", paddingTop: "1vh" }}>
+								평소에 마신 술의 양이라면 소주병 기준 <span style={{ color: "#E02828" }}>{sojuBottleDeposit}</span>원을 보증금으로 돌려받을 수 있습니다!
+							</div>
+						</div>
+					</div>
+					<div style={{ paddingRight: "5rem", marginTop: "2vh" }}>
+						<div style={{ borderTop: "1.3rem solid rgba(69, 146, 179,0.3)", padding: "0 1vw 1vh 1vw", backgroundColor: "#f4f4f4", marginBottom: "3rem" }}>
+							<div style={{ fontSize: "1.5rem", fontWeight: "bold", paddingTop: "1vh" }}>
+								{name}님의 알콜 중독 테스트 점수는 {score}점 입니다.
+							</div>
+						</div>
+						<div style={{ borderTop: "1.3rem solid rgba(69, 146, 179,0.3)", padding: "0 1vw 1vh 1vw", backgroundColor: "#f4f4f4", marginBottom: "3rem" }}>{addictedState()}</div>
+						<div style={{ position: "absolute", right: "5rem", bottom: "3rem" }}>
+							<ButtonForm onClick={() => onClickRestart()}>메인으로 돌아가기</ButtonForm>
+						</div>
+					</div>
 				</div>
 				<Title>총 점수 : {score}</Title>
 			</Contents>
