@@ -7,12 +7,9 @@ import Questions1 from "../Questions/Question1";
 import Questions2 from "../Questions/Question2";
 import Questions3 from "../Questions/Question3";
 import Questions4 from "../Questions/Question4";
-import Questions5 from "../Questions/Question5";
-import Questions6 from "../Questions/Question6";
-import Questions7 from "../Questions/Question7";
-import Questions8 from "../Questions/Question7";
-import Questions9 from "../Questions/Question9";
-import Questions10 from "../Questions/Question10";
+import AddictedComponent from "../Questions/AddictedComponent";
+import TmiComponent from "../Questions/TmiComponent";
+import questionText from "../questionText.json";
 
 const Desktop = ({ children }) => {
 	const isDesktop = useMediaQuery({ minWidth: 992 });
@@ -22,6 +19,27 @@ const Desktop = ({ children }) => {
 const Mobile = ({ children }) => {
 	const isMobile = useMediaQuery({ maxWidth: 767 });
 	return isMobile ? children : null;
+};
+
+const makeRandomQuestion = (data) => {
+	let size = data.length;
+	let numbers = [];
+	let questions = [];
+
+	for (let i = 0; i < size; i++) {
+		numbers[i] = Math.floor(Math.random() * size);
+
+		for (let j = 0; j < i; j++) {
+			if (numbers[i] === numbers[j]) {
+				i--;
+				break;
+			}
+		}
+	}
+
+	questions = numbers.map((v) => data[v]);
+
+	return questions;
 };
 
 const Main = () => {
@@ -46,38 +64,97 @@ const Main = () => {
 		setCount(count + 1);
 	};
 
+	const [tmiQuestions, setTMI] = useState(makeRandomQuestion(questionText.card));
+	const [addictedQuestions, setAddicted] = useState(makeRandomQuestion(questionText.form));
+
 	const showQuestion = () => {
-		switch (index) {
-			case 1:
+		if (index < 5) {
+			switch (index) {
+				case 1:
+					return (
+						<Questions1
+							score={score}
+							setScore={setScore}
+							setIndex={setIndex}
+							changeScore={changeScore}
+							isMobile={isMobile}
+							count={count}
+							setCount={setCount}
+							increaseIndex={increaseIndex}
+						/>
+					);
+				case 2:
+					return (
+						<Questions2
+							score={score}
+							setScore={setScore}
+							setIndex={setIndex}
+							changeScore={changeScore}
+							isMobile={isMobile}
+							count={count}
+							setCount={setCount}
+							increaseIndex={increaseIndex}
+						/>
+					);
+				case 3:
+					return (
+						<Questions3
+							score={score}
+							setScore={setScore}
+							setIndex={setIndex}
+							changeScore={changeScore}
+							isMobile={isMobile}
+							count={count}
+							setCount={setCount}
+							increaseIndex={increaseIndex}
+						/>
+					);
+				case 4:
+					return (
+						<Questions4
+							score={score}
+							setScore={setScore}
+							setIndex={setIndex}
+							changeScore={changeScore}
+							isMobile={isMobile}
+							count={count}
+							setCount={setCount}
+							increaseIndex={increaseIndex}
+						/>
+					);
+			}
+		} else if (index >= 20) {
+			return <>질문끝</>;
+		} else {
+			if (index % 2 === 0) {
 				return (
-					<Questions1 score={score} setScore={setScore} setIndex={setIndex} changeScore={changeScore} isMobile={isMobile} count={count} setCount={setCount} increaseIndex={increaseIndex} />
+					<AddictedComponent
+						data={addictedQuestions[parseInt((index - 4) / 2)]}
+						score={score}
+						setScore={setScore}
+						setIndex={setIndex}
+						changeScore={changeScore}
+						isMobile={isMobile}
+						count={count}
+						setCount={setCount}
+						increaseIndex={increaseIndex}
+					/>
 				);
-			case 2:
+			} else {
 				return (
-					<Questions2 score={score} setScore={setScore} setIndex={setIndex} changeScore={changeScore} isMobile={isMobile} count={count} setCount={setCount} increaseIndex={increaseIndex} />
+					<TmiComponent
+						data={tmiQuestions[parseInt((index - 4) / 2)]}
+						score={score}
+						setScore={setScore}
+						setIndex={setIndex}
+						changeScore={changeScore}
+						isMobile={isMobile}
+						count={count}
+						setCount={setCount}
+						increaseIndex={increaseIndex}
+					/>
 				);
-			case 3:
-				return (
-					<Questions3 score={score} setScore={setScore} setIndex={setIndex} changeScore={changeScore} isMobile={isMobile} count={count} setCount={setCount} increaseIndex={increaseIndex} />
-				);
-			case 4:
-				return (
-					<Questions4 score={score} setScore={setScore} setIndex={setIndex} changeScore={changeScore} isMobile={isMobile} count={count} setCount={setCount} increaseIndex={increaseIndex} />
-				);
-			case 5:
-				return <Questions5 score={score} setScore={setScore} setIndex={setIndex} changeScore={changeScore} isMobile={isMobile} count={count} setCount={setCount} />;
-			case 6:
-				return <Questions6 score={score} setScore={setScore} setIndex={setIndex} changeScore={changeScore} isMobile={isMobile} count={count} setCount={setCount} />;
-			case 7:
-				return <Questions7 score={score} setScore={setScore} setIndex={setIndex} changeScore={changeScore} isMobile={isMobile} count={count} setCount={setCount} />;
-			case 8:
-				return <Questions8 score={score} setScore={setScore} setIndex={setIndex} changeScore={changeScore} isMobile={isMobile} count={count} setCount={setCount} />;
-			case 9:
-				return <Questions9 score={score} setScore={setScore} setIndex={setIndex} changeScore={changeScore} isMobile={isMobile} count={count} setCount={setCount} />;
-			case 10:
-				return <Questions10 score={score} setScore={setScore} setIndex={setIndex} changeScore={changeScore} isMobile={isMobile} count={count} setCount={setCount} />;
-			default:
-				return <div>설문이 종료되었습니다.</div>;
+			}
 		}
 	};
 
