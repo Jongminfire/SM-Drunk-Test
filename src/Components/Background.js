@@ -1,10 +1,5 @@
 import styled, { css } from 'styled-components';
-
-const ball = {
-	position: 'absolute',
-	borderRadius: '100%',
-	opacity: 0.7
-};
+import React from 'react';
 
 const Background = styled.div`
 	position: relative;
@@ -13,12 +8,13 @@ const Background = styled.div`
 	height: 100vh;
 	overflow: hidden;
 `;
-// Some random colors
-const colors = [ '#3CC157', '#2AA7FF', '#1B1B1B', '#FCBC0F', '#F85F36' ];
 
+// Some random colors
+
+/*
 const numBalls = 50;
 const balls = [];
-
+const list_ = [];
 for (let i = 0; i < numBalls; i++) {
 	let ball = document.createElement('div');
 	ball.classList.add('ball');
@@ -30,10 +26,17 @@ for (let i = 0; i < numBalls; i++) {
 	ball.style.height = ball.style.width;
 
 	balls.push(ball);
-	Background.append(ball);
+	list_.push(React.createElement('div', { style: ball }));
+	document.body.append(ball);
 }
 
+function a() {
+	return React.createElement('div', { style: Bg }, list_);
+}
+const Background = a();
+
 // Keyframes
+/*
 balls.forEach((el, i, ra) => {
 	let to = {
 		x: Math.random() * (i % 2 === 0 ? -11 : 11),
@@ -48,5 +51,6 @@ balls.forEach((el, i, ra) => {
 		easing: 'ease-in-out'
 	});
 });
+*/
 
 export default Background;
