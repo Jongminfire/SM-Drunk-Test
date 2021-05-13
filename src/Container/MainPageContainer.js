@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { Router, useHistory } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 import MainPage from "../Pages/MainPage";
 import MainPageMobile from "../Mobile/MainPageMobile";
@@ -31,7 +31,11 @@ const Main = () => {
 	const [index, setIndex] = useState(1);
 	const [count, setCount] = useState(1);
 
+	const [cards,setCards] = useState([]);
+	const [answers,setAnswers] = useState([]);
+
 	const onClickFinish = useCallback(() => {
+		
 		history.push("/result");
 	}, []);
 
@@ -50,11 +54,11 @@ const Main = () => {
 		switch (index) {
 			case 1:
 				return (
-					<Questions1 score={score} setScore={setScore} setIndex={setIndex} changeScore={changeScore} isMobile={isMobile} count={count} setCount={setCount} increaseIndex={increaseIndex} />
+					<Questions1 score={score} setAnswers={setAnswers} setCards={setCards} setScore={setScore} setIndex={setIndex} changeScore={changeScore} isMobile={isMobile} count={count} setCount={setCount} increaseIndex={increaseIndex} />
 				);
 			case 2:
 				return (
-					<Questions2 score={score} setScore={setScore} setIndex={setIndex} changeScore={changeScore} isMobile={isMobile} count={count} setCount={setCount} increaseIndex={increaseIndex} />
+					<Questions2 score={score} setAnswers={setAnswers} setCards={setCards} setScore={setScore} setIndex={setIndex} changeScore={changeScore} isMobile={isMobile} count={count} setCount={setCount} increaseIndex={increaseIndex} />
 				);
 			case 3:
 				return (
@@ -84,7 +88,7 @@ const Main = () => {
 	return (
 		<div>
 			<Desktop>
-				<MainPage onClickFinish={onClickFinish} showQuestion={showQuestion} score={score} index={index} />
+				<MainPage setCards={setCards} setAnswers={setAnswers} onClickFinish={onClickFinish} showQuestion={showQuestion} score={score} index={index} />
 			</Desktop>
 			<Mobile>
 				<MainPageMobile onClickFinish={onClickFinish} showQuestion={showQuestion} score={score} index={index} />

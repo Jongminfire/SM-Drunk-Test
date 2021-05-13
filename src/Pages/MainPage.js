@@ -50,8 +50,16 @@ const OtherBackground = () => {
 };
 
 const MainPage = (props) => {
-	const { onClickFinish, showQuestion, score } = props;
-
+	const { onClickFinish, showQuestion, score, setCards, setAnswers } = props;
+	const [popped, setPopped] = useState(false);
+	const [selectedCard, setSelectedCard] = useState(null);
+	const testcards=[
+		{ id:0, bg: "linear-gradient(153.55deg, #879AF2 9.48%, #D3208B 48.25%, #FDA000 85.78%)" },
+		{ id:1, bg: "#D3208B" },
+		{ id:2, bg: "linear-gradient(to right, #00c6ff, #0072ff)" },
+		{ id:3, bg: "linear-gradient(to right, #780206, #061161)" },
+		{ id:4, bg: "linear-gradient(to right, #f0c27b, #4b1248)" }
+	]
 	return (
 		<Background>
 			<OtherBackground></OtherBackground>
@@ -62,9 +70,9 @@ const MainPage = (props) => {
 				<br />
 				<button onClick={onClickFinish}>테스트 끝내기</button>
 			</Contents>
-			<CardDrawer cards={[{ bg: "linear-gradient(153.55deg, #879AF2 9.48%, #D3208B 48.25%, #FDA000 85.78%)" }]}>sans here</CardDrawer>
+			<CardDrawer clckevent={(card)=>{setPopped(true);setSelectedCard(card)}} cards={testcards}>sans here</CardDrawer>
 			{/* <WaveEffect/> */}
-			<CardPopup visible={false} />
+			<CardPopup popped={popped} setPopped={setPopped} card={selectedCard}/>
 		</Background>
 	);
 };
