@@ -15,7 +15,7 @@
 	justify-content: center;
 	align-items: center;
 	background-color: #171f38;
-	width: 16vw;
+	width: 15vw;
 	height: 100vh;
 	border-radius: 40px;
 	right: -40px;
@@ -26,10 +26,10 @@
 .close{
     position: absolute;
     top:4vmin;
-    left: calc(50vw + 27vmin);
-    height: calc(24px + 5vmin);
-    width: calc(24px + 5vmin);
-    fill: #fff;
+    left: calc(50vw + 27vmin) !important;
+    height: calc(24px + 5vmin) !important; 
+    width: calc(24px + 5vmin) !important;
+    fill: #fff !important;
 }
 
 .nextbtn{

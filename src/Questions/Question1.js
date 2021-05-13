@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styled, { css } from "styled-components";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 
@@ -59,12 +59,28 @@ const NextButton = styled.button`
 `;
 
 const Question1 = (props) => {
+<<<<<<< HEAD
 	const { score, setScore, setIndex, changeScore, isMobile, count, increaseIndex, setAnswers, setCards } = props;
+=======
+	const { score, setScore, setIndex, changeScore, isMobile, count, increaseIndex, setAnswers, setCards, addQnaData } = props;
+>>>>>>> 2edc2f2a27b42dd57c30555ac9711372e602153b
 	const [name, setName] = useState("");
+	const inputRef = useRef(null);
+
+	useEffect(() => {
+		inputRef.current.focus();
+	}, []);
 
 	const onChangeName = (e) => {
 		setName(e.target.value);
 		console.log(name);
+	};
+
+	const handleKeyPress = (e) => {
+		console.log(e.key);
+		if (e.key === "Enter") {
+			checkName();
+		}
 	};
 
 	const checkName = () => {
@@ -74,6 +90,7 @@ const Question1 = (props) => {
 			alert("이름을 입력해주세요");
 		} else {
 			window.localStorage.setItem("userName", name);
+			addQnaData("당신의 이름은 무엇인가요?", name);
 			increaseIndex();
 		}
 	};
@@ -86,7 +103,7 @@ const Question1 = (props) => {
 						<QuestionNumber>Q{count}.</QuestionNumber>
 						<QuestionContent>당신의 이름은 무엇인가요?</QuestionContent>
 						<div style={{ margin: "8vh 0" }} />
-						<InputForm onChange={onChangeName} maxLength="15" />
+						<InputForm onChange={onChangeName} maxLength="15" ref={inputRef} />
 					</QuestionContainer>
 					<NextButton onClick={checkName}>
 						다음 <ArrowForwardIosIcon />
@@ -98,7 +115,7 @@ const Question1 = (props) => {
 						<QuestionNumber>Q{count}.</QuestionNumber>
 						<QuestionContent>당신의 이름은 무엇인가요?</QuestionContent>
 						<div style={{ margin: "8vh 0" }} />
-						<InputForm onChange={onChangeName} maxLength="15" />
+						<InputForm onChange={onChangeName} maxLength="15" onKeyPress={handleKeyPress} ref={inputRef} />
 					</QuestionContainer>
 					<NextButton onClick={checkName}>
 						다음 <ArrowForwardIosIcon />

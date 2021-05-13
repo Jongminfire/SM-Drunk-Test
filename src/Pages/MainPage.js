@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 import WaveEffect from "../Functions/WaveEffect";
 import { useSpring, animated, to } from "@react-spring/web";
-
+import { v4 as uuidv4 } from 'uuid';
 import styled, { css } from "styled-components";
 import Button from "@material-ui/core/Button";
 import CloseIcon from "@material-ui/icons/Close";
@@ -55,35 +55,46 @@ const MainPage = (props) => {
 	const { onClickFinish, showQuestion, score, setCards, setAnswers } = props;
 	const [popped, setPopped] = useState(false);
 	const [selectedCard, setSelectedCard] = useState(null);
-	const testcards=[
-		{ id:0, bg: "linear-gradient(153.55deg, #879AF2 9.48%, #D3208B 48.25%, #FDA000 85.78%)" },
-		{ id:1, bg: "#D3208B" },
-		{ id:2, bg: "linear-gradient(to right, #00c6ff, #0072ff)" },
-		{ id:3, bg: "linear-gradient(to right, #780206, #061161)" },
-		{ id:4, bg: "linear-gradient(to right, #f0c27b, #4b1248)" }
-	]
-	//console.log( testcards.length-1,Math.ceil(testcards.length/4)*4)
-	let temp = testcards.length
-	for(let start = temp-1; start<=Math.ceil(temp/4)*4; start++) testcards.push({})
+	const [testcards,setTestcards]=useState([
+		{ id:uuidv4(), bg: "linear-gradient(153.55deg, #879AF2 9.48%, #D3208B 48.25%, #FDA000 85.78%)" },
+		{ id:uuidv4(), bg: "#D3208B" },
+		{ id:uuidv4(), bg: "linear-gradient(to right, #00c6ff, #0072ff)" },
+		{ id:uuidv4(), bg: "linear-gradient(to right, #780206, #061161)" },
+		{ id:uuidv4(), bg: "linear-gradient(to right, #f0c27b, #4b1248)" }
+	])
+	const [testcards2,setTestcards2]=useState([])
+
+	function cadni(){
+		if(testcards.length>0){
+			const joined = testcards2.concat(testcards[testcards.length-1]);
+			setTestcards2(joined)
+			setTestcards(testcards.slice(0,-1))
+		}
+	}
+	function cadji(){
+		if(testcards2.length>0){
+			const joined = testcards.concat(testcards2[testcards2.length-1]);
+			setTestcards(joined)
+			setTestcards2(testcards2.slice(0,-1))
+		}
+	}
+
 	return (
 		<Background>
 			<OtherBackground></OtherBackground>
-			<Contents>
-				{showQuestion()}
-				<br />
-				score: {score}
-				<br />
-				<button onClick={onClickFinish}>테스트 끝내기</button>
-			</Contents>
-{/* 			
-			<CardDrawer cards={[{bg:"linear-gradient(153.55deg, #879AF2 9.48%, #D3208B 48.25%, #FDA000 85.78%)"}]}>sans here</CardDrawer>
-		
-			<CardPopup visible={false}/>
-			 */}
-			<MobileCardDrawer cards={testcards}>sans here</MobileCardDrawer>
+			<Contents>{showQuestion()}</Contents>
+			<button onClick={cadji}>카드넣기</button>
+			<button onClick={cadni}>카드빼기</button>
+			<CardDrawer
+				clckevent={(card) => {
+					setPopped(true);
+					setSelectedCard(card);
+				}}
+				cards={testcards}
+			>
+			</CardDrawer>
 			{/* <WaveEffect/> */}
-			<MobileCardPopup visible={false}/>
-
+			<CardPopup popped={popped} setPopped={setPopped} card={selectedCard} />
 		</Background>
 	);
 };

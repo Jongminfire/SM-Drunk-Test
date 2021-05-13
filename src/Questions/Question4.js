@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styled, { css } from "styled-components";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 
@@ -59,9 +59,14 @@ const NextButton = styled.button`
 `;
 
 const Question4 = (props) => {
-	const { score, setScore, setIndex, changeScore, isMobile, count, increaseIndex, setAnswers, setCards } = props;
+	const { score, setScore, setIndex, changeScore, isMobile, count, increaseIndex, setAnswers, setCards, addQnaData } = props;
 	const [bottles, setBottles] = useState();
 	const drinkType = localStorage.getItem("drinkType");
+	const inputRef = useRef(null);
+
+	useEffect(() => {
+		inputRef.current.focus();
+	}, []);
 
 	const onChangeCount = (e) => {
 		let tempBottles = e.target.value;
@@ -73,9 +78,16 @@ const Question4 = (props) => {
 		setBottles(Number(tempBottles));
 	};
 
+	const handleKeyPress = (e) => {
+		if (e.key === "Enter") {
+			checkCount();
+		}
+	};
+
 	const checkCount = () => {
-		if (Number.isInteger(bottles) || bottles !== undefined) {
+		if (Number.isInteger(bottles) && bottles !== undefined) {
 			window.localStorage.setItem("bottleCount", bottles);
+			addQnaData("일주일동안 몇 병을 드셨나요?", bottles);
 			increaseIndex();
 		} else {
 			alert("개수를 입력해주세요");
@@ -93,7 +105,7 @@ const Question4 = (props) => {
 							{drinkType === "와인" || "칵테일" ? "을" : "를"} 드시나요?
 						</QuestionContent>
 						<div style={{ margin: "8vh 0" }} />
-						<InputForm onChange={onChangeCount} maxLength="2" target={bottles}></InputForm>
+						<InputForm onChange={onChangeCount} maxLength="2" target={bottles} ref={inputRef}></InputForm>
 						<span style={{ color: "#126e82", fontSize: "2.5rem", paddingLeft: "1rem" }}>병</span>
 					</QuestionContainer>
 					<NextButton onClick={checkCount}>
@@ -109,7 +121,7 @@ const Question4 = (props) => {
 							{drinkType === "와인" || drinkType === "칵테일" ? "을" : "를"} 드시나요?
 						</QuestionContent>
 						<div style={{ margin: "8vh 0" }} />
-						<InputForm onChange={onChangeCount} maxLength="2" target={bottles}></InputForm>
+						<InputForm onChange={onChangeCount} maxLength="2" target={bottles} onKeyPress={handleKeyPress} ref={inputRef}></InputForm>
 						<span style={{ color: "#126e82", fontSize: "2rem", paddingLeft: "1rem" }}>병</span>
 					</QuestionContainer>
 					<NextButton onClick={checkCount}>
