@@ -16,11 +16,32 @@ const Background = styled.div`
 	flex-direction: column;
 `;
 
+const ButtonForm = styled.button`
+	background-color: #ffffff;
+	border-radius: 0.5rem;
+	border: none;
+	outline: none;
+	height: 6vh;
+	min-width: 10vw;
+	font-size: 1.2rem;
+	cursor: pointer;
+	color: #126e82;
+	margin: 0.5vh 0 0.5vh 1.5vw;
+
+	&:hover {
+		transform: scale(1.1, 1.1);
+		transition: all ease-in-out 0.2s;
+	}
+
+	&:active {
+		transform: scale(0.85, 0.85);
+		transition: all ease-in-out 0.1s;
+	}
+`;
+
 const Contents = styled.div`
 	position: absolute;
 	display: flex;
-	justify-content: center;
-	align-items: center;
 	flex-direction: column;
 	background-color: #d4f2f6;
 	opacity: 0.75;
@@ -32,9 +53,9 @@ const Contents = styled.div`
 `;
 
 const Title = styled.div`
-	font-size: 4em;
+	font-size: 3em;
 	text-align: center;
-	margin-top: 5vh;
+	margin-top: 2vh;
 	font-weight: bold;
 	color: #126e82;
 	font-family: "IBMPlexSansKR";
@@ -65,39 +86,72 @@ const ResultPage = (props) => {
 	const [ d1, d2 ] = [ Math.round(Medi[0] / Medi[2], 2), Math.round(Medi[1] / Medi[3], 2) ];
 
 	let calType;
-	if (type === '소주') calType = lroabats[7]['알코올 함량(g)'];
-	else if (type === '맥주') calType = lroabats[0]['알코올 함량(g)'];
-	else if (type === '양주') calType = lroabats[9]['알코올 함량(g)'];
-	else if (type === '막걸리') calType = lroabats[3]['알코올 함량(g)'];
-	else if (type === '와인') calType = lroabats[4]['알코올 함량(g)'];
+	if (type === "소주") calType = lroabats[7]["알코올 함량(g)"];
+	else if (type === "맥주") calType = lroabats[0]["알코올 함량(g)"];
+	else if (type === "양주") calType = lroabats[9]["알코올 함량(g)"];
+	else if (type === "막걸리") calType = lroabats[3]["알코올 함량(g)"];
+	else if (type === "와인") calType = lroabats[4]["알코올 함량(g)"];
 	const alcoholConsumption = calType * bCount;
-	const sojuprice = Math.floor(alcoholConsumption * 52 / (6.7 * 7)) * 1800;
 
 	let overdoseStatement;
 	if (alcoholConsumption >= 56) {
-		if (gen === '남성') overdoseStatement = `${name}님은 월 1회 이상 한 번의 술자리에서 폭음을 한 남성 ${bdrk[1]['2019']}%에 포함됩니다!`;
-		else if (gen === '여성') overdoseStatement = `${name}님은 월 1회 이상 한 번의 술자리에서 폭음을 한 여성 ${bdrk[8]['2019']}%에 포함됩니다!`;
+		if (gen === "남성") overdoseStatement = `${name}님은 월 1회 이상 한 번의 술자리에서 폭음을 한 남성 ${bdrk[1]["2019"]}%에 포함됩니다!`;
+		else if (gen === "여성") overdoseStatement = `${name}님은 월 1회 이상 한 번의 술자리에서 폭음을 한 여성 ${bdrk[8]["2019"]}%에 포함됩니다!`;
 	} else {
-		if (gen === '남성')
-			overdoseStatement = `${name}님은 월 1회 이상 한 번의 술자리에서 폭음을 하지 않은 남성 ${100 - bdrk[1]['2019']}%에 포함됩니다!`;
-		else if (gen === '여성')
-			overdoseStatement = `${name}님은 월 1회 이상 한 번의 술자리에서 폭음을 하지 않은 여성 ${100 - bdrk[8]['2019']}%에 포함됩니다!`;
+		if (gen === "남성") overdoseStatement = `${name}님은 월 1회 이상 한 번의 술자리에서 폭음을 하지 않은 남성 ${100 - bdrk[1]["2019"]}%에 포함됩니다!`;
+		else if (gen === "여성") overdoseStatement = `${name}님은 월 1회 이상 한 번의 술자리에서 폭음을 하지 않은 여성 ${100 - bdrk[8]["2019"]}%에 포함됩니다!`;
 	}
 
 	let whoStatement;
-	if (gen === '남성') {
-		if (alcoholConsumption >= 101) whoStatement = wdacss[3]['구분'];
-		else if (alcoholConsumption >= 61) whoStatement = wdacss[2]['구분'];
-		else if (alcoholConsumption >= 41) whoStatement = wdacss[1]['구분'];
-		else whoStatement = wdacss[0]['구분'];
+	if (gen === "남성") {
+		if (alcoholConsumption >= 101) whoStatement = wdacss[3]["구분"];
+		else if (alcoholConsumption >= 61) whoStatement = wdacss[2]["구분"];
+		else if (alcoholConsumption >= 41) whoStatement = wdacss[1]["구분"];
+		else whoStatement = wdacss[0]["구분"];
 	} else {
-		if (alcoholConsumption >= 61) whoStatement = wdacss[3]['구분'];
-		else if (alcoholConsumption >= 41) whoStatement = wdacss[2]['구분'];
-		else if (alcoholConsumption >= 21) whoStatement = wdacss[1]['구분'];
-		else whoStatement = wdacss[0]['구분'];
+		if (alcoholConsumption >= 61) whoStatement = wdacss[3]["구분"];
+		else if (alcoholConsumption >= 41) whoStatement = wdacss[2]["구분"];
+		else if (alcoholConsumption >= 21) whoStatement = wdacss[1]["구분"];
+		else whoStatement = wdacss[0]["구분"];
 	}
 
-	const sojuBottleDeposit = Math.floor(alcoholConsumption / (6.76 * 7)) * ebds[0]['개당 가격(원)'];
+	const sojuBottleDeposit = Math.floor(alcoholConsumption / (6.76 * 7)) * ebds[0]["개당 가격(원)"];
+
+	const addictedState = () => {
+		if (score < 9) {
+			return <div>당신은 정상음주자 입니다. 축하드려요 🎉</div>;
+		} else if (score < 12) {
+			return (
+				<div>
+					<span style={{ color: "#E02828" }}>당신은 위험음주자 입니다.</span>
+					<div style={{ marginTop: "2rem" }}>
+						<p>아직까지 특별히 심각한 음주로 인한 문제가 발생하지는 않았지만 향후 음주로 인한 문제가 발생할 가능성이 있습니다.</p>
+						<p>음주량을 줄일거나 음주횟수를 줄여 적정음주 실행하는 것이 좋겠어요</p>
+					</div>
+				</div>
+			);
+		} else if (score < 20) {
+			return (
+				<div>
+					<span style={{ color: "#E02828" }}>당신은 고위험음주자 입니다.</span>
+					<div style={{ marginTop: "2rem" }}>
+						<p>이미 신체적인 정신건강 이상이나 행동상의 문제가 나타는 수준입니다.</p>
+						<p>속히 전문의 진찰을 받는 것이 좋겠어요</p>
+					</div>
+				</div>
+			);
+		} else {
+			return (
+				<div style={{ marginTop: "3rem" }}>
+					<span style={{ color: "#E02828", fontSize: "1.5rem", fontWeight: "bold" }}>당신은 알코올사용장애환자 입니다.</span>
+					<div style={{ marginTop: "2rem" }}>
+						<p>이미 알코올 사용장애, 특히 알코올 의존 상태임이 강력히 시사됩니다.</p>
+						<p>속히 전문의의 진찰을 받고 전문화된 치료를 시작하는 것이 좋겠어요</p>
+					</div>
+				</div>
+			);
+		}
+	};
 
 	return (
 		<Background>
