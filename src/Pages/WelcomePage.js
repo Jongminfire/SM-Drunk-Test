@@ -5,7 +5,11 @@ import styled, { css } from 'styled-components';
 import WaveEffect from '../Functions/WaveEffect';
 import './WelcomePage.css';
 
-import Background from "../Components/Background"
+import Background from '../Components/Background';
+
+import KakaotalkIcon from '../image/KakaotalkIcon.png';
+import FacebookIcon from '../image/FacebookIcon.png';
+import InstagramIcon from '../image/InstagramIcon.png';
 
 const Contents = styled.div`
   display: flex;
@@ -15,6 +19,7 @@ const Contents = styled.div`
   width: 50vw;
   height: 100vh;
   background-color: #d4f2f6;
+  margin: auto;
   margin-top: 5vh;
   border-radius: 10px 10px 0px 0px;
   opacity: 0.75;
