@@ -5,9 +5,11 @@ import styled, { css } from 'styled-components';
 import WaveEffect from '../Functions/WaveEffect';
 import '../Pages/WelcomePage.scss';
 
-import KakaotalkIcon from '../image/KakaotalkIcon.png';
+import ClipboardIcon from '../image/ClipboardIcon.png';
 import FacebookIcon from '../image/FacebookIcon.png';
-import InstagramIcon from '../image/InstagramIcon.png';
+import KakaotalkIcon from '../image/KakaotalkIcon.png';
+
+const { Kakao } = window;
 
 const Background = styled.div`
   width: 100%;
@@ -32,8 +34,44 @@ const Contents = styled.div`
   top: 10%;
 `;
 
+const onClickFacebook = () => {
+  console.log('facebook');
+  window.open(
+    'https://www.facebook.com/sharer/sharer.php?u=https://naver.com/'
+  );
+};
+
+const doCopy = (text) => {
+  if (!document.queryCommandSupported('copy')) {
+    return alert('복사하기가 지원되지 않습니다.');
+  }
+  const textarea = document.createElement('textarea');
+  textarea.value = text;
+  textarea.style.top = 0;
+  textarea.style.left = 0;
+  textarea.style.display = 'fixed';
+
+  document.body.appendChild(textarea);
+  textarea.focus();
+  textarea.select();
+  document.execCommand('copy');
+  document.body.removeChild(textarea);
+  alert('클립보드에 복사되었습니다.');
+};
+
+const KakaoSendMessage = () => {
+  Kakao.Link.sendCustom({
+    templateId: 53526,
+    templateArgs: {
+      title: '제목',
+      description: '설명',
+    },
+  });
+};
+
 const WelcomePageMobile = (props) => {
   const { onClickStart } = props;
+  console.log(Kakao);
   return (
     <Background>
       <Contents>
@@ -52,7 +90,9 @@ const WelcomePageMobile = (props) => {
           <div class="Button-share-div">
             <div>
               <button
-                onClick={onClickStart}
+                onClick={() => {
+                  KakaoSendMessage();
+                }}
                 className="Button-share"
                 style={{
                   backgroundImage: `url(${KakaotalkIcon})`,
@@ -60,9 +100,10 @@ const WelcomePageMobile = (props) => {
                 }}
               ></button>
             </div>
+
             <div>
               <button
-                onClick={onClickStart}
+                onClick={onClickFacebook}
                 className="Button-share"
                 style={{
                   backgroundImage: `url(${FacebookIcon})`,
@@ -72,10 +113,12 @@ const WelcomePageMobile = (props) => {
             </div>
             <div>
               <button
-                onClick={onClickStart}
+                onClick={() => {
+                  doCopy('클립보드복사내용');
+                }}
                 className="Button-share"
                 style={{
-                  backgroundImage: `url(${InstagramIcon})`,
+                  backgroundImage: `url(${ClipboardIcon})`,
                   backgroundSize: 'contain',
                 }}
               ></button>
