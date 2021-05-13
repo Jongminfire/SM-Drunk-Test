@@ -20,6 +20,7 @@
   font-weight: bold;
   margin-top: 7vh;
   margin-bottom: 2vh;
+  margin-right: 60px;
   text-align: center;
 }
 
@@ -36,16 +37,19 @@
 }
 
 .Button-share-div {
+  text-align: center;
   justify-content: center;
-  height: 200px;
-  width: 100%;
-  background-color: #126e82;
-  float: left;
+  height: 100px;
+  width: 70%;
+  display: flex;
+  margin: auto;
 }
 
 .Button-share {
   width: 50px;
   height: 50px;
-  margin-right: 3vw;
-  margin-left: 3vw;
+  float: left;
+  margin-left: 10px;
+  margin-right: 10px;
+  border-radius: 100%;
 }
