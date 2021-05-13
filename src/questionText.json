@@ -21,7 +21,8 @@
                 "answer":["O", "X"],
                 "check": "X",
                 "information":"500ml 맥주병 기준 공병 가격은 130원입니다",
-                "url":"./src/image/backGroundBeer_1.jpg"
+                "url":"./src/image/backGroundBeer_1.jpg",
+                "cards":{ "bg": "linear-gradient(to right, #f0c27b, #4b1248)","title":"맥주병 공병 가격은요", "info":"맥주병 공병 가격은 130원입니다", "img":"testimg" }
             },
             {
                 "question": "공병을 반환할 수 있는 장소가 아닌 곳은 어디일까요?",
@@ -43,7 +44,8 @@
                 "answer":["43kcal", "53kcal", "63kcal"],
                 "check": "63kcal",
                 "information":"소주 한 병만 먹어도 무려 408kcal라고 합니다! \n밥 1.5 공기와 맞먹네요.",
-                "url":"./src/image/sojus.jpg"
+                "url":"./src/image/sojus.jpg",
+                "cards":{ "bg": "linear-gradient(to right, #f0c27b, #4b1248)","title":"소주 한 병만 먹어도 무려 408kcal라고 합니다", "info":"밥 1.5 공기와 맞먹네요.", "img":"testimg" }
             },
             {
                 "question": "맥주 1캔(500ml)의 칼로리는 얼마일까요?",
@@ -59,7 +61,9 @@
                 "answer":["O", "X"],
                 "check": "X",
                 "information":"주량은 유전적으로 결정됩니다. \n알코올에 몸이 적응함으로써 주량이 늘어 난다는 착각을 줄 수 있습니다. ",
-                "url":"./src/image/alcohols_2.jpg"
+                "url":"./src/image/alcohols_2.jpg",
+                "cards":{ "bg": "linear-gradient(to right, #f0c27b, #4b1248)","title":"주량은 유전적으로 결정됩니다.", "info":"알코올에 몸이 적응함으로써 주량이 늘어 난다는 착각을 줄 수 있습니다.", "img":"testimg" }
+                
             },
             {
                 "question": "적당한 음주는 건강에 좋을까요?",
@@ -67,14 +71,16 @@
                 "answer":["O", "X"],
                 "check": "X",
                 "information":"아쉽게 소량의 음주라도 발암 가능성이 크게 높아진다고 합니다. \n그러나 사회생활에선 도움이 될 수 있겠죠?",
-                "url":"./src/image/sunBeer.jpg"
+                "url":"./src/image/sunBeer.jpg",
+                "cards":{ "bg": "linear-gradient(to right, #f0c27b, #4b1248)","title":"아쉽게 소량의 음주라도 발암 가능성이 크게 높아진다고 합니다.", "info":"그러나 사회생활에선 도움이 될 수 있겠죠?", "img":"testimg" }
             },
             {
                 "question": "성인 남성 평균 주량은 어느 정도 일까요?",
                 "type":"choice",
                 "answer":["소주 반병", "소주 한병", "소주 두병"],
                 "check": "소주 한병",
-                "information":"성인 남성의 평균 주량은 소주 한병 ~ 한병 반정도 입니다. \n여성의 경우 이것의 반 정도가 평균 주량 입니다."
+                "information":"성인 남성의 평균 주량은 소주 한병 ~ 한병 반정도 입니다. \n여성의 경우 이것의 반 정도가 평균 주량 입니다.",
+                "cards":{ "bg": "linear-gradient(to right, #f0c27b, #4b1248)","title":"성인 남성의 평균 주량은 소주 한병 ~ 한병 반정도 입니다.", "info":"여성의 경우 이것의 반 정도가 평균 주량 입니다.", "img":"testimg" }
             },
             {
                 "question": "20, 30대가 지불하는 한달 평균 술값은 10만원보다 적을까요?",
@@ -89,7 +95,8 @@
                 "type":"ox",
                 "answer":["O", "X"],
                 "check": "X",
-                "information":"아직 세금은 부과가 안 되고 있지만, 현재 관련 법안을 발의 중에 있습니다."
+                "information":"아직 세금은 부과가 안 되고 있지만, 현재 관련 법안을 발의 중에 있습니다.",
+                "cards":{ "bg": "linear-gradient(to right, #f0c27b, #4b1248)","title":"아직 세금은 부과가 안 되고 있지만", "info":"현재 관련 법안을 발의 중에 있습니다.", "img":"testimg" }
             },
             {
                 "question": "소주는 유통기한이 있을까요?",
@@ -124,21 +131,24 @@
                 "type":"ox",
                 "answer":["O", "X"],
                 "check": "O",
-                "information":"1L이하의 주류 중 400달러 미만일 경우, 1인당 한병 면세가 됩니다."
+                "information":"1L이하의 주류 중 400달러 미만일 경우, 1인당 한병 면세가 됩니다.",
+                "cards":{ "bg": "linear-gradient(to right, #f0c27b, #4b1248)","title":"1L이하의 주류 중 400달러 미만일 경우", "info":"1인당 한병 면세가 됩니다.", "img":"testimg" }
             },
             {
                 "question": "음주운전 2회 적발 시 알콜 농도에 따라 면허 중지 또는 벌금 등의 처벌을 받을 수 있을까요?",
                 "type":"ox",
                 "answer":["O", "X"],
                 "check": "X",
-                "information":"음주운전 1회 적발시, 알콜 농도와 관련 없이 처벌됩니다."
+                "information":"음주운전 1회 적발시, 알콜 농도와 관련 없이 처벌됩니다.",
+                "cards":{ "bg": "linear-gradient(to right, #f0c27b, #4b1248)","title":"음주운전 1회 적발시", "info":" 알콜 농도와 관련 없이 처벌됩니다.", "img":"testimg" }
             },
             {
                 "question": "국내 주류 회사 수는 10곳 이상일까요?",
                 "type":"ox",
                 "answer":["O", "X"],
                 "check": "X",
-                "information":"총 8개의 회사가 있습니다."
+                "information":"총 8개의 회사가 있습니다.",
+                "cards":{ "bg": "linear-gradient(to right, #f0c27b, #4b1248)","title":"총 8개의 회사가 있습니다.", "info":"정말 많네요", "img":"testimg" }
             }
         ],
     

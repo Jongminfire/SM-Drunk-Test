@@ -12,6 +12,7 @@ import EndQuestion from "../Questions/EndQuestion";
 import AddictedComponent from "../Questions/AddictedComponent";
 import TmiComponent from "../Questions/TmiComponent";
 import questionText from "../questionText.json";
+import { v4 as uuidv4 } from "uuid";
 
 const Desktop = ({ children }) => {
 	const isDesktop = useMediaQuery({ minWidth: 992 });
@@ -58,6 +59,18 @@ const Main = () => {
 
 	const onFinish = () => {
 		history.push({ pathname: "/result", state: { qnaData: qnaData, score: score } });
+	};
+
+	const addCard = (data) => {
+		const temp = {
+			id: uuidv4(),
+			bg: data.bg,
+			title: data.title,
+			info: data.info,
+			img: data.img,
+		};
+
+		setCards([...cards, temp]);
 	};
 
 	const addQnaData = (q, a, s) => {
@@ -186,6 +199,7 @@ const Main = () => {
 						setCount={setCount}
 						increaseIndex={increaseIndex}
 						addQnaData={addQnaData}
+						addCard={addCard}
 					/>
 				);
 			} else {
@@ -201,6 +215,7 @@ const Main = () => {
 						setCount={setCount}
 						increaseIndex={increaseIndex}
 						addQnaData={addQnaData}
+						addCard={addCard}
 					/>
 				);
 			}
@@ -210,10 +225,10 @@ const Main = () => {
 	return (
 		<div>
 			<Desktop>
-				<MainPage setCards={setCards} setAnswers={setAnswers} showQuestion={showQuestion} score={score} index={index} count={count} stag={stag} />
+				<MainPage setCards={setCards} setAnswers={setAnswers} showQuestion={showQuestion} score={score} index={index} count={count} stag={stag} cards={cards} />
 			</Desktop>
 			<Mobile>
-				<MainPageMobile showQuestion={showQuestion} score={score} count={count} />
+				<MainPageMobile showQuestion={showQuestion} score={score} count={count} stag={stag} cards={cards} setCards={setCards} />
 			</Mobile>
 		</div>
 	);

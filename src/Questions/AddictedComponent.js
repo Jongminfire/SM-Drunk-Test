@@ -154,7 +154,7 @@ const ButtonFormMobile = styled.button`
 `;
 
 const AddictedComponent = (props) => {
-	const { score, setScore, setIndex, changeScore, isMobile, count, increaseIndex, setAnswers, setCards, data, addQnaData } = props;
+	const { score, setScore, setIndex, changeScore, isMobile, count, increaseIndex, setAnswers, setCards, data, addQnaData, addCard } = props;
 	const question = data.question;
 	const answer = data.answer;
 	const [name, setName] = useState("");
@@ -165,6 +165,7 @@ const AddictedComponent = (props) => {
 	};
 
 	const selectAnswer = (ans, score) => {
+		data.cards ? addCard(data.cards) : null;
 		addQnaData(question, ans, score);
 		changeScore(score);
 	};

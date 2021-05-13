@@ -5,7 +5,7 @@ import { SwitchTransition, CSSTransition } from "react-transition-group";
 import "./QuestionsMobile.css";
 import WaveEffect from "../Functions/WaveEffect";
 import { useSpring, animated, to } from "@react-spring/web";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 import styled, { css } from "styled-components";
 import Button from "@material-ui/core/Button";
 import CloseIcon from "@material-ui/icons/Close";
@@ -15,9 +15,9 @@ import styles from "../Pages/MainPage.scss";
 
 import Question1 from "../Questions/Question1";
 
-import Background from "../Components/Background"
-import { CardPopup, CardDrawer } from "../Components/Card"
-import { MobileCardPopup, MobileCardDrawer } from "../Components/mobileCard"
+import Background from "../Components/Background";
+import { CardPopup, CardDrawer } from "../Components/Card";
+import { MobileCardPopup, MobileCardDrawer } from "../Components/mobileCard";
 
 const Contents = styled.div`
 	position: absolute;
@@ -53,53 +53,53 @@ const OtherBackground = () => {
 	return <div className="othbg" stag={stag} onClick={clk}></div>;
 };
 
-
 const MainPageMobile = (props) => {
-	const { showQuestion, score, setCards, setAnswers,count } = props;
+	const { showQuestion, score, setCards, setAnswers, count, stag } = props;
 	const [popped, setPopped] = useState(false);
 	const [selectedCard, setSelectedCard] = useState(null);
-	const [testcards,setTestcards]=useState([
-		{ id:uuidv4(), bg: "linear-gradient(153.55deg, #879AF2 9.48%, #D3208B 48.25%, #FDA000 85.78%)" },
-		{ id:uuidv4(), bg: "#D3208B" },
-		{ id:uuidv4(), bg: "linear-gradient(to right, #00c6ff, #0072ff)" },
-		{ id:uuidv4(), bg: "linear-gradient(to right, #780206, #061161)" },
-		{ id:uuidv4(), bg: "linear-gradient(to right, #f0c27b, #4b1248)" }
-	])
-	const [testcards2,setTestcards2]=useState([])
-	
-	function cadni(){
-		if(testcards.length>0){
-			const joined = testcards2.concat(testcards[testcards.length-1]);
-			setTestcards2(joined)
-			setTestcards(testcards.slice(0,-1))
+	const [testcards, setTestcards] = useState([
+		{ id: uuidv4(), bg: "linear-gradient(153.55deg, #879AF2 9.48%, #D3208B 48.25%, #FDA000 85.78%)" },
+		{ id: uuidv4(), bg: "#D3208B" },
+		{ id: uuidv4(), bg: "linear-gradient(to right, #00c6ff, #0072ff)" },
+		{ id: uuidv4(), bg: "linear-gradient(to right, #780206, #061161)" },
+		{ id: uuidv4(), bg: "linear-gradient(to right, #f0c27b, #4b1248)" },
+	]);
+	const [testcards2, setTestcards2] = useState([]);
+
+	function cadni() {
+		if (testcards.length > 0) {
+			const joined = testcards2.concat(testcards[testcards.length - 1]);
+			setTestcards2(joined);
+			setTestcards(testcards.slice(0, -1));
 		}
 	}
-	function cadji(){
-		if(testcards2.length>0){
-			const joined = testcards.concat(testcards2[testcards2.length-1]);
-			setTestcards(joined)
-			setTestcards2(testcards2.slice(0,-1))
+	function cadji() {
+		if (testcards2.length > 0) {
+			const joined = testcards.concat(testcards2[testcards2.length - 1]);
+			setTestcards(joined);
+			setTestcards2(testcards2.slice(0, -1));
 		}
 	}
 	return (
 		<div>
 			<Background>
 				<SwitchTransition>
-			<CSSTransition key={count} addEndListener={(node, done) => node.addEventListener("transitionend", done, false)} classNames="fade">
-				{showQuestion()}
-			</CSSTransition>
-		</SwitchTransition>
-			<MobileCardDrawer
-				clckevent={(card) => {
-					setPopped(true);
-					setSelectedCard(card);
-				}}
-				cards={testcards}>
-			<MobileCardPopup popped={popped} setPopped={setPopped} card={selectedCard} />
-			</MobileCardDrawer>
+					<CSSTransition key={count} addEndListener={(node, done) => node.addEventListener("transitionend", done, false)} classNames="fade">
+						{showQuestion()}
+					</CSSTransition>
+				</SwitchTransition>
+				<MobileCardDrawer
+					clckevent={(card) => {
+						setPopped(true);
+						setSelectedCard(card);
+					}}
+					cards={testcards}
+				>
+					<MobileCardPopup popped={popped} setPopped={setPopped} card={selectedCard} />
+				</MobileCardDrawer>
 			</Background>
-			
-		</div>)}
-
+		</div>
+	);
+};
 
 export default MainPageMobile;
