@@ -32,8 +32,7 @@ export const CardSmall = (props)=>{
         transition: transform 0.2s ease-in-out;
         z-index:${10+props.idx};
         &:hover{
-            transform:scale(1.2);
-            z-index:100;
+            transform:scale(1.2) translateX(calc(-3vw * 0.5)) translateY(calc(2vw * 0.5));
         }
 	`
     return <InnerCard onClick={()=>{props.clckevent(props)}}>wasans?</InnerCard>
