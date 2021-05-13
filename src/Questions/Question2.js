@@ -38,7 +38,7 @@ const InputForm = styled.input`
 	border-radius: 10px;
 	border: none;
 	outline: none;
-	height: 8vh;
+	height: 9vh;
 	width: 40vw;
 	font-size: 2rem;
 	color: #126e82;
