@@ -10,6 +10,7 @@
   }
 }
 .waveWrapper {
+  pointer-events: none;
   overflow: hidden;
   position: absolute;
   left: 0;
