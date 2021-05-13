@@ -93,7 +93,7 @@ const AddictedComponent = (props) => {
 
 	const selectAnswer = (ans, score) => {
 		addQnaData(question, ans, score);
-		setTimeout(changeScore(score), 500);
+		changeScore(score);
 	};
 
 	return (
@@ -121,7 +121,7 @@ const AddictedComponent = (props) => {
 						<div style={{ margin: "12vh 0" }} />
 						{answer.map((v) => {
 							return (
-								<ButtonForm key={v.text} onClick={() => selectAnswer(v.text, v.score)}>
+								<ButtonForm key={v.text} onClick={() => setTimeout(selectAnswer(v.text, v.score), 250)}>
 									{v.text}
 								</ButtonForm>
 							);

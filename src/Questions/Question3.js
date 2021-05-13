@@ -76,7 +76,7 @@ const Question3 = (props) => {
 		setType(type);
 		localStorage.setItem("drinkType", type);
 		addQnaData("주로 어떤 술을 마시나요?", type);
-		setTimeout(increaseIndex, 250);
+		increaseIndex();
 	};
 
 	return (

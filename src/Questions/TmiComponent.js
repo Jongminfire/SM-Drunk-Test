@@ -92,7 +92,7 @@ const TmiComponent = (props) => {
 
 	const selectAnswer = (ans, score) => {
 		addQnaData(question, ans, score);
-		setTimeout(changeScore(score), 500);
+		changeScore(score);
 	};
 
 	return (
@@ -128,7 +128,7 @@ const TmiComponent = (props) => {
 								<ButtonForm
 									key={v}
 									onClick={() => {
-										v === correctAnswer ? selectAnswer(v, 0) : selectAnswer(v, 0);
+										v === correctAnswer ? setTimeout(selectAnswer(v, 0), 250) : setTimeout(selectAnswer(v, 0), 250);
 									}}
 								>
 									{v}
