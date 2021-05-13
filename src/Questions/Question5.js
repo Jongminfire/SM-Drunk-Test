@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styled, { css } from "styled-components";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
+import Swal from "sweetalert2";
 
 const Question = styled.div`
 	position: absolute;
@@ -29,18 +30,6 @@ const QuestionContent = styled.div`
 	padding-top: 4vh;
 `;
 
-const InputForm = styled.input`
-	background-color: #ffffff;
-	border-radius: 10px;
-	border: none;
-	outline: none;
-	height: 8vh;
-	width: 40vw;
-	font-size: 2rem;
-	color: #126e82;
-	padding-left: 1rem;
-`;
-
 const ButtonForm = styled.button`
 	background-color: #ffffff;
 	border-radius: 0.5rem;
@@ -60,7 +49,20 @@ const ButtonForm = styled.button`
 
 	&:active {
 		transform: scale(0.85, 0.85);
+		transition: all ease-in-out 0.1s;
 	}
+`;
+
+const InputForm = styled.input`
+	background-color: #ffffff;
+	border-radius: 10px;
+	border: none;
+	outline: none;
+	height: 9vh;
+	width: 40vw;
+	font-size: 2rem;
+	color: #126e82;
+	padding-left: 1rem;
 `;
 
 const NextButton = styled.button`
@@ -153,16 +155,40 @@ const ButtonFormMobile = styled.button`
 	}
 `;
 
-const Question2 = (props) => {
+const Question5 = (props) => {
 	const { score, setScore, setIndex, changeScore, isMobile, count, increaseIndex, setAnswers, setCards, addQnaData } = props;
-	const [gender, setGender] = useState("");
-	const name = localStorage.getItem("userName");
+	const [bottles, setBottles] = useState();
+	const drinkType = localStorage.getItem("drinkType");
 
-	const onClickType = (g) => {
-		setGender(g);
-		localStorage.setItem("gender", g);
-		addQnaData("당신의 성별은 무엇인가요?", g);
-		increaseIndex();
+	const onChangeCount = (e) => {
+		let tempBottles = e.target.value;
+
+		if (tempBottles.length >= 3) {
+			tempBottles = tempBottles.slice(0, 2);
+		}
+
+		setBottles(Number(tempBottles));
+	};
+
+	const handleKeyPress = (e) => {
+		if (e.key === "Enter") {
+			checkCount();
+		}
+	};
+
+	const checkCount = () => {
+		if (Number.isInteger(bottles) && bottles !== undefined) {
+			window.localStorage.setItem("bottleCount", bottles);
+			addQnaData("일주일동안 몇 병을 드셨나요?", bottles);
+			increaseIndex();
+		} else {
+			Swal.fire({
+				title: "개수를 숫자로 입력해주세요",
+				icon: "error",
+				confirmButtonText: "닫기",
+				confirmButtonColor: "#DB6867",
+			});
+		}
 	};
 
 	return (
@@ -171,28 +197,37 @@ const Question2 = (props) => {
 				<QuestionMobile>
 					<QuestionNumberMobile>Q{count}.</QuestionNumberMobile>
 					<QuestionContentMobile>
-						{name}님 반갑습니다 👋 <br /> 당신의 성별을 알려주세요!
+						평균적으로 일주일동안 몇 병의 {drinkType}
+						{drinkType === "와인" || "칵테일" ? "을" : "를"} 드시나요?
 					</QuestionContentMobile>
 					<div style={{ margin: "6vh 0" }} />
-					<ButtonFormMobile onClick={() => onClickType("남성")}>남성 🙋‍♂️</ButtonFormMobile>
-					<ButtonFormMobile onClick={() => onClickType("여성")}>여성 🙋‍♀️</ButtonFormMobile>
+					<div>
+						<InputFormMobile onChange={onChangeCount} maxLength="2" target={bottles} />
+						<span style={{ color: "#126e82", fontSize: "2rem", paddingLeft: "1rem" }}>병</span>
+					</div>
+					<NextButtonMobile onClick={checkCount}>
+						다음 <ArrowForwardIosIcon />
+					</NextButtonMobile>
 				</QuestionMobile>
 			) : (
 				<Question>
 					<QuestionContainer>
 						<QuestionNumber>Q{count}.</QuestionNumber>
 						<QuestionContent>
-							{name}님 반갑습니다 👋 <br /> 당신의 성별을 알려주세요!
+							평균적으로 일주일동안 몇 병의 {drinkType}
+							{drinkType === "와인" || drinkType === "칵테일" ? "을" : "를"} 드시나요?
 						</QuestionContent>
-						<div style={{ margin: "12vh 0" }}>
-							<ButtonForm onClick={() => onClickType("남성")}>남성 🙋‍♂️</ButtonForm>
-							<ButtonForm onClick={() => onClickType("여성")}>여성 🙋‍♀️</ButtonForm>
-						</div>
+						<div style={{ margin: "8vh 0" }} />
+						<InputForm onChange={onChangeCount} maxLength="2" target={bottles} onKeyPress={handleKeyPress}></InputForm>
+						<span style={{ color: "#126e82", fontSize: "2rem", paddingLeft: "1rem" }}>병</span>
 					</QuestionContainer>
+					<NextButton onClick={checkCount}>
+						다음 <ArrowForwardIosIcon />
+					</NextButton>
 				</Question>
 			)}
 		</div>
 	);
 };
 
-export default Question2;
+export default Question5;

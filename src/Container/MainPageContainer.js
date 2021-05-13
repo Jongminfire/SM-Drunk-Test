@@ -7,6 +7,7 @@ import Questions1 from "../Questions/Question1";
 import Questions2 from "../Questions/Question2";
 import Questions3 from "../Questions/Question3";
 import Questions4 from "../Questions/Question4";
+import Questions5 from "../Questions/Question5";
 import EndQuestion from "../Questions/EndQuestion";
 import AddictedComponent from "../Questions/AddictedComponent";
 import TmiComponent from "../Questions/TmiComponent";
@@ -49,6 +50,7 @@ const Main = () => {
 	const [score, setScore] = useState(0);
 	const [index, setIndex] = useState(1);
 	const [count, setCount] = useState(1);
+	const [stag, setStag] = useState(0);
 
 	const [cards, setCards] = useState([]);
 	const [answers, setAnswers] = useState([]);
@@ -77,13 +79,15 @@ const Main = () => {
 	const increaseIndex = () => {
 		setIndex(index + 1);
 		setCount(count + 1);
+		setStag((stag + 1) % 4);
+		console.log(stag);
 	};
 
 	const [tmiQuestions, setTMI] = useState(makeRandomQuestion(questionText.card));
 	const [addictedQuestions, setAddicted] = useState(makeRandomQuestion(questionText.form));
 
 	const showQuestion = () => {
-		if (index < 5) {
+		if (index <= 5) {
 			switch (index) {
 				case 1:
 					return (
@@ -146,6 +150,21 @@ const Main = () => {
 							addQnaData={addQnaData}
 						/>
 					);
+				case 5:
+					return (
+						<Questions5
+							score={score}
+							setScore={setScore}
+							setIndex={setIndex}
+							changeScore={changeScore}
+							isMobile={isMobile}
+							count={count}
+							setCount={setCount}
+							increaseIndex={increaseIndex}
+							setAnswers={setAnswers}
+							addQnaData={addQnaData}
+						/>
+					);
 			}
 		} else if (index >= 20) {
 			return (
@@ -191,7 +210,7 @@ const Main = () => {
 	return (
 		<div>
 			<Desktop>
-				<MainPage setCards={setCards} setAnswers={setAnswers} showQuestion={showQuestion} score={score} index={index} isMobile={isMobile}/>
+				<MainPage setCards={setCards} setAnswers={setAnswers} showQuestion={showQuestion} score={score} index={index} count={count} stag={stag} />
 			</Desktop>
 			<Mobile>
 				<MainPageMobile showQuestion={showQuestion} score={score} count={count} />
