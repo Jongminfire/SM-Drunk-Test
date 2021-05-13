@@ -4,10 +4,7 @@ import { useMediaQuery } from 'react-responsive';
 import styled, { css } from 'styled-components';
 import WaveEffect from '../Functions/WaveEffect';
 
-const Background = styled.div`
-  width: 100%;
-  height: 100vh;
-`;
+import Background from "../Components/Background"
 
 const Contents = styled.div`
   position: absolute;
