@@ -40,29 +40,23 @@ const testimg =
 	"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAYAAAB5fY51AAAC/ElEQVR42u3UQREAMAjAsGFkBnGOCdABl0joo/Gz+gEsEIYFGBaAYQGGBWBYAIYFGBaAYQEYFmBYAIYFYFiAYQEYFoBhAYYFYFgAhgUYFoBhARgWYFgAhgVgWIBhARgWgGEBhgVgWIBhGRZgWACGBRgWgGEBGBZgWACGBWBYgGEBGBaAYQGGBWBYAIYFGBaAYQEYFmBYAIYFYFiAYQEYFoBhAYYFYFgAhgUYFoBhAYZlWIBhARgWYFgAhgVgWIBhARgWgGEBhgVgWACGBRgWgGEBGBZgWACGBWBYgGEBGBaAYQGGBWBYAIYFGBaAYQEYFmBYAIYFGJZhAYYFYFiAYQEYFoBhAYYFYFgAhgUYFoBhARgWYFgAhgVgWIBhARgWgGEBhgVgWACGBRgWgGEBGBZgWACGBWBYgGEBGBZgWDIAhgVgWIBhARgWgGEBhgVgWACGBRgWgGEBGBZgWACGBWBYgGEBGBaAYQGGBWBYAIYFGBaAYQEYFmBYAIYFYFiAYQEYFmBYAIYFYFiAYQEYFoBhAYYFYFgAhgUYFoBhARgWYFgAhgVgWIBhARgWgGEBhgVgWACGBRgWgGEBGBZgWACGBWBYgGEBGBZgWACGBWBYgGEBGBaAYQGGBWBYAIYFGBaAYQEYFmBYAIYFYFiAYQEYFoBhAYYFYFgAhgUYFoBhARgWYFgAhgVgWIBhARgWYFgAhgVgWIBhARgWgGEBhgVgWACGBRgWgGEBGBZgWACGBWBYgGEBGBaAYQGGBWBYAIYFGBaAYQEYFmBYAIYFYFiAYQEYFmBYAIYFYFiAYQEYFoBhAYYFYFgAhgUYFoBhARgWYFgAhgVgWIBhARgWgGEBhgVgWACGBRgWgGEBGBZgWACGBRiWYQGGBWBYgGEBGBaAYQGGBWBYAIYFGBaAYQEYFmBYAIYFYFiAYQEYFoBhAYYFYFgAhgUYFoBhARgWYFgAhgVgWIBhARgWYFiGBRgWgGEBhgVgWACGBRgWgGEBGBZgWACGBWBYwGUDafne43vNlkkAAAAASUVORK5CYII=";
 
 const MainPage = (props) => {
-	const { showQuestion, score, setCards, setAnswers, count, stag } = props;
+	const { showQuestion, score, setCards, setAnswers, count, stag, cards } = props;
 	const [popped, setPopped] = useState(false);
 	const [selectedCard, setSelectedCard] = useState(null);
-	const [testcards, setTestcards] = useState([
-		{ id: uuidv4(), bg: "linear-gradient(153.55deg, #879AF2 9.48%, #D3208B 48.25%, #FDA000 85.78%)" },
-		{ id: uuidv4(), bg: "#D3208B" },
-		{ id: uuidv4(), bg: "linear-gradient(to right, #00c6ff, #0072ff)" },
-		{ id: uuidv4(), bg: "linear-gradient(to right, #780206, #061161)" },
-		{ id: uuidv4(), bg: "linear-gradient(to right, #f0c27b, #4b1248)", title: "그거 아시나요? 소주병", info: "소주명은 사실 초록색입니다. 아셨다구요? 저런!", img: testimg },
-	]);
+
 	const [testcards2, setTestcards2] = useState([]);
 
 	function cadni() {
-		if (testcards.length > 0) {
-			const joined = testcards2.concat(testcards[testcards.length - 1]);
+		if (cards.length > 0) {
+			const joined = testcards2.concat(cards[cards.length - 1]);
 			setTestcards2(joined);
-			setTestcards(testcards.slice(0, -1));
+			setCards(cards.slice(0, -1));
 		}
 	}
 	function cadji() {
 		if (testcards2.length > 0) {
-			const joined = testcards.concat(testcards2[testcards2.length - 1]);
-			setTestcards(joined);
+			const joined = cards.concat(testcards2[testcards2.length - 1]);
+			setCards(joined);
 			setTestcards2(testcards2.slice(0, -1));
 		}
 	}
@@ -104,7 +98,7 @@ const MainPage = (props) => {
 					setPopped(true);
 					setSelectedCard(card);
 				}}
-				cards={testcards}
+				cards={cards}
 			></CardDrawer>
 			<CardPopup popped={popped} setPopped={setPopped} card={selectedCard} />
 		</Background>
