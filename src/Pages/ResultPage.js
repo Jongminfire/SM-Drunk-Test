@@ -63,7 +63,7 @@ const Title = styled.div`
 `;
 
 const ResultPage = (props) => {
-	const { qnaData, score } = props;
+	const { qnaData, score, onClickRestart } = props;
 	const name = localStorage.getItem('userName');
 	const weight = localStorage.getItem('userWeight');
 	const gen = localStorage.getItem('gender');
