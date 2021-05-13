@@ -11,8 +11,10 @@ import styles from "./mobileCard.scss";
 
 
 export const MobileCardDrawer = (props)=>{
+    const [index, setIndex] = useState(0);
+    
     const Wrap = styled.div`
-    padding: 3vh 6vh;
+    padding: 3vh 6.5vh;
     width: 90%;
     height: 90%;
 
@@ -23,29 +25,51 @@ export const MobileCardDrawer = (props)=>{
 	console.log(props.cards[0])
 	return <div class="mobile-card-drawer">
         <Wrap>
-            {props.cards.map((x,i)=><MobileCardSmall key={x.id} bg={x.bg} idx={i} clckevent={props.clckevent}/>)}
+            <Buttonss index={index} setIndex={setIndex} type={-1} limits = {Math.floor(props.cards.length/4)}/>
+            <MiniCards start={index*4} {...props} />
+            <Buttonss index={index} setIndex={setIndex} type={1} limits = {Math.floor(props.cards.length/4)}/>
         </Wrap>
 	</div>
 }
+export const Buttonss = (props)=>{
+    //현재 index, setIndex, 버튼 타입(1, -1)이 props
+    const {index, setIndex, type, limits} = props;
+    console.log(index,type)
+    return <Button onClick={()=>{
+        if(index + type >= 0 && index + type < limits) setIndex(index+type)
+    }}>{type!==1?"<":">"}</Button>
+}
+export const MiniCards = (props)=>{
+    let ret = [];
+    for(let i = props.start; i<props.start + 4; i++) 
+        if(props.cards[i])
+            ret.push(props.cards[i])
+        else ret.push({})
 
+    return <>{
+        ret.map((x,i)=><MobileCardSmall key={x.id} bg={x.bg} idx={i} clckevent={props.clckevent}/>)
+    }</>
+        
+}
 export const MobileCardSmall = (props)=>{
-    console.log(123)
 	const InnerCard=styled.div`
     background:${props.bg};
-    box-shadow: 2px -8px 8px 0px #00000040;
-    height: 10vw;
-    width: 7.5vw;
+    box-shadow: 2px 8px 8px 0px #00000040;
+    height: 13vh;
+    width: 9vh;
     border-radius: 18px;
-    position: absolute;
-    top: ${6+6*(props.idx)}vh;
-    right: 5vw;
+    
     transition: transform 0.2s ease-in-out;
     z-index:${10+props.idx};
     &:hover{
-        transform:scale(1.2) translateX(calc(-3vw * 0.5)) translateY(calc(2vw * 0.5));
+        transform:scale(1.4) translateY(-4vh);
     }
 	`
-    return <InnerCard onClick={()=>{props.clckevent(props)}}>wasans?</InnerCard>
+    const NoCard = styled.div`
+    height: 13vh;
+    width: 9vh;
+    `
+    return props.bg ? <InnerCard onClick={()=>{props.clckevent(props)}}>wasans?</InnerCard> : <NoCard/>
 
 }
 

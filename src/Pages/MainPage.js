@@ -62,6 +62,9 @@ const MainPage = (props) => {
 		{ id:3, bg: "linear-gradient(to right, #780206, #061161)" },
 		{ id:4, bg: "linear-gradient(to right, #f0c27b, #4b1248)" }
 	]
+	//console.log( testcards.length-1,Math.ceil(testcards.length/4)*4)
+	let temp = testcards.length
+	for(let start = temp-1; start<=Math.ceil(temp/4)*4; start++) testcards.push({})
 	return (
 		<Background>
 			<OtherBackground></OtherBackground>
@@ -77,7 +80,7 @@ const MainPage = (props) => {
 		
 			<CardPopup visible={false}/>
 			 */}
-			<MobileCardDrawer cards={[{bg:"linear-gradient(153.55deg, #879AF2 9.48%, #D3208B 48.25%, #FDA000 85.78%)"},{},{},{}]}>sans here</MobileCardDrawer>
+			<MobileCardDrawer cards={testcards}>sans here</MobileCardDrawer>
 			{/* <WaveEffect/> */}
 			<MobileCardPopup visible={false}/>
 
