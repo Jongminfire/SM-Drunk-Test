@@ -191,7 +191,7 @@ const Main = () => {
 	return (
 		<div>
 			<Desktop>
-				<MainPage setCards={setCards} setAnswers={setAnswers} showQuestion={showQuestion} score={score} index={index} />
+				<MainPage setCards={setCards} setAnswers={setAnswers} showQuestion={showQuestion} score={score} index={index} count={count} />
 			</Desktop>
 			<Mobile>
 				<MainPageMobile showQuestion={showQuestion} score={score} count={count} />

@@ -4,8 +4,14 @@ import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import Swal from "sweetalert2";
 
 const Question = styled.div`
-	width: 70vw;
-	height: 55vh;
+	position: absolute;
+	display: flex;
+	background-color: #d4f2f6;
+	min-width: 75vw;
+	min-height: 60vh;
+	border-radius: 15px;
+	left: 5vw;
+	top: 15vh;
 `;
 
 const QuestionContainer = styled.div`
@@ -130,11 +136,6 @@ const Question2 = (props) => {
 	const { score, setScore, setIndex, changeScore, isMobile, count, increaseIndex, setAnswers, setCards, addQnaData } = props;
 	const [weight, setWeight] = useState(0);
 	const name = localStorage.getItem("userName");
-	const inputRef = useRef(null);
-
-	useEffect(() => {
-		inputRef.current.focus();
-	}, []);
 
 	const onChangeWeight = (e) => {
 		let tempWeight = e.target.value;
@@ -176,7 +177,7 @@ const Question2 = (props) => {
 					</QuestionContentMobile>
 					<div style={{ margin: "6vh 0" }} />
 					<div>
-						<InputFormMobile onChange={onChangeWeight} maxLength="3" target={weight} ref={inputRef}></InputFormMobile>
+						<InputFormMobile onChange={onChangeWeight} maxLength="3" />
 						<span style={{ color: "#126e82", fontSize: "2rem", paddingLeft: "1rem" }}>KG</span>
 					</div>
 					<NextButtonMobile onClick={checkWeight}>
@@ -190,8 +191,8 @@ const Question2 = (props) => {
 						<QuestionContent>
 							{name}님 반갑습니다! <br /> 당신의 체중을 알려주세요
 						</QuestionContent>
-						<div style={{ margin: "8vh 0" }} />
-						<InputForm onChange={onChangeWeight} maxLength="3" target={weight} onKeyPress={handleKeyPress} ref={inputRef}></InputForm>
+						<div style={{ margin: "7vh 0" }} />
+						<InputForm onChange={onChangeWeight} maxLength="3" target={weight} onKeyPress={handleKeyPress}></InputForm>
 						<span style={{ color: "#126e82", fontSize: "2.5rem", paddingLeft: "1rem" }}>KG</span>
 					</QuestionContainer>
 					<NextButton onClick={checkWeight}>

@@ -1,19 +1,20 @@
-import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { useMediaQuery } from 'react-responsive';
-import WaveEffect from '../Functions/WaveEffect';
-import { useSpring, animated, to } from '@react-spring/web';
-import { v4 as uuidv4 } from 'uuid';
-import styled, { css } from 'styled-components';
-import Button from '@material-ui/core/Button';
-import CloseIcon from '@material-ui/icons/Close';
-import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
-import NavigateNextIcon from '@material-ui/icons/NavigateNext';
-import styles from './MainPage.scss';
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
+import { useMediaQuery } from "react-responsive";
+import WaveEffect from "../Functions/WaveEffect";
+import { useSpring, animated, to } from "@react-spring/web";
+import { v4 as uuidv4 } from "uuid";
+import styled, { css } from "styled-components";
+import Button from "@material-ui/core/Button";
+import CloseIcon from "@material-ui/icons/Close";
+import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
+import NavigateNextIcon from "@material-ui/icons/NavigateNext";
+import { SwitchTransition, CSSTransition } from "react-transition-group";
+import styles from "./MainPage.scss";
 
-import Question1 from '../Questions/Question1';
-import Background from '../Components/Background';
-import { CardPopup, CardDrawer } from '../Components/Card';
+import Question1 from "../Questions/Question1";
+import Background from "../Components/Background";
+import { CardPopup, CardDrawer } from "../Components/Card";
 
 const StyledButton = styled.button`
 	margin: 1%;
@@ -37,7 +38,7 @@ const Contents = styled.div`
 `;
 
 const OtherBackground = () => {
-	const [ stag, setStag ] = React.useState(0);
+	const [stag, setStag] = React.useState(0);
 	const clk = () => {
 		console.log(stag);
 		if (stag == 0) {
@@ -58,17 +59,17 @@ const OtherBackground = () => {
 };
 
 const MainPage = (props) => {
-	const { showQuestion, score, setCards, setAnswers } = props;
-	const [ popped, setPopped ] = useState(false);
-	const [ selectedCard, setSelectedCard ] = useState(null);
-	const [ testcards, setTestcards ] = useState([
-		{ id: uuidv4(), bg: 'linear-gradient(153.55deg, #879AF2 9.48%, #D3208B 48.25%, #FDA000 85.78%)' },
-		{ id: uuidv4(), bg: '#D3208B' },
-		{ id: uuidv4(), bg: 'linear-gradient(to right, #00c6ff, #0072ff)' },
-		{ id: uuidv4(), bg: 'linear-gradient(to right, #780206, #061161)' },
-		{ id: uuidv4(), bg: 'linear-gradient(to right, #f0c27b, #4b1248)' }
+	const { showQuestion, score, setCards, setAnswers, count } = props;
+	const [popped, setPopped] = useState(false);
+	const [selectedCard, setSelectedCard] = useState(null);
+	const [testcards, setTestcards] = useState([
+		{ id: uuidv4(), bg: "linear-gradient(153.55deg, #879AF2 9.48%, #D3208B 48.25%, #FDA000 85.78%)" },
+		{ id: uuidv4(), bg: "#D3208B" },
+		{ id: uuidv4(), bg: "linear-gradient(to right, #00c6ff, #0072ff)" },
+		{ id: uuidv4(), bg: "linear-gradient(to right, #780206, #061161)" },
+		{ id: uuidv4(), bg: "linear-gradient(to right, #f0c27b, #4b1248)" },
 	]);
-	const [ testcards2, setTestcards2 ] = useState([]);
+	const [testcards2, setTestcards2] = useState([]);
 
 	function cadni() {
 		if (testcards.length > 0) {
@@ -87,10 +88,14 @@ const MainPage = (props) => {
 
 	return (
 		<Background>
-			<OtherBackground />
-			<Contents>{showQuestion()}</Contents>
-			<StyledButton onClick={cadji}>카드넣기</StyledButton>
-			<StyledButton onClick={cadni}>카드빼기</StyledButton>
+			<OtherBackground></OtherBackground>
+			<SwitchTransition>
+				<CSSTransition key={count} addEndListener={(node, done) => node.addEventListener("transitionend", done, false)} classNames="fade">
+					{showQuestion()}
+				</CSSTransition>
+			</SwitchTransition>
+			<button onClick={cadji}>카드넣기</button>
+			<button onClick={cadni}>카드빼기</button>
 			<CardDrawer
 				clckevent={(card) => {
 					setPopped(true);

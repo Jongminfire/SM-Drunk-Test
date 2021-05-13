@@ -8,7 +8,7 @@
 	min-height: 120vh;
 	border-radius: 15px;
 	left: -20vw;
-	transition: top 0.5s ease-in-out;
+	// transition: top 0.5s ease-in-out;
 	top: 90vh;
 	&[stag="0"] {
 		top: 90vh;
@@ -27,3 +27,23 @@
 	cursor: pointer;
 }
 
+.fade-enter {
+	opacity: 0;
+	transform: translateY(100%);
+}
+.fade-enter-active {
+	opacity: 1;
+	transform: translateY(0%);
+}
+.fade-exit {
+	opacity: 1;
+	transform: translateY(0%);
+}
+.fade-exit-active {
+	opacity: 0;
+	transform: translateY(-100%);
+}
+.fade-enter-active,
+.fade-exit-active {
+	transition: opacity 300ms, transform 300ms;
+}
