@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import styled, { css } from "styled-components";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
+import Swal from "sweetalert2";
 
 const Question = styled.div`
 	width: 70vw;
@@ -90,7 +91,12 @@ const Question4 = (props) => {
 			addQnaData("일주일동안 몇 병을 드셨나요?", bottles);
 			increaseIndex();
 		} else {
-			alert("개수를 입력해주세요");
+			Swal.fire({
+				title: "개수를 숫자로 입력해주세요",
+				icon: "error",
+				confirmButtonText: "닫기",
+				confirmButtonColor: "#DB6867",
+			});
 		}
 	};
 
