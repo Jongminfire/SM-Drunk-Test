@@ -27,6 +27,13 @@ const Contents = styled.div`
   padding-right: 5vw;
 `;
 
+const onClickFacebook = () => {
+  console.log('facebook');
+  window.open(
+    'https://www.facebook.com/sharer/sharer.php?u=https://naver.com/'
+  );
+};
+
 const WelcomePage = (props) => {
   const { onClickStart } = props;
   return (
@@ -56,7 +63,7 @@ const WelcomePage = (props) => {
             </div>
             <div>
               <button
-                onClick={onClickStart}
+                onClick={onClickFacebook}
                 className="Button-share"
                 style={{
                   backgroundImage: `url(${FacebookIcon})`,
