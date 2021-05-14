@@ -21,9 +21,9 @@ const ButtonForm = styled.button`
 	border-radius: 0.5rem;
 	border: none;
 	outline: none;
-	height: 6vh;
-	min-width: 10vw;
-	font-size: 1.2rem;
+	height: 9vh;
+	min-width: 16vw;
+	font-size: 1.5rem;
 	cursor: pointer;
 	color: #126e82;
 	margin: 0.5vh 0 0.5vh 1.5vw;

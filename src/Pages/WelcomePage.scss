@@ -36,7 +36,7 @@
 }
 
 .Main-font {
-  font-size: 2em;
+  font-size: 1em;
   text-align: left;
   margin-top: 3vh;
   margin-bottom: 3vh;
@@ -46,7 +46,7 @@
 }
 
 .Main-font-Mobile {
-  font-size: 1.5em;
+  font-size: 1em;
   text-align: left;
   margin-top: 3vh;
   margin-bottom: 5vh;
@@ -56,7 +56,33 @@
   font-family: 'IBMPlexSansKR';
   font-weight: 300;
 }
-
+.Main-font-Mobile b:nth-last-of-type(2),.Main-font b:nth-last-of-type(2){
+  transition: 0.3s all;
+   animation-duration: 0.3s; animation-name: rainbowLink1; animation-iteration-count: infinite; 
+}
+.Main-font-Mobile b:nth-last-of-type(3),.Main-font b:nth-last-of-type(3){
+  transition: 0.3s all;
+  animation-duration: 0.3s; animation-name: rainbowLink2; animation-iteration-count: infinite; 
+}
+.Main-font-Mobile b:nth-last-of-type(1),.Main-font b:nth-last-of-type(1){
+  transition: 0.3s all;
+  animation-duration: 0.3s; animation-name: rainbowLink3; animation-iteration-count: infinite; 
+}
+@keyframes rainbowLink1 {     
+  0% { color: rgb(255,0,255); }
+  50% {color: rgb(0,255,255)}
+  100% { color: rgb(255,255,0); }
+ }
+ @keyframes rainbowLink3 {     
+  0% { color: rgb(255,255,0); }
+  50%{color: rgb(255,0,0);}
+  100% { color: rgb(0, 0, 255); }
+ }
+ @keyframes rainbowLink2 {     
+  0% { color: rgb(0,255,255); }
+  50% { color: rgb(255,255,0); }
+  100% { color: rgb(255,0,0); }
+ }
 .Share-it-font {
   color: #000;
   font-size: 2em;
@@ -89,7 +115,7 @@
 .Button-start {
   width: 100%;
   height: 100%;
-  background-color: #f3753b;
+  
 }
 
 .Button-div {
