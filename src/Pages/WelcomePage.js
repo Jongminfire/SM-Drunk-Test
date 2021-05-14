@@ -1,11 +1,11 @@
-import React from 'react';
-import { useHistory } from 'react-router-dom';
-import { useMediaQuery } from 'react-responsive';
-import styled, { css } from 'styled-components';
-import WaveEffect from '../Functions/WaveEffect';
-import './WelcomePage.scss';
+import React from "react";
+import { useHistory } from "react-router-dom";
+import { useMediaQuery } from "react-responsive";
+import styled, { css } from "styled-components";
+import WaveEffect from "../Functions/WaveEffect";
+import "./WelcomePage.scss";
 import Button from "@material-ui/core/Button";
-import Background from '../Components/Background';
+import Background from "../Components/Background";
 
 import ClipboardIcon from '../image/ClipboardIcon.png';
 import FacebookIcon from '../image/FacebookIcon.png';
@@ -16,54 +16,52 @@ import * as share from '../image/share.json'
 const { Kakao } = window;
 
 const Contents = styled.div`
-  display: flex;
-  top: 5%;
-  min-width: 300px;
-  max-width: 500px;
-  width: 50vw;
-  height: 100vh;
-  background-color: #d4f2f6;
-  margin: auto;
-  margin-top: 5vh;
-  border-radius: 10px 10px 0px 0px;
-  opacity: 0.75;
-  padding-left: 5vw;
-  padding-right: 5vw;
+	display: flex;
+	top: 5%;
+	min-width: 300px;
+	max-width: 500px;
+	width: 50vw;
+	height: 100vh;
+	background-color: #d4f2f6;
+	margin: auto;
+	margin-top: 5vh;
+	border-radius: 10px 10px 0px 0px;
+	opacity: 0.75;
+	padding-left: 5vw;
+	padding-right: 5vw;
 `;
 
 const onClickFacebook = () => {
-  console.log('facebook');
-  window.open(
-    'https://www.facebook.com/sharer/sharer.php?u=https://drunktest.run.goorm.io'
-  );
+	console.log("facebook");
+	window.open("https://www.facebook.com/sharer/sharer.php?u=https://drunktest.run.goorm.io");
 };
 
 const doCopy = (text) => {
-  if (!document.queryCommandSupported('copy')) {
-    return alert('복사하기가 지원되지 않습니다.');
-  }
-  const textarea = document.createElement('textarea');
-  textarea.value = text;
-  textarea.style.top = 0;
-  textarea.style.left = 0;
-  textarea.style.display = 'fixed';
+	if (!document.queryCommandSupported("copy")) {
+		return alert("복사하기가 지원되지 않습니다.");
+	}
+	const textarea = document.createElement("textarea");
+	textarea.value = text;
+	textarea.style.top = 0;
+	textarea.style.left = 0;
+	textarea.style.display = "fixed";
 
-  document.body.appendChild(textarea);
-  textarea.focus();
-  textarea.select();
-  document.execCommand('copy');
-  document.body.removeChild(textarea);
-  alert('클립보드에 복사되었습니다.');
+	document.body.appendChild(textarea);
+	textarea.focus();
+	textarea.select();
+	document.execCommand("copy");
+	document.body.removeChild(textarea);
+	alert("클립보드에 복사되었습니다.");
 };
 
 const KakaoSendMessage = () => {
-  Kakao.Link.sendCustom({
-    templateId: 53526,
-    templateArgs: {
-      title: '제목',
-      description: '설명',
-    },
-  });
+	Kakao.Link.sendCustom({
+		templateId: 53526,
+		templateArgs: {
+			title: "제목",
+			description: "설명",
+		},
+	});
 };
 
 const WelcomePage = (props) => {

@@ -143,6 +143,7 @@ const TmiComponent = (props) => {
 
 		addQnaData(question, ans, score);
 		changeScore(score);
+		increaseIndex();
 	};
 
 	return (
