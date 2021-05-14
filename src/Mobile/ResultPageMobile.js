@@ -23,7 +23,7 @@ function KakaoSendMessage(link) {
       objectType: 'feed',
       content: {
         title: 'TMI',
-        description: 'POP-up Modal',
+        description: res.infos.original.url,
         imageUrl: res.infos.original.url,
         link: {
           mobileWebUrl: res.infos.original.url,
