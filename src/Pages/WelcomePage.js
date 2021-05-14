@@ -105,7 +105,7 @@ const WelcomePage = (props) => {
 							테스트 시작하기
 						</div>
 					</div>
-					<div className="Share-it-font">Share it! </div>
+					<div className="Share-it-font" style={{paddingLeft:"10%"}}>  Share it! </div>
 					<div class="Button-share-div">
 						<div>
 							<button

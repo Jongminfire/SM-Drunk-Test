@@ -208,7 +208,7 @@ const ResultPage = (props) => {
     } else if (score < 12) {
       return (
         <div>
-          <span style={{ color: '#E02828' }}>당신은 위험음주자 입니다.</span>
+          <span style={{ color: '#E02828', fontSize: '1.5rem', fontWeight: 'bold' }}>당신은 위험음주자 입니다.</span>
           <div style={{ marginTop: '2vh' }}>
             <p>
               아직까지 특별히 심각한 음주로 인한 문제가 발생하지는 않았지만 향후
@@ -223,7 +223,7 @@ const ResultPage = (props) => {
     } else if (score < 20) {
       return (
         <div>
-          <span style={{ color: '#E02828' }}>당신은 고위험음주자 입니다.</span>
+          <span style={{ color: '#E02828' , fontSize: '1.5rem', fontWeight: 'bold'}}>당신은 고위험음주자 입니다.</span>
           <div style={{ marginTop: '2vh' }}>
             <p>
               이미 신체적인 정신건강 이상이나 행동상의 문제가 나타는 수준입니다.
