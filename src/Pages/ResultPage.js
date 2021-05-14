@@ -5,7 +5,7 @@ import lroabats from '../Datasets/amount_of_drinking/low_risk_of_alcohol_by_alco
 import bdrk from '../Datasets/amount_of_drinking/binge_drinking_rate_kIndicator.json';
 import wdacss from '../Datasets/amount_of_drinking/who_daily_alcohol_consumption_standards_samsungSeoulHospital.json';
 import ebds from '../Datasets/empty_bottle_deposit/empty_bottle_deposit_statMe.json';
-import trac from '../Datasets/harmful_effects_of_drinking/traffic_accident_status_by_year_knpa.json';
+
 
 const Background = styled.div`
 	width: 100%;
@@ -74,16 +74,7 @@ const ResultPage = (props) => {
 	const bCount = localStorage.getItem('bottleCount');
 	const type = localStorage.getItem('drinkType');
 
-	let str_ = '201';
-	const Medi = [];
-	for (let k = 0; k < 4; k++) {
-		let sum_ = 0;
-		for (let i = 1; i <= 7; i++) {
-			sum_ += parseInt(trac[k][str_ + i]);
-		}
-		Medi.push(Math.floor(sum_ / 7));
-	}
-	const [ d1, d2 ] = [ Math.round(Medi[0] / Medi[2], 2), Math.round(Medi[1] / Medi[3], 2) ];
+
 
 	let calType;
 	if (type === "소주") calType = lroabats[7]["알코올 함량(g)"];
@@ -123,8 +114,8 @@ const ResultPage = (props) => {
 		} else if (score < 12) {
 			return (
 				<div>
-					<span style={{ color: "#E02828" }}>당신은 위험음주자 입니다.</span>
-					<div style={{ marginTop: "2vh" }}>
+					<span style={{ color: "#E02828", fontSize: "1.3rem",  fontWeight: "bold" }}>당신은 위험음주자 입니다.</span>
+					<div style={{ marginTop: "2vh" , fontSize: "1.0rem"}}>
 						<p>아직까지 특별히 심각한 음주로 인한 문제가 발생하지는 않았지만 향후 음주로 인한 문제가 발생할 가능성이 있습니다.</p>
 						<p>음주량을 줄일거나 음주횟수를 줄여 적정음주 실행하는 것이 좋겠어요</p>
 					</div>
@@ -133,8 +124,8 @@ const ResultPage = (props) => {
 		} else if (score < 20) {
 			return (
 				<div>
-					<span style={{ color: "#E02828" }}>당신은 고위험음주자 입니다.</span>
-					<div style={{ marginTop: "2vh" }}>
+					<span style={{ color: "#E02828", fontSize: "1.3rem",  fontWeight: "bold" }}>당신은 고위험음주자 입니다.</span>
+					<div style={{ marginTop: "2vh", fontSize: "1.0rem" }}>
 						<p>이미 신체적인 정신건강 이상이나 행동상의 문제가 나타는 수준입니다.</p>
 						<p>속히 전문의 진찰을 받는 것이 좋겠어요</p>
 					</div>
@@ -143,7 +134,7 @@ const ResultPage = (props) => {
 		} else {
 			return (
 				<div style={{ marginTop: "3rem" }}>
-					<span style={{ color: "#E02828", fontSize: "1.5rem", fontWeight: "bold" }}>당신은 알코올사용장애환자 입니다.</span>
+					<span style={{ color: "#E02828", fontSize: "1.3rem", fontWeight: "bold" }}>당신은 알코올사용장애환자 입니다.</span>
 					<div style={{ marginTop: "2vh" }}>
 						<p>이미 알코올 사용장애, 특히 알코올 의존 상태임이 강력히 시사됩니다.</p>
 						<p>속히 전문의의 진찰을 받고 전문화된 치료를 시작하는 것이 좋겠어요</p>
