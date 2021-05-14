@@ -143,6 +143,7 @@ const AddictedComponent = (props) => {
 		data.cards ? addCard(data.cards) : null;
 		addQnaData(question, ans, score);
 		changeScore(score);
+		increaseIndex();
 	};
 
 	return (

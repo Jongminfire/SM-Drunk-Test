@@ -13,6 +13,7 @@ import AddictedComponent from "../Questions/AddictedComponent";
 import TmiComponent from "../Questions/TmiComponent";
 import questionText from "../questionText.json";
 import { v4 as uuidv4 } from "uuid";
+import ContinueQuestion from "../Questions/ContinueQuestion";
 
 const Desktop = ({ children }) => {
 	const isDesktop = useMediaQuery({ minWidth: 992 });
@@ -50,6 +51,8 @@ const Main = () => {
 	const isMobile = useMediaQuery({ maxWidth: 767 }) ? true : false;
 	const [score, setScore] = useState(0);
 	const [index, setIndex] = useState(1);
+	const [tmiindex, setTmiIndex] = useState(0);
+	const [addicindex, setAddicIndex] = useState(0);
 	const [count, setCount] = useState(1);
 	const [stag, setStag] = useState(0);
 
@@ -85,8 +88,8 @@ const Main = () => {
 	const changeScore = (num) => {
 		console.log(score, num);
 		setScore(score + num);
-		setCount(count + 1);
-		increaseIndex();
+		// setCount(count + 1);
+		// increaseIndex();
 	};
 
 	const increaseIndex = () => {
@@ -96,9 +99,23 @@ const Main = () => {
 		console.log(stag);
 	};
 
+	const increaseTMI =()=>{
+		setIndex(index + 1);
+		setCount(count + 1);
+		setStag((stag + 1) % 4);
+		setTmiIndex(tmiindex+1);
+	}
+
+	const increaseAddic =()=>{
+		setIndex(index + 1);
+		setCount(count + 1);
+		setStag((stag + 1) % 4);
+		setAddicIndex(addicindex+1);
+	}
+
 	const [tmiQuestions, setTMI] = useState(makeRandomQuestion(questionText.card));
 	const [addictedQuestions, setAddicted] = useState(makeRandomQuestion(questionText.form));
-
+	console.log("wa",tmiindex,addicindex)
 	const showQuestion = () => {
 		if (index <= 5) {
 			switch (index) {
@@ -179,44 +196,118 @@ const Main = () => {
 						/>
 					);
 			}
-		} else if (index >= 26) {
+		} else if (index >= 26||(index==16&&score<=12)) {
 			return (
 				<>
 					<EndQuestion onFinish={onFinish} />
 				</>
 			);
+		} else if (index==16&&score>12) {
+			return (
+				<><ContinueQuestion onFinish={onFinish} onContinue={increaseIndex}></ContinueQuestion></>
+			)
 		} else if (index > 5 && index <= 15) {
-			return (
-				<AddictedComponent
-					data={addictedQuestions[index - 5]}
-					score={score}
-					setScore={setScore}
-					setIndex={setIndex}
-					changeScore={changeScore}
-					isMobile={isMobile}
-					count={count}
-					setCount={setCount}
-					increaseIndex={increaseIndex}
-					addQnaData={addQnaData}
-					addCard={addCard}
-				/>
-			);
+			if(index%3==0){
+				return (
+					<TmiComponent
+						data={tmiQuestions[tmiindex]}
+						score={score}
+						setScore={setScore}
+						setIndex={setIndex}
+						changeScore={changeScore}
+						isMobile={isMobile}
+						count={count}
+						setCount={setCount}
+						increaseIndex={increaseTMI}
+						addQnaData={addQnaData}
+						addCard={addCard}
+					/>
+				);
+			}else{
+				return (
+					<AddictedComponent
+						data={addictedQuestions[addicindex]}
+						score={score}
+						setScore={setScore}
+						setIndex={setIndex}
+						changeScore={changeScore}
+						isMobile={isMobile}
+						count={count}
+						setCount={setCount}
+						increaseIndex={increaseAddic}
+						addQnaData={addQnaData}
+						addCard={addCard}
+					/>
+				);
+			}
 		} else {
-			return (
-				<TmiComponent
-					data={tmiQuestions[index - 15]}
-					score={score}
-					setScore={setScore}
-					setIndex={setIndex}
-					changeScore={changeScore}
-					isMobile={isMobile}
-					count={count}
-					setCount={setCount}
-					increaseIndex={increaseIndex}
-					addQnaData={addQnaData}
-					addCard={addCard}
-				/>
-			);
+			if(addictedQuestions.length<=addicindex){
+				return (
+					<TmiComponent
+						data={tmiQuestions[tmiindex]}
+						score={score}
+						setScore={setScore}
+						setIndex={setIndex}
+						changeScore={changeScore}
+						isMobile={isMobile}
+						count={count}
+						setCount={setCount}
+						increaseIndex={increaseTMI}
+						addQnaData={addQnaData}
+						addCard={addCard}
+					/>
+				);
+			}else if(tmiQuestions.length<=tmiindex){
+				return (
+					<AddictedComponent
+						data={addictedQuestions[addicindex]}
+						score={score}
+						setScore={setScore}
+						setIndex={setIndex}
+						changeScore={changeScore}
+						isMobile={isMobile}
+						count={count}
+						setCount={setCount}
+						increaseIndex={increaseAddic}
+						addQnaData={addQnaData}
+						addCard={addCard}
+					/>
+				);
+			}else{
+				if(index%3==0){
+					return (
+						<TmiComponent
+							data={tmiQuestions[tmiindex]}
+							score={score}
+							setScore={setScore}
+							setIndex={setIndex}
+							changeScore={changeScore}
+							isMobile={isMobile}
+							count={count}
+							setCount={setCount}
+							increaseIndex={increaseTMI}
+							addQnaData={addQnaData}
+							addCard={addCard}
+						/>
+					);
+				}else{
+					return (
+						<AddictedComponent
+							data={addictedQuestions[addicindex]}
+							score={score}
+							setScore={setScore}
+							setIndex={setIndex}
+							changeScore={changeScore}
+							isMobile={isMobile}
+							count={count}
+							setCount={setCount}
+							increaseIndex={increaseAddic}
+							addQnaData={addQnaData}
+							addCard={addCard}
+						/>
+					);
+				}
+			}
 		}
 	};
 
